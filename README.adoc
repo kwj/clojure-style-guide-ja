@@ -1611,7 +1611,7 @@ STMトランザクションの中でアトムを更新することを避ける�
 
 == 文字列 [[strings]]
 
-=== Java呼び出しよりもClojureの文字列関数 [[prefer-clojure-string-over-interop]]
+=== Java呼び出しよりも `clojure.string` の関数 [[prefer-clojure-string-over-interop]]
 
 文字列処理は、Java呼び出しや独自実装よりも、 `clojure.string` の関数を使うほうが好ましい。
 
@@ -1623,6 +1623,8 @@ STMトランザクションの中でアトムを更新することを避ける�
 ;; 悪い
 (.toUpperCase "bruce")
 ----
+
+NOTE: Clojure 1.8で `clojure.string` にいくつかの新しい関数（`index-of`, `last-index-of`, `starts-with?`, `ends-with?`, `includes?`）が追加された。古いバージョンのClojureへの対応が必要な場合は、これらの使用を避けるべきだ。
 
 == 例外 [[exceptions]]
 
