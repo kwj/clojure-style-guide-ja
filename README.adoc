@@ -1709,6 +1709,15 @@ ____
 
 2単語以上のコメントは大文字で始め、句読点を用いる。各文は http://en.wikipedia.org/wiki/Sentence_spacing[1つのスペース] で分ける。
 
+[source,clojure]
+----
+;; This is a good comment.
+
+;; this is a bad comment
+----
+
+もちろん句読点はコメントにおいて最も重要な要素ではないが、句読点をつけることでコメントを読む人に対して読みやすさを提供することができる。
+
 === 無意味なコメント [[no-superfluous-comments]]
 
 無意味なコメントを避ける。
