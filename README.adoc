@@ -2137,7 +2137,12 @@ it easier for tooling to display it correctly.")
 
 遠慮なく改良案の https://github.com/bbatsov/clojure-style-guide/issues[Pull Requestを作って] ください。どうかよろしくお願いします。
 
-https://www.patreon.com/bbatsov[Patreon] あるいは https://www.paypal.me/bbatsov[PayPal] を通して、金銭的にこのスタイルガイド（およびCIDER、nREPL、orchardといった私のClojureプロジェクト）を支援することもできます。
+下記のプラットフォームを通して、金銭的にこのスタイルガイド（およびCIDER、nREPL、orchardといった私のClojureプロジェクト）を支援することもできます。
+
+* https://github.com/sponsors/bbatsov[GitHub Sponsors]
+* https://ko-fi.com/bbatsov[ko-fi]
+* https://www.patreon.com/bbatsov[Patreon]
+* https://www.paypal.me/bbatsov[PayPal]
 
 == 広めてください [[spread-the-word]]
 
