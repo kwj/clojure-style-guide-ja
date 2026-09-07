@@ -62,6 +62,8 @@ gem install rouge
 ====
 endif::[]
 
+== 翻訳版
+
 このスタイルガイドは以下の言語に翻訳されている：
 
 * https://github.com/bbatsov/clojure-style-guide[英語（原文）]
@@ -70,6 +72,8 @@ endif::[]
 * https://github.com/theSkilled/clojure-style-guide/blob/pt-BR/README.md[ポルトガル語] (作業中)
 * https://github.com/Nondv/clojure-style-guide/blob/master/ru/README.md[ロシア語]
 * https://github.com/jeko2000/clojure-style-guide/blob/master/README.md[スペイン語]
+
+NOTE: これらの翻訳版は私たちの編集チームによって管理されておらず、品質や完成度にばらつきがあります。翻訳版は、翻訳元の英語版より遅れていることが多々あります。
 
 == ソースコードのレイアウトと構造 [[source-code-layout-organization]]
 
