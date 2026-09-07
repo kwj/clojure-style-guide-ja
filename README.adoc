@@ -2192,7 +2192,7 @@ BozhidarはClojureと優れたプログラミングスタイルに強い情熱�
 
 == 着想の源
 
-多くの人々、書籍、プレゼンテーション、記事、他のスタイルガイドが、このスタイルガイドに影響を与えています。そのうちのいくつかを紹介します。
+多くの人々、書籍、プレゼンテーション、記事、他のスタイルガイドが、このスタイルガイドに影響を与えています。そのうちのいくつかを紹介します：
 
 * https://en.wikipedia.org/wiki/The_Elements_of_Style[The Elements of Style]
 * https://en.wikipedia.org/wiki/The_Elements_of_Programming_Style[The Elements of Programming Style]
@@ -2211,7 +2211,7 @@ BozhidarはClojureと優れたプログラミングスタイルに強い情熱�
 
 遠慮なく改良案の https://github.com/bbatsov/clojure-style-guide/issues[Pull Requestを作って] ください。どうかよろしくお願いします。
 
-下記のプラットフォームを通して、金銭的にこのスタイルガイド（およびCIDER、nREPL、orchardといった私のClojureプロジェクト）を支援することもできます。
+下記のプラットフォームを通して、金銭的にこのスタイルガイド（およびCIDER、nREPL、orchardといった私のClojureプロジェクト）を支援することもできます：
 
 * https://github.com/sponsors/bbatsov[GitHub Sponsors]
 * https://ko-fi.com/bbatsov[ko-fi]
@@ -2220,7 +2220,7 @@ BozhidarはClojureと優れたプログラミングスタイルに強い情熱�
 
 == どのように貢献すればよいですか？
 
-簡単にできます、以下は貢献のためのガイドラインです。
+簡単です、以下は貢献のためのガイドラインです：
 
 * リポジトリ https://github.com/bbatsov/clojure-style-guide[bbatsov/clojure-style-guide] を GitHub 上で https://help.github.com/articles/fork-a-repo[フォーク] します。
 * 内容の追加や誤りの修正は新しいブランチを切っておこなってください。
