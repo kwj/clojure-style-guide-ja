@@ -1,0 +1,3 @@
+[submodule "clojure-style-guide"]
+	path = clojure-style-guide
+	url = https://github.com/bbatsov/clojure-style-guide.git
