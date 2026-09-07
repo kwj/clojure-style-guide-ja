@@ -1242,18 +1242,18 @@ ____
 プログラミングで本当に難しいのは、キャッシュの無効化と命名の仕方だけだ。
 ____
 
-=== 名前空間の命名方法 [[ns-naming-schemas]]
+=== 名前空間の命名方法 [[naming-ns-naming-schemas]]
 
 名前空間は次の2つの名づけ方が好ましい。
 
 * `project.module`
 * `organization.project.module`
 
-=== 名前空間はlisp-caseで [[lisp-case-ns]]
+=== 名前空間セグメントにおける複数単語 [[naming-namespace-composite-segments]]
 
 複数単語からなる名前空間セグメントには `lisp-case` を使う（例： `bruce.project-euler` ）
 
-=== lisp-case [[lisp-case]]
+=== 関数、変数 [[naming-functions-and-variables]]
 
 関数名や変数名には `lisp-case` を使う。
 
@@ -1269,11 +1269,11 @@ ____
 (def some_fun ...)
 ----
 
-=== プロトコル、レコード、構造体、型はCamelCaseで [[CamelCase-for-protocols-records-structs-and-types]]
+=== プロトコル、レコード、構造体、型 [[naming-protocols-records-structs-and-types]]
 
 プロトコル、レコード、構造体、型には `CamelCase` を用いる。（HTTP, RFC, XMLのような頭字語は大文字を保持する。）
 
-=== 述語にはクエスチョンマークを用いる [[pred-with-question-mark]]
+=== 述語 [[naming-predicates]]
 
 述語（ブール値を返す関数）の名前はクエスチョンマーク（?）で終わるべきだ。（例： `even?` ）
 
@@ -1287,11 +1287,11 @@ ____
 (defn is-palindrome ...) ; Javaスタイル
 ----
 
-=== 状態を変える関数にはエクスクラメーションマークを用いる [[changing-state-fns-with-exclamation-mark]]
+=== 安全でない関数 [[naming-unsafe-functions]]
 
 STMトランザクションの中で安全でない関数・マクロの名前はエクスクラメーションマーク（!）で終わるべきだ。（例： `reset!` ）
 
-=== toの代わりに矢印 [[arrow-instead-of-to]]
+=== 変換のための関数 [[naming-conversion-functions]]
 
 変換のための関数名には `to` ではなく `+->+` を用いる。
 
@@ -1304,7 +1304,7 @@ STMトランザクションの中で安全でない関数・マクロの名前�
 (defn f-to-c ...)
 ----
 
-=== dynamicなvarには耳あてを [[earmuffs-for-dynamic-vars]]
+=== DynamicなVar [[[naming-dynamic-vars]]
 
 再束縛を想定しているものには `*earmuffs*` を使う（つまりdynamicなものだ）。
 
@@ -1317,11 +1317,11 @@ STMトランザクションの中で安全でない関数・マクロの名前�
 (def ^:dynamic a 10)
 ----
 
-=== 定数に特別な表記をしない [[dont-flag-constants]]
+=== 定数 [[naming-constants]]
 
 定数のために特別な表記をしない。特定のものを除いて、全ては定数である。
 
-=== 使用しない束縛にはアンダースコア [[underscore-for-unused-bindings]]
+=== 使用しない束縛 [[[naming-unused-bindings]]
 
 直後のコードで使用されない分配束縛や引数名には `+_+` を使う。
 
