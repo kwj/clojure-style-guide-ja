@@ -1257,7 +1257,7 @@ ____
 
 関数名や変数名には `lisp-case` を使う。
 
-NOTE: Lisp以外の多くのプログラミングコミュニティでは `lisp-case` を `kebab-case` と呼んでいますが、`kebab-case` の呼称が作り出されるよりずっと以前にLispが存在していたことは周知の事実です。
+NOTE: Lisp以外の多くのプログラミングコミュニティでは `lisp-case` を `kebab-case` と呼んでいるが、`kebab-case` の呼称が作り出されるよりずっと以前にLispが存在していたことは周知の事実だ。
 
 [source,clojure]
 ----
@@ -1275,7 +1275,7 @@ NOTE: Lisp以外の多くのプログラミングコミュニティでは `lisp-
 
 プロトコル、レコード、構造体、型には `CapitalCase` を用いる。（HTTP, RFC, XMLのような頭字語は大文字を保持する。）
 
-NOTE: `CapitalCase` は `UpperCamelCase, `CapitalWords`, `PascalCase` としても知られています。
+NOTE: `CapitalCase` は `UpperCamelCase, `CapitalWords`, `PascalCase` としても知られている。
 
 
 === 述語 [[naming-predicates]]
