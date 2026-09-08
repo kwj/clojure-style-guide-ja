@@ -542,6 +542,73 @@ ____
    [clojure.java.shell :as sh]))
 ----
 
+=== 慣用的な名前空間エイリアスを使う
+
+Clojureの主要な名前空間の多くは、プロジェクト内で使用が推奨される慣用的なエイリアス（別名）がある。例えば、　`clojure.string` を読み込む最も一般的な方法は `[clojure.string :as str]` だ。
+
+NOTE: これは `clojure.core.str` を隠蔽しているように見えるが、実際はそうではない。同じ名前空間内で `clojure.core/str` と `clojure.string/*` は `str` と `str/whatever` として競合することなく使われる。
+
+[source,clojure]
+----
+;; 良い
+(ns ... (:require [clojure.string :as str] ...)
+
+(str/join ...)
+
+;; あまり良くない - 慣用的な書き方として `str/` を使うべきだ
+(ns ... (:require [clojure.string :as string] ...)
+
+(string/join ...)
+----
+
+下記に、一般的に使われる慣用的なエイリアスをいくつか示す：
+
+|===
+| 名前空間 | 慣用的なエイリアス
+| io
+| clojure.java.io
+| set
+| clojure.set
+| str
+| clojure.string
+| walk
+| clojure.walk
+| zip
+| clojure.zip
+| xml
+| clojure.data.xml
+| as
+| clojure.core.async
+| mat
+| clojure.core.matrix
+| edn
+| clojure.edn
+| pp
+| clojure.pprint
+| spec
+| clojure.spec.alpha
+| csv
+| clojure.data.csv
+| json
+| cheshire.core
+| time
+| java-time
+| http
+| clj-http.client
+| log
+| clojure.tools.logging
+| sql
+| hugsql.core
+| yaml
+| clj-yaml.core
+| sh
+| clojure.java.shell
+|===
+
+=== 一貫した名前空間エイリアスの使用
+
+プロジェクト全体を通して、名前空間エイリアスを統一しておくことは良いことだ。例えば、ある名前空間で `clojure.string` を `str` として読み込む一方で、別の名前空間では `stirng` として読み込むようなことをしてはならない。
+
 == 関数 [[functions]]
 
 === 関数名の後に改行しても良い [[optional-new-line-after-fn-name]]
