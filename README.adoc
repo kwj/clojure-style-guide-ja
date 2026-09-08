@@ -367,7 +367,41 @@ ____
 
 === 定義フォーム内に空白行を入れない [[no-blank-lines-within-def-forms]]
 
-関数やマクロ定義の中には空白行を入れない。ただし、 `let` や `cond` 等において、ペアをグループ分けするために入れるのは良い。
+関数やマクロ定義の中には空白行を入れない。ただし `let` や `cond` のようなペアで構成される構文が同じ行に収まらない場合など、ペアをグループ分けするために入れるのは良い。
+
+[source,clojure]
+----
+;; 良い
+(defn fibo-iter
+  ([n] (fibo-iter 0 1 n))
+  ([curr nxt n]
+   (cond
+     (zero? n) curr
+     :else (recur nxt (+' curr nxt) (dec n)))))
+
+;; ok - 空白行は cond のペアを分けている
+(defn fibo-iter
+  ([n] (fibo-iter 0 1 n))
+  ([curr nxt n]
+   (cond
+     (zero? n)
+     curr
+
+     :else
+     (recur nxt (+' curr nxt) (dec n)))))
+
+;; 悪い
+(defn fibo-iter
+  ([n] (fibo-iter 0 1 n))
+
+  ([curr nxt n]
+   (cond
+     (zero? n) curr
+
+     :else (recur nxt (+' curr nxt) (dec n)))))
+----
+
+長い関数の定義内に空白行を入れるのは良いアイデアのように見えるかもしれないが、そう思ったのならば、この関数に処理を詰め込みすぎていないか、あるいは関数を分割できるのではないかを検討すべきだ。
 
 === 行末の空白を避ける [[no-trailing-whitespace]]
 
