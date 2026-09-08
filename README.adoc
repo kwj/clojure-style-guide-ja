@@ -110,6 +110,7 @@ ____
 * https://github.com/theSkilled/clojure-style-guide/blob/pt-BR/README.md[ポルトガル語] (作業中)
 * https://github.com/Nondv/clojure-style-guide/blob/master/ru/README.md[ロシア語]
 * https://github.com/jeko2000/clojure-style-guide/blob/master/README.md[スペイン語]
+* https://github.com/LeaveNhA/clojure-style-guide/blob/master/README.adoc[トルコ語]
 
 NOTE: これらの翻訳版は私たちの編集チームによって管理されておらず、品質や完成度にばらつきがあります。翻訳版は、翻訳元の英語版より遅れていることが多々あります。
 
