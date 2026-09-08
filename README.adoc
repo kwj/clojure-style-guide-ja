@@ -2059,7 +2059,7 @@ https://github.com/cljdoc/cljdoc/blob/master/doc/userguide/for-library-authors.a
   Example:
   ```clojure
   (when (neg? (qzuf-number [1 2 3] {:finite-uni? true}))
-    (throw (RuntimeException. "Error in the Universe!")))
+    (throw (RuntimeException. \"Error in the Universe!\")))
   ```"
   [coll opts]
   ...)
