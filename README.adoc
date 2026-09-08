@@ -1765,6 +1765,8 @@ NOTE: Clojure 1.8で `clojure.string` にいくつかの新しい関数（`index
 
 [source,clojure]
 ----
+;;; 良い
+;;
 ;; バージョンがある場合
 (def ^{:deprecated "0.5"} foo
   "Use `bar` instead.
@@ -1780,6 +1782,16 @@ NOTE: Clojure 1.8で `clojure.string` にいくつかの新しい関数（`index
 ;; バージョンがない場合
 (defn ^:deprecated foo
   (bar))
+
+;;; 悪い
+;;
+;; 非推奨を示すためにドキュメント文字列を使っている
+(def foo
+  "DEPRECATED: Use `bar` instead.
+  42)
+
+(ns foo.bar
+  "DEPRECATED: A deprecated ns.")
 ----
 
 TIP: セマンティックバージョニングを使っているなら、パッチバージョンを省略するのは良いアイデアだ。つまり、 `0.5.0` ではなく `0.5` を指定するべきだ。これは、バージョンに関連するすべてのメタデータに当てはまる。
