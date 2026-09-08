@@ -246,7 +246,7 @@ ____
 
 === 改行コード [[crlf]]
 
-Unixスタイルの改行コードを使用する。 footnote:[*BSD/Solaris/Linux/OSXユーザはデフォルトで問題ないが、Windowsユーザは特に注意すること。]
+Unixスタイルの改行コードを使用する。 footnote:[*BSD/Solaris/Linux/macOSユーザはデフォルトで問題ないが、Windowsユーザは特に注意すること。]
 
 [TIP]
 ====
