@@ -1765,6 +1765,7 @@ NOTE: Clojure 1.8で `clojure.string` にいくつかの新しい関数（`index
 
 [source,clojure]
 ----
+;; バージョンがある場合
 (def ^{:deprecated "0.5"} foo
   "Use `bar` instead.
   42)
@@ -1774,6 +1775,10 @@ NOTE: Clojure 1.8で `clojure.string` にいくつかの新しい関数（`index
   {:deprecated "0.8"})
 
 (defn ^{:deprecated "0.5"} foo
+  (bar))
+
+;; バージョンがない場合
+(defn ^:deprecated foo
   (bar))
 ----
 
