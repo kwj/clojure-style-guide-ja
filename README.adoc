@@ -651,6 +651,159 @@ TIP: はい、名前空間のエイリアスにはドットを含めることが
 
 プロジェクト全体を通して、名前空間エイリアスを統一しておくことは良いことだ。例えば、ある名前空間で `clojure.string` を `str` として読み込む一方で、別の名前空間では `stirng` として読み込むようなことをしてはならない。前述の2つのガイドラインに従えば基本的には問題はないだろうが、名前空間のエイリアス名に独自方式を採用する場合はプロジェクト内で一貫して適用することが依然として重要だ。
 
+== 命名規約 [[naming]]
+
+[quote, フィル・カールトン]
+____
+プログラミングで本当に難しいのは、キャッシュの無効化と命名の仕方だけだ。
+____
+
+=== 名前空間の命名方法 [[naming-ns-naming-schemas]]
+
+名前空間は次の2つの名づけ方が好ましい。
+
+* `project.module`
+* `organization.project.module`
+
+=== 名前空間セグメントにおける複数単語 [[naming-namespace-composite-segments]]
+
+複数単語からなる名前空間セグメントには `lisp-case` を使う（例： `bruce.project-euler` ）
+
+=== 関数、変数 [[naming-functions-and-variables]]
+
+関数名や変数名には `lisp-case` を使う。
+
+NOTE: Lisp以外の多くのプログラミングコミュニティでは `lisp-case` を `kebab-case` と呼んでいるが、`kebab-case` の呼称が作り出されるよりずっと以前にLispが存在していたことは周知の事実だ。
+
+[source,clojure]
+----
+;; 良い
+(def some-var ...)
+(defn some-fun ...)
+
+;; 悪い
+(def someVar ...)
+(defn somefun ...)
+(def some_fun ...)
+----
+
+=== プロトコル、レコード、構造体、型 [[naming-protocols-records-structs-and-types]]
+
+プロトコル、レコード、構造体、型には `CapitalCase` を用いる。（HTTP, RFC, XMLのような頭字語は大文字を保持する。）
+
+NOTE: `CapitalCase` は `UpperCamelCase, `CapitalWords`, `PascalCase` としても知られている。
+
+
+=== 述語 [[naming-predicates]]
+
+述語（ブール値を返す関数）の名前はクエスチョンマーク（?）で終わるべきだ。（例： `even?` ）
+
+[source,clojure]
+----
+;; 良い
+(defn palindrome? ...)
+
+;; 悪い
+(defn palindrome-p ...) ; Common Lispスタイル
+(defn is-palindrome ...) ; Javaスタイル
+----
+
+=== 安全でない関数 [[naming-unsafe-functions]]
+
+STMトランザクションの中で安全でない関数・マクロの名前はエクスクラメーションマーク（!）で終わるべきだ。（例： `reset!` ）
+
+=== 変換のための関数 [[naming-conversion-functions]]
+
+変換のための関数名には `to` ではなく `+->+` を用いる。
+
+[source,clojure]
+----
+;; 良い
+(defn f->c ...)
+
+;; あまり良くない
+(defn f-to-c ...)
+----
+
+=== DynamicなVar [[[naming-dynamic-vars]]
+
+再束縛を想定しているものには `*earmuffs*` を使う（つまりdynamicなものだ）。
+
+[source,clojure]
+----
+;; 良い
+(def ^:dynamic *a* 10)
+
+;; 悪い
+(def ^:dynamic a 10)
+----
+
+=== 定数 [[naming-constants]]
+
+定数のために特別な表記をしない。特定のものを除いて、全ては定数である。
+
+=== 使用しない束縛 [[[naming-unused-bindings]]
+
+直後のコードで使用されない分配束縛や引数名には `+_+` を使う。
+
+[source,clojure]
+----
+;; 良い
+(let [[a b _ c] [1 2 3 4]]
+  (println a b c))
+
+(dotimes [_ 3]
+  (println "Hello!"))
+
+;; 悪い
+(let [[a b c d] [1 2 3 4]]
+  (println a b d))
+
+(dotimes [i 3]
+  (println "Hello!"))
+----
+
+コードの理解を助けるためならば、使用しない引数や分配束縛のマップに明示的に名前を付けても良い。この場合、その変数が実際には使われないことを示すため、先頭にアンダースコアを付加する。
+
+[source,clojure]
+----
+;; 良い
+(defn myfun1 [context _]
+  (assoc context :foo "bar"))
+
+(defn myfun2 [context {:keys [id]}]
+  (assoc context :user-id id))
+
+;; より良い
+(defn myfun1 [context _user]
+  (assoc context :foo "bar"))
+
+(defn myfun2 [context {:keys [id] :as _user}]
+  (assoc context :user-id id))
+----
+
+=== 慣用名
+
+`pred` や `coll` のような慣用名には `clojure.core` の例が参考になる。
+
+* 関数内では、
+ ** `f`, `g`, `h` - 関数入力
+ ** `n` - サイズを示す整数値
+ ** `index`, `i` - 整数のインデックス
+ ** `x`, `y` - 数値
+ ** `xs` - シーケンス
+ ** `m` - マップ
+ ** `s` - 文字列入力
+ ** `re` - 正規表現
+ ** `coll` - コレクション
+ ** `pred` - 述語クロージャ
+ ** `& more` - 可変長引数
+ ** `xf` - xform、transducer
+* マクロ内では、
+ ** `expr` - 式
+ ** `body` - マクロ本体
+ ** `binding` - マクロの束縛ベクタ
+
 == 関数 [[functions]]
 
 === 関数名の後に改行しても良い [[optional-new-line-after-fn-name]]
@@ -1440,159 +1593,6 @@ Integer/MAX_VALUE
 (meta a) ;=> {:private true}
 (meta #'a) ;=> nil
 ----
-
-== 命名規約 [[naming]]
-
-[quote, フィル・カールトン]
-____
-プログラミングで本当に難しいのは、キャッシュの無効化と命名の仕方だけだ。
-____
-
-=== 名前空間の命名方法 [[naming-ns-naming-schemas]]
-
-名前空間は次の2つの名づけ方が好ましい。
-
-* `project.module`
-* `organization.project.module`
-
-=== 名前空間セグメントにおける複数単語 [[naming-namespace-composite-segments]]
-
-複数単語からなる名前空間セグメントには `lisp-case` を使う（例： `bruce.project-euler` ）
-
-=== 関数、変数 [[naming-functions-and-variables]]
-
-関数名や変数名には `lisp-case` を使う。
-
-NOTE: Lisp以外の多くのプログラミングコミュニティでは `lisp-case` を `kebab-case` と呼んでいるが、`kebab-case` の呼称が作り出されるよりずっと以前にLispが存在していたことは周知の事実だ。
-
-[source,clojure]
-----
-;; 良い
-(def some-var ...)
-(defn some-fun ...)
-
-;; 悪い
-(def someVar ...)
-(defn somefun ...)
-(def some_fun ...)
-----
-
-=== プロトコル、レコード、構造体、型 [[naming-protocols-records-structs-and-types]]
-
-プロトコル、レコード、構造体、型には `CapitalCase` を用いる。（HTTP, RFC, XMLのような頭字語は大文字を保持する。）
-
-NOTE: `CapitalCase` は `UpperCamelCase, `CapitalWords`, `PascalCase` としても知られている。
-
-
-=== 述語 [[naming-predicates]]
-
-述語（ブール値を返す関数）の名前はクエスチョンマーク（?）で終わるべきだ。（例： `even?` ）
-
-[source,clojure]
-----
-;; 良い
-(defn palindrome? ...)
-
-;; 悪い
-(defn palindrome-p ...) ; Common Lispスタイル
-(defn is-palindrome ...) ; Javaスタイル
-----
-
-=== 安全でない関数 [[naming-unsafe-functions]]
-
-STMトランザクションの中で安全でない関数・マクロの名前はエクスクラメーションマーク（!）で終わるべきだ。（例： `reset!` ）
-
-=== 変換のための関数 [[naming-conversion-functions]]
-
-変換のための関数名には `to` ではなく `+->+` を用いる。
-
-[source,clojure]
-----
-;; 良い
-(defn f->c ...)
-
-;; あまり良くない
-(defn f-to-c ...)
-----
-
-=== DynamicなVar [[[naming-dynamic-vars]]
-
-再束縛を想定しているものには `*earmuffs*` を使う（つまりdynamicなものだ）。
-
-[source,clojure]
-----
-;; 良い
-(def ^:dynamic *a* 10)
-
-;; 悪い
-(def ^:dynamic a 10)
-----
-
-=== 定数 [[naming-constants]]
-
-定数のために特別な表記をしない。特定のものを除いて、全ては定数である。
-
-=== 使用しない束縛 [[[naming-unused-bindings]]
-
-直後のコードで使用されない分配束縛や引数名には `+_+` を使う。
-
-[source,clojure]
-----
-;; 良い
-(let [[a b _ c] [1 2 3 4]]
-  (println a b c))
-
-(dotimes [_ 3]
-  (println "Hello!"))
-
-;; 悪い
-(let [[a b c d] [1 2 3 4]]
-  (println a b d))
-
-(dotimes [i 3]
-  (println "Hello!"))
-----
-
-コードの理解を助けるためならば、使用しない引数や分配束縛のマップに明示的に名前を付けても良い。この場合、その変数が実際には使われないことを示すため、先頭にアンダースコアを付加する。
-
-[source,clojure]
-----
-;; 良い
-(defn myfun1 [context _]
-  (assoc context :foo "bar"))
-
-(defn myfun2 [context {:keys [id]}]
-  (assoc context :user-id id))
-
-;; より良い
-(defn myfun1 [context _user]
-  (assoc context :foo "bar"))
-
-(defn myfun2 [context {:keys [id] :as _user}]
-  (assoc context :user-id id))
-----
-
-=== 慣用名
-
-`pred` や `coll` のような慣用名には `clojure.core` の例が参考になる。
-
-* 関数内では、
- ** `f`, `g`, `h` - 関数入力
- ** `n` - サイズを示す整数値
- ** `index`, `i` - 整数のインデックス
- ** `x`, `y` - 数値
- ** `xs` - シーケンス
- ** `m` - マップ
- ** `s` - 文字列入力
- ** `re` - 正規表現
- ** `coll` - コレクション
- ** `pred` - 述語クロージャ
- ** `& more` - 可変長引数
- ** `xf` - xform、transducer
-* マクロ内では、
- ** `expr` - 式
- ** `body` - マクロ本体
- ** `binding` - マクロの束縛ベクタ
 
 == データ構造 [[data-structures]]
 
