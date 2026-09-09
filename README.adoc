@@ -2468,20 +2468,6 @@ it easier for tooling to display it correctly.")
   (bar x))
 ----
 
-== 実際のコードでは [[existential]]
-
-=== 関数型的に [[be-functional]]
-
-関数型的にコードを書き、そのほうが適切なときのみミュータブルにする。
-
-=== 一貫させる [[be-consistent]]
-
-一貫させる。理想的には、このガイドの通りにする。
-
-=== 常識的に [[common-sense]]
-
-常識的に考える。
-
 == テスト [[testing]]
 
 === テストディレクトリの構造 [[test-directory-structure]]
@@ -2529,6 +2515,20 @@ it easier for tooling to display it correctly.")
 === ツールの分離 [[lib-core-separate-from-tools]]
 
 コアの機能とインテグレーション部分は別々のアーティファクトにする。そうすれば、ユーザはあなたのライブラリを無関係なツール依存に制限されることなく利用できる。たとえば、 https://github.com/stuartsierra/component[Component] はコア機能を提供し、 https://github.com/stuartsierra/reloaded[reloaded] はLeiningenとのインテグレーションを提供している。
+
+== 実際のコードでは [[existential]]
+
+=== 関数型的に [[be-functional]]
+
+関数型的にコードを書き、そのほうが適切なときのみミュータブルにする。
+
+=== 一貫させる [[be-consistent]]
+
+一貫させる。理想的には、このガイドの通りにする。
+
+=== 常識的に [[common-sense]]
+
+常識的に考える。
 
 == ツール
 
