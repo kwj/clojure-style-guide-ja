@@ -37,9 +37,7 @@ endif::[]
 
 このスタイルガイドはまだまだ書き換えることができる。新たな慣習が確認されたり、Clojure自体の変更によって従来の慣習が時代遅れになったりすることに伴い、このスタイルガイドは時間とともに変化する。
 
-NOTE: このスタイルガイドはまだ作成途中だ。そのため、いくつかのセクションが欠けていたり、不完全であったり、いくつかの規約には例がなかったり、それが明快でなかったりする。やがてこれらの問題は解決されていくだろうが -- 今はそれを念頭に置いてほしい。
-
-また、Clojure開発コミュニティが https://clojure.org/community/contrib_howto#_coding_guidelines[ライブラリのコーディング規約] の一覧をまとめていることも覚えておいてほしい。
+NOTE: Clojure開発コミュニティはhttps://clojure.org/community/contrib_howto#_coding_guidelines[ライブラリのコーディング規約]footnote:[これらのガイドラインはClojure自身およびClojureのContribライブラリに適用することを意図しています。]の一覧もまとめている。これらは、あなたが現在読んでいるドキュメントの着想源の一つとなりました。
 
 ifdef::env-github[]
 https://asciidoctor.org/docs/asciidoctor-pdf/[AsciiDoctor PDF] を利用することで、このスタイルガイドのPDF版を生成することができます。また、 https://asciidoctor.org/#installation[AsciiDoctor] を https://asciidoctor.org/docs/convert-documents/#converting-a-document-to-html[使う] ことで、HTML版を生成できます。
