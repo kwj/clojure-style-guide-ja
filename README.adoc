@@ -565,44 +565,44 @@ NOTE: これは `clojure.core.str` を隠蔽しているように見えるが、
 
 |===
 | 名前空間 | 慣用的なエイリアス
-| io
 | clojure.java.io
-| set
+| io
 | clojure.set
-| str
+| set
 | clojure.string
-| walk
+| str
 | clojure.walk
-| zip
+| walk
 | clojure.zip
-| xml
+| zip
 | clojure.data.xml
-| as
+| xml
 | clojure.core.async
-| mat
+| as
 | clojure.core.matrix
-| edn
+| mat
 | clojure.edn
-| pp
+| edn
 | clojure.pprint
-| spec
+| pp
 | clojure.spec.alpha
-| csv
+| spec
 | clojure.data.csv
-| json
+| csv
 | cheshire.core
-| time
+| json
 | java-time
-| http
+| time
 | clj-http.client
-| log
+| http
 | clojure.tools.logging
-| sql
+| log
 | hugsql.core
-| yaml
+| sql
 | clj-yaml.core
-| sh
+| yaml
 | clojure.java.shell
+| sh
 |===
 
 === 良い名前空間エイリアスのためのレシピ
