@@ -605,9 +605,51 @@ NOTE: これは `clojure.core.str` を隠蔽しているように見えるが、
 | clojure.java.shell
 |===
 
+=== 良い名前空間エイリアスのためのレシピ
+
+上記で、よく使われる名前空間と慣用的なエイリアスをいくつか紹介した。しかし、それらは少し一貫性に欠けている。
+
+* `clojure.string` を `str` に
+* `clojure.pprint` を `pp`　に
+* `clojure.walk` を `walk` に
+* `clojure.spec.alpha` を `spec` に
+
+これらに共通するのは簡潔さを目指しつつも、エイリアスにある程度の意味を持たせようとしていることが明白だろう。（`clojure.walk` を `w` にエイリアスするのは簡潔ではあるが、ほとんど意味がない。）
+
+しかし、慣用的なエイリアスを持たない他の名前空間についてはどうすればよいのだろうか？ エイリアス名を決める際には一貫したアプローチをとるべきだ、そうでないとClojureのコードを共有して作業している他の人たちは大きな混乱に陥るだろう。下記に従うべきいくつかのルールを示す。 footnote:[このガイドラインはStuart Sieraによるhttps://stuartsierra.com/2015/05/10/clojure-namespace-aliases[ブログ記事]に基づいている。]
+
+. エイリアスは、名前空間の先頭部分を取り除いたものと同じにする。
+
+[source,clojure]
+----
+(ns com.example.application
+  (:require
+   [clojure.java.io :as io]
+   [clojure.string :as string]))
+----
+
+. 各エイリアスがそれぞれ一意になるのに十分な末尾の部分を残す。
+
+[source,clojure]
+----
+[clojure.data.xml :as data.xml]
+[clojure.xml :as xml]
+----
+
+TIP: はい、名前空間のエイリアスにはドットを含めることができます。活用してください。
+
+. エイリアス内の "core" や "clj" といった冗長な単語を取り除く。
+
+[source,clojure]
+----
+[clj-http :as http]
+[clj-time.core :as time]
+[clj-time.format :as time.format]
+----
+
 === 一貫した名前空間エイリアスの使用
 
-プロジェクト全体を通して、名前空間エイリアスを統一しておくことは良いことだ。例えば、ある名前空間で `clojure.string` を `str` として読み込む一方で、別の名前空間では `stirng` として読み込むようなことをしてはならない。
+プロジェクト全体を通して、名前空間エイリアスを統一しておくことは良いことだ。例えば、ある名前空間で `clojure.string` を `str` として読み込む一方で、別の名前空間では `stirng` として読み込むようなことをしてはならない。前述の2つのガイドラインに従えば基本的には問題はないだろうが、名前空間のエイリアス名に独自方式を採用する場合はプロジェクト内で一貫して適用することが依然として重要だ。
 
 == 関数 [[functions]]
 
