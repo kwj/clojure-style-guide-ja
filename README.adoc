@@ -908,6 +908,8 @@ NOTE: `\*clojure-version*` が慣例に反しているのはよく知られて�
  ** `expr` - 式
  ** `body` - マクロ本体
  ** `binding` - マクロの束縛ベクタ
+* メソッド（`defprotocol`, `deftype`, `defrecord`, `reify`　などで定義される）内では、
+　** `this` - 第1引数として、オブジェクトへの参照、あるいはそのオブジェクトを表す一貫性のある名前を指定
 
 == 関数 [[functions]]
 
@@ -2623,6 +2625,21 @@ it easier for tooling to display it correctly.")
   "docstring"
   (bar x))
 ----
+
+[NOTE]
+====
+`defprotocol` メソッドのドキュメント文字列は引数ベクタの_後ろ_に記述する：
+
+[source,clojure]
+----
+(defprotocol MyProtocol
+  "MyProtocol docstring"
+  (foo [this x y z]
+    "foo docstring")
+  (bar [this]
+    "bar docstring"))
+----
+====
 
 == テスト [[testing]]
 
