@@ -824,6 +824,19 @@ STMトランザクションの中で安全でない関数・マクロの名前�
 
 定数のために特別な表記をしない。特定のものを除いて、全ては定数である。
 
+[source,clojure]
+----
+;; 良い
+(def max-size 10)
+
+;; 悪い
+(def MAX-SIZE 10) ; Java スタイル
+(def +max-size+ 10) ; Common Lisp スタイル、グローバル定数
+(def *max-size* 10) ; Common Lisp スタイル、グローバル変数
+----
+
+NOTE: `*clojure-version*` が慣例に反しているのはよく知られているが、これは歴史的な都合による例外であり模範とするべきではない。
+
 === 使用しない束縛 [[[naming-unused-bindings]]
 
 直後のコードで使用されない分配束縛や引数名には `+_+` を使う。
