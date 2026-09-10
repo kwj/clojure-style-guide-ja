@@ -2730,7 +2730,7 @@ NOTE: エディタについて、Emacsの `clojure-mode` はデフォルトで�
 
 このスタイルガイドは https://github.com/bbatsov[Bozhidar Batsov] により、彼がRubyコミュニティで立ち上げた　https://rubystyle.guide/[類似プロジェクト] の成功を受けて2013年に開始されました。
 
-BozhidarはClojureと優れたプログラミングスタイルに強い情熱を持っていて、https://clojure.org/community/contrib_howto#_coding_guidelines[Clojure library coding guidelines] の内容と、Java、Python、Rubyなどのプログラミング言語のスタイルガイドに書かれている典型的な内容のギャップを埋めることを目指していました。現在も Bozhidar はこのガイドの主任編集者ですが、プロジェクトを支える編集チームが存在しています。
+BozhidarはClojureと優れたプログラミングスタイルに強い情熱を持っていて、https://clojure.org/community/contrib_howto#_coding_guidelines[Clojure library coding guidelines] の内容と、Java、Python、Rubyなどのプログラミング言語のスタイルガイドで通常扱われている内容とのギャップを埋めることを目指していました。現在も Bozhidar はこのガイドの主任編集者ですが、プロジェクトを支える編集チームが存在しています。
 
 ガイドを公開してから、世界中の優れたClojureコミュニティのメンバーから多くのフィードバックをいただいています。ご提案やご支援に感謝申し上げます！ みんなの力をあわせれば、世界中のすべてのClojure開発者にとって有益なリソースを作り上げることができるでしょう。
 
