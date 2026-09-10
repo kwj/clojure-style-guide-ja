@@ -2106,6 +2106,40 @@ TIP: 新しいAPIには `:supersedes`　メタデータを付加することも�
 
 NOTE: 多くのClojure用プログラミングツールはドキュメント文字列から他のvarへの参照を抽出しようとするが、　`:see-also`　メタデータを使う方がよりシンプルかつ明示的である。
 
+=== `:no-doc`
+
+https://github.com/weavejester/codox#metadata-options[Codox] や https://github.com/cljdoc/cljdoc/blob/master/doc/userguide/for-library-a
+thors.adoc#hiding-namespaces-vars-in-documentation[cljdoc] などのドキュメンテーションツールは `:no-doc` メタデータを認識する。varや名前空間が `:no-doc` メタデータを持つ場合、生成されるAPIドキュメントからは除外すべきであることが、これらのツールに指示される。
+
+APIドキュメントから名前空間全体を除外する：
+[source,clojure]
+----
+(ns ^:no-doc my-library.impl
+  "Internal implementation details")
+
+...
+----
+
+ドキュメント化対象の名前空間の中からvarを除外する：
+[source,clojure]
+----
+(ns my-library.api)
+
+;; プライベート関数につきドキュメント化対象から除外
+(defn- clearly-private []
+  ...)
+
+;; パブリック関数でも :no-doc メタデータを持っているなら同様に除外
+(defn ^:no-doc shared-helper []
+  ...)
+
+;; このパブリック関数はドキュメント化される
+(defn api-fn1
+  "I am useful to the public"
+  []
+  ...)
+----
+
 === インデント用メタデータ
 
 他のLisp方言とは異なり、Clojureはマクロのインデントを指定する標準的なメタデータは存在しない。2015年、CIDERはメタデータに基づいたツールに依存しない https://docs.cider.mx/cider/indent_spec.html[インデントの指定方法] を提案した。　footnote:[これはCIDER 1.0で初めて導入されました]簡単な例をいくつか示す：
