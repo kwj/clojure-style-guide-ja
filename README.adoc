@@ -1982,6 +1982,12 @@ Java呼び出しや独自実装よりも、`clojure.math` の関数を使う方�
 (Math/pow 2 5)
 ----
 
+JDKのパッケージ `java.lang.Math` は多くの便利な数学関数へのアクセスを提供している。
+Clojure は 1.11 より前はJavaとの相互運用性を使ってこれらを利用していた。
+しかし、この方式には、見つけやすさ、プリミティブ型のパフォーマンス、高階適用、移植性に関する問題があった。
+新しい `clojure.math` 名前空間は　`java.lang.Math`　で利用可能なメソッドに対して、
+高速なプリミティブ呼び出しを備えた `long` および `double` 型のオーバーロード用ラッパー関数を提供する。
+
 == 文字列 [[strings]]
 
 === Java呼び出しよりも `clojure.string` の関数 [[prefer-clojure-string-over-interop]]
