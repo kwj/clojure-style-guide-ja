@@ -714,6 +714,8 @@ ClojureのコアおよびContrib名前空間のうち、以下の名前空間は
 | mat
 | clojure.tools.logging
 | log
+| clojure.core.protocols
+| p
 | clojure.core.reducers
 | r
 |===
