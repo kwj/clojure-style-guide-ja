@@ -2055,6 +2055,26 @@ NOTE: Clojure 1.8で `clojure.string` にいくつかの新しい関数（`index
 
 `finally` よりも `with-open` のほうが好ましい。
 
+=== Throwable のキャッチ [[catching-throwables]]
+
+`Throwable` クラスをキャッチしてはいけない。
+これはJavaにおけるすべてのエラーおよび例外のクラスのスーパークラスであり、_すべて_ のエラーを吸収します。
+`Error` クラスに関するJavaのドキュメントでは、「ErrorはThrowableのサブクラスで、通常のアプリケーションであればキャッチすべきではない重大な問題を示します。 そうしたエラーの大部分は異常な状態です」と説明されている。
+
+状況によってはエラーをキャッチする必要があるが、そのような場合は特定のエラーを指定してキャッチすること。
+
+[source,clojure]
+----
+;; 良い
+(try (foo)
+  (catch ExceptionInfo ex ...)
+  (catch AssertionError t ...))
+
+;; 悪い
+(try (foo)
+  (catch Throwable t ...))
+----
+
 == マクロ [[macros]]
 
 === 関数でできるならマクロを書かない [[dont-write-macro-if-fn-will-do]]
