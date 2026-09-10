@@ -753,7 +753,7 @@ ClojureのコアおよびContrib名前空間のうち、以下の名前空間は
 しかし、慣用的なエイリアスを持たない他の名前空間についてはどうすればよいのだろうか？ エイリアス名を決める際には一貫したアプローチをとるべきだ、そうでないとClojureのコードを共有して作業している他の人たちは大きな混乱に陥るだろう。下記に従うべきいくつかのルールを示す。 footnote:[このガイドラインはStuart Sieraによるhttps://stuartsierra.com/2015/05/10/clojure-namespace-aliases[ブログ記事]に基づいている。]
 
 1. エイリアスは、名前空間の先頭部分を取り除いたものと同じにする。
-
++
 [source,clojure]
 ----
 (ns com.example.application
@@ -761,19 +761,19 @@ ClojureのコアおよびContrib名前空間のうち、以下の名前空間は
    [clojure.java.io :as io]
    [clojure.reflect :as reflect]))
 ----
-
++
 2. 各エイリアスがそれぞれ一意になるのに十分な末尾の部分を残す。
-
++
 [source,clojure]
 ----
 [clojure.data.xml :as data.xml]
 [clojure.xml :as xml]
 ----
-
++
 TIP: はい、名前空間のエイリアスにはドットを含めることができます。活用してください。
-
++
 3. エイリアス内の "core" や "clj" といった冗長な単語を取り除く。
-
++
 [source,clojure]
 ----
 [clj-time.core :as time]
