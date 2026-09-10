@@ -667,40 +667,61 @@ NOTE: これは `clojure.core.str` を隠蔽しているように見えるが、
 (string/join ...)
 ----
 
-以下に、よく使われる慣用的なエイリアスをいくつか示す：
+次のセクションで述べるように、一般的には一意性が確保できるなら名前空間の末尾のセグメントをエイリアスとして使用するのが慣例となっている。
+1つで確保できないなら2つ使い、通常 `clj` や `core` といった冗長な部分を削除してエイリアスを作成する。
+
+ClojureのコアおよびContrib名前空間のうち、以下の名前空間はパターンに従った慣用的なエイリアスが存在する：
 
 |===
 | 名前空間 | 慣用的なエイリアス
+| clojure.datafy
+| datafy
 | clojure.edn
 | edn
 | clojure.java.io
 | io
-| clojure.java.shell
-| sh
 | clojure.math
 | math
-| clojure.pprint
-| pp
 | clojure.set
 | set
-| clojure.spec.alpha
-| spec
-| clojure.string
-| str
 | clojure.walk
 | walk
 | clojure.zip
 | zip
 | clojure.core.async
-| as
-| clojure.core.matrix
-| mat
+| async
 | clojure.data.csv
 | csv
 | clojure.data.xml
 | xml
+| clojure.tools.cli
+| cli
+|===
+
+それから、いくつかのコアおよびContirb名前空間は短いエイリアスを使っている：
+
+|===
+| 名前空間 | 慣用的なエイリアス
+| clojure.java.shell
+| sh
+| clojure.pprint
+| pp
+| clojure.spec.alpha
+| s
+| clojure.string
+| str
+| clojure.core.matrix
+| mat
 | clojure.tools.logging
 | log
+| clojure.core.reducers
+| r
+|===
+
+また一般的に使われているコミュニティのライブラリの中には、いくつかの名前空間で広く使われている慣用的なエイリアスを持つものも多くある：
+
+|===
+| Namespace | Idiomatic Alias
 | cheshire.core
 | json
 | clj-yaml.core
@@ -711,6 +732,8 @@ NOTE: これは `clojure.core.str` を隠蔽しているように見えるが、
 | sql
 | java-time
 | time
+| next.jdbc
+| jdbc
 |===
 
 === 良い名前空間エイリアスのためのレシピ
@@ -720,7 +743,7 @@ NOTE: これは `clojure.core.str` を隠蔽しているように見えるが、
 * `clojure.string` を `str` に
 * `clojure.pprint` を `pp`　に
 * `clojure.walk` を `walk` に
-* `clojure.spec.alpha` を `spec` に
+* `clojure.spec.alpha` を `s` に
 
 これらに共通するのは簡潔さを目指しつつも、エイリアスにある程度の意味を持たせようとしていることが明白だ。（`clojure.walk` を `w` にエイリアスするのは簡潔ではあるが、ほとんど意味がない。）
 
@@ -733,7 +756,7 @@ NOTE: これは `clojure.core.str` を隠蔽しているように見えるが、
 (ns com.example.application
   (:require
    [clojure.java.io :as io]
-   [clojure.string :as string]))
+   [clojure.reflect :as reflect]))
 ----
 
 2. 各エイリアスがそれぞれ一意になるのに十分な末尾の部分を残す。
@@ -750,7 +773,6 @@ TIP: はい、名前空間のエイリアスにはドットを含めることが
 
 [source,clojure]
 ----
-[clj-http :as http]
 [clj-time.core :as time]
 [clj-time.format :as time.format]
 ----
