@@ -1176,7 +1176,7 @@ Clojureでは実際のブール値が必要になることはほとんどない�
 
 === `when` vs `if` [[when-instead-of-single-branch-if]]
 
-`+(if ... (do ...))+` の代わりに `when` を使う。
+`(if ... (do ...))` のように真の場合の処理しか行わない場合は、`if` ではなく `when` を使う。
 
 [source,clojure]
 ----
