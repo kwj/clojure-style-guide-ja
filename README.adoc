@@ -751,11 +751,11 @@ ____
 
 複数単語からなる名前空間セグメントには `lisp-case` を使う（例： `bruce.project-euler` ）
 
+NOTE: Lisp以外の多くのプログラミングコミュニティでは `lisp-case` を `kebab-case` と呼んでいるが、`kebab-case` の呼称が作り出されるよりずっと以前にLispが存在していたことは周知の事実だ。
+
 === 関数、変数 [[naming-functions-and-variables]]
 
 関数名や変数名には `lisp-case` を使う。
-
-NOTE: Lisp以外の多くのプログラミングコミュニティでは `lisp-case` を `kebab-case` と呼んでいるが、`kebab-case` の呼称が作り出されるよりずっと以前にLispが存在していたことは周知の事実だ。
 
 [source,clojure]
 ----
