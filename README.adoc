@@ -671,46 +671,46 @@ NOTE: これは `clojure.core.str` を隠蔽しているように見えるが、
 
 |===
 | 名前空間 | 慣用的なエイリアス
+| clojure.edn
+| edn
 | clojure.java.io
 | io
+| clojure.java.shell
+| sh
 | clojure.math
 | math
+| clojure.pprint
+| pp
 | clojure.set
 | set
+| clojure.spec.alpha
+| spec
 | clojure.string
 | str
 | clojure.walk
 | walk
 | clojure.zip
 | zip
-| clojure.data.xml
-| xml
 | clojure.core.async
 | as
 | clojure.core.matrix
 | mat
-| clojure.edn
-| edn
-| clojure.pprint
-| pp
-| clojure.spec.alpha
-| spec
 | clojure.data.csv
 | csv
-| cheshire.core
-| json
-| java-time
-| time
-| clj-http.client
-| http
+| clojure.data.xml
+| xml
 | clojure.tools.logging
 | log
-| hugsql.core
-| sql
+| cheshire.core
+| json
 | clj-yaml.core
 | yaml
-| clojure.java.shell
-| sh
+| clj-http.client
+| http
+| hugsql.core
+| sql
+| java-time
+| time
 |===
 
 === 良い名前空間エイリアスのためのレシピ
