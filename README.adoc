@@ -745,6 +745,8 @@ ____
 * `project.module`
 * `organization.project.module`
 
+`project.module` 方式の名前空間を使う場合、1つの名前空間（の実装）を持つプロジェクトならば一般的な名前は `project.core` である。その他のケースでは　`project.core` を名前に使うのは避けるべきで、より意味が伝わる名前をつける方が常に望ましい。
+
 === 名前空間セグメントにおける複数単語 [[naming-namespace-composite-segments]]
 
 複数単語からなる名前空間セグメントには `lisp-case` を使う（例： `bruce.project-euler` ）
