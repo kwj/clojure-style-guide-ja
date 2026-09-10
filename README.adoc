@@ -2678,8 +2678,7 @@ NOTE: エディタについて、Emacsの `clojure-mode` はデフォルトで�
 
 このスタイルガイドは https://github.com/bbatsov[Bozhidar Batsov] により、彼がRubyコミュニティで立ち上げた　https://rubystyle.guide/[類似プロジェクト] の成功を受けて2013年に開始されました。
 
-BozhidarはClojureと優れたプログラミングスタイルに強い情熱を持っていて、https://clojure.org/community/contrib_howto#_coding_guidelines[Clojure library coding guidelines] の内容と、Java、Python、Rubyなどのプログラミング言語のスタイルガイドに書かれている典型的な内容のギャップを埋めることを目指していました。
-現在も Bozhidar はこのガイドの主任編集者ですが、メンテナンス作業を手伝ってくれる編集者をさらに数名募集しています。
+BozhidarはClojureと優れたプログラミングスタイルに強い情熱を持っていて、https://clojure.org/community/contrib_howto#_coding_guidelines[Clojure library coding guidelines] の内容と、Java、Python、Rubyなどのプログラミング言語のスタイルガイドに書かれている典型的な内容のギャップを埋めることを目指していました。現在も Bozhidar はこのガイドの主任編集者ですが、プロジェクトを支える編集チームが存在しています。
 
 ガイドを公開してから、世界中の優れたClojureコミュニティのメンバーから多くのフィードバックをいただいています。ご提案やご支援に感謝申し上げます！ みんなの力をあわせれば、世界中のすべてのClojure開発者にとって有益なリソースを作り上げることができるでしょう。
 
@@ -2699,6 +2698,15 @@ BozhidarはClojureと優れたプログラミングスタイルに強い情熱�
 * https://elementsofclojure.com/["Elements of Clojure"]
 * https://pragprog.com/titles/vmclojeco/clojure-applied/["Clojure Applied"]
 * https://stuartsierra.com/tag/dos-and-donts[Stuart Sierra's "Clojure Dos and Don't" blog series]
+
+== 編集チーム
+
+経験豊富なClojure開発者からなる編集チームによってClojureスタイルガイドは管理されており、寄せられるあらゆる意見（フィードバックや提案など）を集約し、誰もが参考にできるより良いリファレンスとなることを目指しています。
+
+* https://metaredux.com/about/[Bozhidar Batsov]
+* https://insideclojure.org/about/[Alex Miller]
+* https://danielcompton.net/about[Daniel Compton]
+* https://corfield.org/[Sean Corfield]
 
 == 貢献 [[contributing]]
 
