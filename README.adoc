@@ -2050,7 +2050,7 @@ TIP: セマンティックバージョニングを使っているなら、パッ
 ;;
 ;; 非推奨を示すためにドキュメント文字列を使っている
 (def foo
-  "DEPRECATED: Use `bar` instead.
+  "DEPRECATED: Use `bar` instead."
   42)
 
 (ns foo.bar
