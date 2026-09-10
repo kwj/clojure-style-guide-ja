@@ -1952,6 +1952,18 @@ Java呼び出しや、プリミティブ型を多用するパフォーマンス�
 ==== `io!` マクロ [[refs-io-macro]]
 
 トランザクションの中で思いがけずI/Oコールを呼んでしまったときの問題を回避するため、全てのI/Oコールを `io!` マクロでラップすることを考える。
+`io!` マクロはトランザクションの中で呼ばれた場合は例外を投げる。これにより意図しない副作用が黙って実行される（リトライによりおそらく複数回）ことなく、明確に失敗として検出できる。
+
+[source,clojure]
+----
+;; 良い - I/Oコールはトランザクションの中で意図せず使われないようにガードされる
+(defn save-to-file [path content]
+  (io! (spit path content)))
+
+;; 悪い - dosync の中で関数が呼ばれた場合、密かに複数回実行される可能性がある
+(defn save-to-file [path content]
+  (spit path content))
+----
 
 ==== `ref-set` を避ける [[refs-avoid-ref-set]]
 
@@ -1971,26 +1983,72 @@ Java呼び出しや、プリミティブ型を多用するパフォーマンス�
 ==== 小さいトランザクション [[refs-small-transactions]]
 
 トランザクションのサイズ（包んでいる処理の量）を出来る限り小さく保つようにする。
+大きいトランザクションは他のトランザクションと競合する可能性が高くなり、その結果リトライが発生し性能が低下する。
+
+[source,clojure]
+----
+;; 良い - トランザクションは協調アップデートのみカバーしている
+(let [data (fetch-data source)]
+  (dosync (alter results conj data)))
+
+;; 悪い - トランザクション内に遅いI/Oがあると（トランザクションが）オープンしたままになる
+(dosync
+  (let [data (fetch-data source)]
+    (alter results conj data)))
+----
 
 ==== 同一refに対する長短期トランザクションの混在を避ける [[refs-avoid-short-long-transactions-with-same-ref]]
 
 同一のrefとやり取りを行う、短期のトランザクションと長期のトランザクションを両方持つことを避ける。
+短期のトランザクションが変更をコミットすると同じRefにアクセスしている長期のトランザクションは最初から処理のやり直しになってしまい、長期のトランザクションは事実上、機能不全に陥ってしまう。
 
 === エージェント [[Agents]]
 
 ==== エージェントのsend [[agents-send]]
 
 それがCPUバウンドで、かつI/Oや他スレッドをブロックしない処理のときだけ `send` を用いる。
+`send` は固定サイズのスレッドプールを使うため、ブロッキングする動作があると他のエージェントの処理が滞ることになる。
+
+[source,clojure]
+----
+;; 良い - 純粋な計算, ブロッキングしない
+(send agent-a + 42)
+----
 
 ==== エージェントのsend-off [[agents-send-off]]
 
 それがスレッドをブロック、スリープさせたり、そうでなくても停滞させるかもしれない処理には `send-off` を用いる。
+`send-off` は可変サイズのスレッドプールを使うため、ブロッキングする動作があっても他のエージェントの処理が滞ることはない。
+
+[source,clojure]
+----
+;; 良い - ブロッキングが発生する可能性があるI/Oには　send-off を使う
+(send-off agent-b (fn [state] (assoc state :data (slurp url))))
+
+;; 悪い - send で送られたブロッキングするI/Oは、固定サイズのスレッドプールを使い果たしてしまう可能性がある
+(send agent-b (fn [state] (assoc state :data (slurp url))))
+----
 
 === アトム [[Atoms]]
 
 ==== トランザクション内で更新しない [[atoms-no-update-within-transactions]]
 
 STMトランザクションの中でアトムを更新することを避ける。
+アトムはSTMによる調整の対象ではないため `dosync` によるトランザクション内でのアトムの更新は、最終的に成功したコミットのときだけでなく、リトライのたびに実行される。
+
+
+[source,clojure]
+----
+;; 良い - アトムの更新はトランザクション処理の後に実施している
+(dosync (alter account-a - 100)
+        (alter account-b + 100))
+(swap! transfer-log conj {:from :a :to :b :amount 100})
+
+;; 悪い - トランザクションがリトライされるごとにログエントリが追加されてしまう
+(dosync (alter account-a - 100)
+        (alter account-b + 100)
+        (swap! transfer-log conj {:from :a :to :b :amount 100}))
+----
 
 ==== `reset!` よりも `swap!` が好ましい [[atoms-prefer-swap-over-reset]]
 
