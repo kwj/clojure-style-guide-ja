@@ -2068,7 +2068,7 @@ TIP: セマンティックバージョニングを使っているなら、パッ
 ;; バージョンがある場合
 (def ^{:deprecated "0.5"
        :superseded-by "bar"} foo
-  "Use `bar` instead.
+  "Use `bar` instead."
   42)
 
 (ns foo.bar
