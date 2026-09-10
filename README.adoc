@@ -1291,7 +1291,7 @@ Clojureでは実際のブール値が必要になることはほとんどない�
 
 === `printf` [[printf]]
 
-`(print (format ...))` の代わりに `printf` を使う。
+`(print (format ...))` よりも `printf` を使う。
 
 [source,clojure]
 ----
