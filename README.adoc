@@ -2721,6 +2721,7 @@ TIP: こうしたツールを継続的インテグレーション（CI）に組�
 ほとんどのClojure用エディタやIDEはスタイルガイドで説明したレイアウトのガイドラインに従ってコードをフォーマットできるが、コマンドラインで動作するフォーマッターを用意しておくと便利である。このスタイルガイドで推奨されている通りにフォーマットをしてくれる非常に役立つClojure用ツールがいくつか存在する：
 
 * https://github.com/weavejester/cljfmt[cljfmt]
+* https://github.com/greglook/cljstyle[cljstyle]
 * https://github.com/kkinnear/zprint[zprint] （コミュニティのフォーマットルールを使用するよう設定するためのドキュメントは https://github.com/kkinnear/zprint/blob/master/doc/options/community.md[ここ]にあります。）
 
 NOTE: エディタについて、Emacsの `clojure-mode` はデフォルトでスタイルガイドに記載されているとおりにコードをフォーマットする。他のエディタについては、同じ結果を得るために設定を調整する必要があるかもしれない。
