@@ -2080,22 +2080,125 @@ NOTE: Clojure 1.8で `clojure.string` にいくつかの新しい関数（`index
 === 関数でできるならマクロを書かない [[dont-write-macro-if-fn-will-do]]
 
 その処理が関数でできるならマクロを書かない。
+マクロは `map`、`filter`、`comp` といった高階関数に渡すことはできないうえに、コードの理解を難しくする。
+マクロは、評価を厳密に制御する必要がある場合にのみ使用すること。
+
+[source,clojure]
+----
+;; 良い - 単純な関数で問題なく実現できます
+(defn square [x]
+  (* x x))
+
+;; 悪い - 関数で実現できることをマクロで実装
+(defmacro square [x]
+  `(* ~x ~x))
+----
 
 === マクロ書く前に使い方を書く [[write-macro-usage-before-writing-the-macro]]
 
 まずマクロの使用例を作成し、その後でマクロを作る。
+理想的な呼び出し側のコードを先に書くことはクリーンなAPIを設計するのに役立ち、マクロの過剰な作り込みを回避する。
+
+[source,clojure]
+----
+;; Step 1: マクロをどのように使いたいかを書く
+(with-retry {:retries 3 :delay 1000}
+  (fetch-data url))
+
+;; Step 2: 次に、その使い方を実現するためのマクロを作る
+(defmacro with-retry [{:keys [retries delay]} & body]
+  ...)
+----
 
 === 複雑なマクロの分割 [[break-complicated-macros]]
 
 可能なら、複雑なマクロはより小さい機能に分割する。
+ヘルパー関数にすると独立してテスト可能で、他のコードから呼び出したりできるが、マクロの内部に実装してしまうとそのようなことは出来なくなる。
+
+[source,clojure]
+----
+;; 良い - ヘルパー関数がコードの一部を生成する
+(defn- emit-constructor [name fields]
+  `(defn ~(symbol (str "make-" name)) [~@fields]
+     (new ~name ~@fields)))
+
+(defn- emit-predicate [name]
+  `(defn ~(symbol (str name "?")) [x#]
+     (instance? ~name x#)))
+
+(defmacro defentity [name & fields]
+  `(do
+     (defrecord ~name [~@fields])
+     ~(emit-constructor name fields)
+     ~(emit-predicate name)))
+
+;; 悪い - すべてを含んだ一つの大きなマクロ
+(defmacro defentity [name & fields]
+  `(do
+     (defrecord ~name [~@fields])
+     (defn ~(symbol (str "make-" name)) [~@fields]
+       (new ~name ~@fields))
+     (defn ~(symbol (str name "?")) [x#]
+       (instance? ~name x#))))
+----
 
 === 構文糖衣としてのマクロ [[macros-as-syntactic-sugar]]
 
 マクロは通常、構文糖衣を提供するものであるべきで、そのコアは単純な機能であるべきだ。そうすることでより構造化されるだろう。
 
+[source,clojure]
+----
+;; 良い - マクロは関数に対する薄いラッパーとしての構文糖衣になっている
+(defn perform-transaction [db-spec func]
+  (let [conn (get-connection db-spec)]
+    (try
+      (.setAutoCommit conn false)
+      (let [result (func conn)]
+        (.commit conn)
+        result)
+      (catch Exception e
+        (.rollback conn)
+        (throw e))
+      (finally
+        (.close conn)))))
+
+(defmacro with-transaction [binding & body]
+  `(perform-transaction ~(second binding)
+                        (fn [~(first binding)] ~@body)))
+
+;; 悪い - すべての処理ロジックがマクロの内部で実装されている
+(defmacro with-transaction [binding & body]
+  `(let [conn# (get-connection ~(second binding))]
+     (try
+       (.setAutoCommit conn# false)
+       (let [~(first binding) conn#
+             result# (do ~@body)]
+         (.commit conn#)
+         result#)
+       (catch Exception e#
+         (.rollback conn#)
+         (throw e#))
+       (finally
+         (.close conn#)))))
+----
+
 === 構文クオート [[syntax-quoted-forms]]
 
 自分でリストを組み立てるよりも、構文クオートを使用するほうが好ましい。
+構文クオート（バックティック/バッククオート）の使用は、シンボルを自動的に修飾し、意図しない変数のキャプチャを防ぎ、ネストした `list` や　`cons` の呼び出しよりもはるかに読みやすい。
+
+[source,clojure]
+----
+;; 良い - 構文クオートにより生成される構造が明瞭である
+(defmacro when-not [test & body]
+  `(when (not ~test)
+     ~@body))
+
+;; 悪い - 手作業によるリスト構築は結果を理解するのが難しい
+(defmacro when-not [test & body]
+  (list 'when (list 'not test)
+        (cons 'do body)))
+----
 
 == 一般的なメタデータ
 
