@@ -673,6 +673,8 @@ NOTE: これは `clojure.core.str` を隠蔽しているように見えるが、
 | 名前空間 | 慣用的なエイリアス
 | clojure.java.io
 | io
+| clojure.math
+| math
 | clojure.set
 | set
 | clojure.string
@@ -1963,6 +1965,21 @@ STMトランザクションの中でアトムを更新することを避ける�
 
 ;; あまり良くない
 (reset! a 5)
+----
+
+== 数学
+
+=== Java呼び出しよりも `clojure.math` の関数 [[prefer-clojure-math-over-interop]]
+
+Java呼び出しや独自実装よりも、`clojure.math` の関数を使う方が好ましい。
+
+[source,clojure]
+----
+;; 良い
+(clojure.math/pow 2 5)
+
+;; まあまあ
+(Math/pow 2 5)
 ----
 
 == 文字列 [[strings]]
