@@ -1302,9 +1302,9 @@ Clojureでは実際のブール値が必要になることはほとんどない�
 (println (format "Hello, %s!" name))
 ----
 
-=== 柔軟な比較関数 [[multiple-arity-of-gt-and-ls-fns]]
+=== 柔軟な比較関数
 
-比較を行うときは、Clojure関数の `<` や `>` などは可変長引数を許していることを覚えておこう。
+比較を行うときは、Clojure関数の `<` や `>` などは可変長引数を受け入れるという特徴を活用しよう。
 
 [source,clojure]
 ----
