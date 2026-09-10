@@ -1155,6 +1155,23 @@ varの値を変更するには、 `def` の代わりに `alter-var-root` を使�
 (into [] some-seq)
 ----
 
+=== ブール値への変換
+
+何らかの値を実際のブール値（`true` または `false`）に変換する必要がある場合は `boolean` 関数を使う。
+
+[source,clojure]
+----
+;; 良い
+(boolean (foo bar))
+
+;; 悪い
+(if (foo bar) true false)
+----
+
+NOTE: Clojureにおける「偽」とみなされる値は `false` と `nil` だけであることを忘れないように。その他の値を　`boolean` 関数に渡すと「真」であると評価する。
+
+Clojureでは実際のブール値が必要になることはほとんどないが、必要になったときに取得方法を知っていると便利だ。
+
 === `when` vs `if` [[when-instead-of-single-branch-if]]
 
 `+(if ... (do ...))+` の代わりに `when` を使う。
