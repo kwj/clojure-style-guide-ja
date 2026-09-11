@@ -3400,6 +3400,11 @@ BozhidarはClojureと優れたプログラミングスタイルに強い情熱�
 
 当初、このガイドは Markdown で記述されていましたが、2019年にAsciiDocに変換されました。
 
+== ライセンス [[license]]
+
+image:https://i.creativecommons.org/l/by/3.0/88x31.png[Creative Commons License]
+この作品は、link:https://creativecommons.org/licenses/by/3.0/deed.en_US[Creative Commons Attribution 3.0 Unported License]の下でライセンスされています。
+
 == 広めてください [[spread-the-word]]
 
 コミュニティドリブンのスタイルガイドは、その存在を知らないコミュニティではあまり役に立ちません。どうか、このガイドについてツイートをして、あなたの友達や同僚と共有してください。頂いたあらゆるコメントや提案、意見がほんの少しずつ、このガイドを形作っていくのです。みんなで最高のスタイルガイドを作りましょう。
