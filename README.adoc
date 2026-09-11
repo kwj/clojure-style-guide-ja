@@ -9,11 +9,11 @@ ifndef::backend-pdf[]
 endif::[]
 :source-highlighter: rouge
 
-このスタイルガイドは、 https://twitter.com/bbatsov[Bozhidar Batsov] 氏による https://github.com/bbatsov/clojure-style-guide[bbatsov/clojure-style-guide] の日本語翻訳版です。
+このスタイルガイドは、link:https://twitter.com/bbatsov[Bozhidar Batsov]氏によるlink:https://github.com/bbatsov/clojure-style-guide[bbatsov/clojure-style-guide] の日本語翻訳版です。
 
-image:http://i.creativecommons.org/l/by/3.0/88x31.png[Creative Commons License] 本翻訳版のライセンスは https://creativecommons.org/licenses/by/3.0/deed.ja[クリエイティブ・コモンズ 表示 3.0 非移植 ライセンス] とします。原著作者はBozhidar Batsov氏です。原文のライセンスについてもご注意ください。
+image:http://i.creativecommons.org/l/by/3.0/88x31.png[Creative Commons License] 本翻訳版のライセンスはlink:https://creativecommons.org/licenses/by/3.0/deed.ja[クリエイティブ・コモンズ 表示 3.0 非移植 ライセンス] とします。原著作者はBozhidar Batsov氏です。原文のライセンスについてもご注意ください。
 
-意訳していて、原文の意味を損なわない程度に言葉を加えたり省略している部分があります。また、訳が間違っている可能性があります。逐次修正は行いますが、原文を優先するようにしてください。用語の翻訳には、 http://ssl.ohmsha.co.jp/cgi-bin/menu.cgi?ISBN=978-4-274-06913-0[プログラミングClojure第2版] を参考にしています。翻訳に対する意見や修正は、IssueやPull Requestを作成していただけると助かります。なお、規約自体に対する意見は https://github.com/bbatsov/clojure-style-guide[原文リポジトリ] にお願いします。
+意訳していて、原文の意味を損なわない程度に言葉を加えたり省略している部分があります。また、訳が間違っている可能性があります。逐次修正は行いますが、原文を優先するようにしてください。用語の翻訳には、link:http://ssl.ohmsha.co.jp/cgi-bin/menu.cgi?ISBN=978-4-274-06913-0[プログラミングClojure第2版] を参考にしています。翻訳に対する意見や修正は、IssueやPull Requestを作成していただけると助かります。なお、規約自体に対する意見はlink:https://github.com/bbatsov/clojure-style-guide[原文リポジトリ] にお願いします。
 
 '''
 
@@ -26,7 +26,7 @@ ____
 ____
 
 ifdef::env-github[]
-TIP: このスタイルガイドのナビゲーション付きの見やすいバージョンが https://totakke.github.io/clojure-style-guide/ にあります。
+TIP: このスタイルガイドのナビゲーション付きの見やすいバージョンがlink:https://totakke.github.io/clojure-style-guide/ にあります。
 endif::[]
 
 このClojureスタイルガイドは、実際のClojureプログラマーが他のClojureプログラマーに保守してもらえるコードを書くための、ベストプラクティスを勧めるものだ。
@@ -34,14 +34,14 @@ endif::[]
 
 ガイドは関連する規約ごとにいくつかのセクションに分かれて構成されている。規約には理論的根拠を付けるようにした（ただし、根拠が明らかな場合は省略している）。
 
-これらの規約は、出し抜けに考えだされたものではない。これらの多くはスタイルガイドの編集者たちの経験に基づいており、多くのClojureコミュニティメンバーからのフィードバックと意見、そして、 http://www.clojurebook.com/["Clojure Programming"] や https://www.manning.com/books/the-joy-of-clojure-second-edition["The Joy of Clojure"] のような高い評価を受けている様々なリソースに基づいている。
+これらの規約は、出し抜けに考えだされたものではない。これらの多くはスタイルガイドの編集者たちの経験に基づいており、多くのClojureコミュニティメンバーからのフィードバックと意見、そして、link:http://www.clojurebook.com/["Clojure Programming"] やlink:https://www.manning.com/books/the-joy-of-clojure-second-edition["The Joy of Clojure"] のような高い評価を受けている様々なリソースに基づいている。
 
 このスタイルガイドはまだまだ書き換えることができる。新たな慣習が確認されたり、Clojure自体の変更によって従来の慣習が時代遅れになったりすることに伴い、このスタイルガイドは時間とともに変化する。
 
-NOTE: Clojure開発コミュニティはhttps://clojure.org/community/contrib_howto#_coding_guidelines[ライブラリのコーディング規約]footnote:[これらのガイドラインはClojure自身およびClojureのContribライブラリに適用することを意図しています。]の一覧もまとめている。これらは、あなたが現在読んでいるドキュメントの着想源の一つとなりました。
+NOTE: Clojure開発コミュニティはlink:https://clojure.org/community/contrib_howto#_coding_guidelines[ライブラリのコーディング規約]footnote:[これらのガイドラインはClojure自身およびClojureのContribライブラリに適用することを意図しています。]の一覧もまとめている。これらは、あなたが現在読んでいるドキュメントの着想源の一つとなりました。
 
 ifdef::env-github[]
-https://asciidoctor.org/docs/asciidoctor-pdf/[AsciiDoctor PDF] を利用することで、このスタイルガイドのPDF版を生成することができます。また、 https://asciidoctor.org/#installation[AsciiDoctor] を https://asciidoctor.org/docs/convert-documents/#converting-a-document-to-html[使う] ことで、HTML版を生成できます。
+https://asciidoctor.org/docs/asciidoctor-pdf/[AsciiDoctor PDF] を利用することで、このスタイルガイドのPDF版を生成することができます。また、link:https://asciidoctor.org/#installation[AsciiDoctor] をlink:https://asciidoctor.org/docs/convert-documents/#converting-a-document-to-html[使う] ことで、HTML版を生成できます。
 
 [source,shell]
 ----
@@ -76,7 +76,7 @@ ____
 特定のスタイルに関して、Clojureコミュニティで明確な合意がとれていない分野がいくつか存在している（例えば、意味に基づくインデント vs 固定インデント、意味に基づくコメント vs 統一的なコメントなど）。
 そのような場合、一般的なスタイルは全て受け入れられており、どれか一つを選び一貫して適用するのはあなた次第だ。
 
-幸いなことにClojureはLispの一つであって、根本的にシンプルである。このスタイルガイドはClojureが登場して数年後に作成されたが（初版の公開は2013年の初頭）、実際に使われていたほとんどのClojureコードはかなり統一されていた。これは前述したシンプルさと、他の定評あるLisp方言（例、Common Lisp, Scheme）のスタイル規約をClojureのコミュニティが最初から受け入れてきたという事実によるものと思われる。このおかげで、特に https://rubystyle.guide[Community Ruby Style Guide]のような大変な苦痛を伴った作業に比べれば、本ガイドの作成はかなり簡単でスムーズに行えた。 footnote:[Clojureのスタイルガイドは、その主な参考元となったRubyのスタイルガイドの構成とかなり似ていることに気付くでしょう。また、Rubyのスタイルガイドの方がはるかに分量が多いことにも気付くでしょう。その主な理由はプログラミング言語Rubyの複雑さにあります。]
+幸いなことにClojureはLispの一つであって、根本的にシンプルである。このスタイルガイドはClojureが登場して数年後に作成されたが（初版の公開は2013年の初頭）、実際に使われていたほとんどのClojureコードはかなり統一されていた。これは前述したシンプルさと、他の定評あるLisp方言（例、Common Lisp, Scheme）のスタイル規約をClojureのコミュニティが最初から受け入れてきたという事実によるものと思われる。このおかげで、特にlink:https://rubystyle.guide[Community Ruby Style Guide]のような大変な苦痛を伴った作業に比べれば、本ガイドの作成はかなり簡単でスムーズに行えた。 footnote:[Clojureのスタイルガイドは、その主な参考元となったRubyのスタイルガイドの構成とかなり似ていることに気付くでしょう。また、Rubyのスタイルガイドの方がはるかに分量が多いことにも気付くでしょう。その主な理由はプログラミング言語Rubyの複雑さにあります。]
 
 Clojureはシンプルさと明快さに最適化されていることで知られている。このガイドが皆さんの最大限のシンプルさと明快さを達成するための助けになることを祈ります。
 
@@ -586,7 +586,7 @@ ____
 
 TIP: 1つの名前空間を持つライブラリでは、`domain.library-name` や　`library-name.core` といった名前を使うのが一般的だ。名前空間の命名に関する話題については、このまま読み進めること。
 
-単一セグメントの名前空間を避けるべき https://github.com/bbatsov/clojure-style-guide/pull/100[理由は他にもあり]、それらを利用する前によくよく検討すべきだ。
+単一セグメントの名前空間を避けるべきlink:https://github.com/bbatsov/clojure-style-guide/pull/100[理由は他にもあり]、それらを利用する前によくよく検討すべきだ。
 
 [[namespace-segments-limit]]
 === 名前空間セグメントの制限
@@ -794,7 +794,7 @@ ClojureのコアおよびContrib名前空間のうち、以下の名前空間は
 
 これらに共通するのは簡潔さを目指しつつも、エイリアスにある程度の意味を持たせようとしていることが明白だ。（`clojure.walk` を `w` にエイリアスするのは簡潔ではあるが、ほとんど意味がない。）
 
-しかし、慣用的なエイリアスを持たない他の名前空間についてはどうすればよいのだろうか？ エイリアス名を決める際には一貫したアプローチをとるべきだ、そうでないとClojureのコードを共有して作業している他の人たちは大きな混乱に陥るだろう。下記に従うべきいくつかのルールを示す。 footnote:[このガイドラインはStuart Sieraによるhttps://stuartsierra.com/2015/05/10/clojure-namespace-aliases[ブログ記事]に基づいている。]
+しかし、慣用的なエイリアスを持たない他の名前空間についてはどうすればよいのだろうか？ エイリアス名を決める際には一貫したアプローチをとるべきだ、そうでないとClojureのコードを共有して作業している他の人たちは大きな混乱に陥るだろう。下記に従うべきいくつかのルールを示す。 footnote:[このガイドラインはStuart Sieraによるlink:https://stuartsierra.com/2015/05/10/clojure-namespace-aliases[ブログ記事]に基づいている。]
 
 1. エイリアスは、名前空間の先頭部分を取り除いたものと同じにする。
 +
@@ -1584,7 +1584,7 @@ Clojureでは実際のブール値が必要になることはほとんどない�
 [[anonymous-functions-vs-complement-comp-and-partial]]
 === 無名関数 vs `complement`, `comp`, `partial`
 
-`complement`、`comp`、`partial` より無名関数を使うことを薦める。ほとんどの場合、そうすることでコードが単純になる。 footnote:[この件に関する詳細はhttps://ask.clojure.org/index.php/8373/when-should-prefer-comp-and-partial-to-anonymous-functions[こちら]をご覧ください。]
+`complement`、`comp`、`partial` より無名関数を使うことを薦める。ほとんどの場合、そうすることでコードが単純になる。 footnote:[この件に関する詳細はlink:https://ask.clojure.org/index.php/8373/when-should-prefer-comp-and-partial-to-anonymous-functions[こちら]をご覧ください。]
 
 [[complement]]
 ==== `complement`
@@ -2122,7 +2122,7 @@ Javaの配列は可変でリテラル構文がなく、読みやすい形式で�
 [[record-constructors]]
 === レコードのコンストラクタ
 
-タイプやレコードのインスタンスを作るのにJava呼び出しを用いない。 `deftype` や `defrecord` が自動的に生成したコンストラクタ関数を使用する。そうすることで、 `deftype` や `defrecord` を利用していることが明確になる。詳しくは https://stuartsierra.com/2015/05/17/clojure-record-constructors[この記事] を参照する。
+タイプやレコードのインスタンスを作るのにJava呼び出しを用いない。 `deftype` や `defrecord` が自動的に生成したコンストラクタ関数を使用する。そうすることで、 `deftype` や `defrecord` を利用していることが明確になる。詳しくはlink:https://stuartsierra.com/2015/05/17/clojure-record-constructors[この記事] を参照する。
 
 [source,clojure]
 ----
@@ -2144,7 +2144,7 @@ Javaの配列は可変でリテラル構文がなく、読みやすい形式で�
 [[custom-record-constructors]]
 === カスタムレコードコンストラクタ
 
-必要なら独自のタイプ/レコードのコンストラクタを追加する（例：レコード生成時にプロパティのバリデーションを行うため）。詳しくは https://stuartsierra.com/2015/05/17/clojure-record-constructors[この記事] を参照する。
+必要なら独自のタイプ/レコードのコンストラクタを追加する（例：レコード生成時にプロパティのバリデーションを行うため）。詳しくはlink:https://stuartsierra.com/2015/05/17/clojure-record-constructors[この記事] を参照する。
 
 [source,clojure]
 ----
@@ -2164,7 +2164,7 @@ Javaの配列は可変でリテラル構文がなく、読みやすい形式で�
 [[custom-record-constructors-naming]]
 === カスタムレコードコンストラクタの命名
 
-自動生成されたタイプ/レコードのコンストラクタ関数を上書きしない。それらのコンストラクタ関数は特定の振る舞いをすると想定されているため、この挙動を変更することは驚き最小の原則に反する。詳しくは https://stuartsierra.com/2015/05/17/clojure-record-constructors[この記事] を参照する。
+自動生成されたタイプ/レコードのコンストラクタ関数を上書きしない。それらのコンストラクタ関数は特定の振る舞いをすると想定されているため、この挙動を変更することは驚き最小の原則に反する。詳しくはlink:https://stuartsierra.com/2015/05/17/clojure-record-constructors[この記事] を参照する。
 
 [source,clojure]
 ----
@@ -2672,8 +2672,8 @@ NOTE: 多くのClojure用プログラミングツールはドキュメント文�
 
 === `:no-doc`
 
-https://github.com/weavejester/codox#metadata-options[Codox] や https://github.com/cljdoc/cljdoc/blob/master/doc/userguide/for-library-a
-thors.adoc#hiding-namespaces-vars-in-documentation[cljdoc] などのドキュメンテーションツールは `:no-doc` メタデータを認識する。varや名前空間が `:no-doc` メタデータを持つ場合、生成されるAPIドキュメントからは除外すべきであることが、これらのツールに指示される。
+https://github.com/weavejester/codox#metadata-options[Codox]やlink:++https://github.com/cljdoc/cljdoc/blob/master/doc/userguide/for-library-a
+thors.adoc#hiding-namespaces-vars-in-documentation++[cljdoc]などのドキュメンテーションツールは `:no-doc` メタデータを認識する。varや名前空間が `:no-doc` メタデータを持つ場合、生成されるAPIドキュメントからは除外すべきであることが、これらのツールに指示される。
 
 APIドキュメントから名前空間全体を除外する：
 [source,clojure]
@@ -2707,7 +2707,7 @@ APIドキュメントから名前空間全体を除外する：
 [[indentation-metadata]]
 === インデント用メタデータ
 
-他のLisp方言とは異なり、Clojureはマクロのインデントを指定する標準的なメタデータは存在しない。2015年、CIDERはメタデータに基づいたツールに依存しない https://docs.cider.mx/cider/indent_spec.html[インデントの指定方法] を提案した。　footnote:[これはCIDER 1.0で初めて導入されました]簡単な例をいくつか示す：
+他のLisp方言とは異なり、Clojureはマクロのインデントを指定する標準的なメタデータは存在しない。2015年、CIDERはメタデータに基づいたツールに依存しないlink:https://docs.cider.mx/cider/indent_spec.html[インデントの指定方法] を提案した。　footnote:[これはCIDER 1.0で初めて導入されました]簡単な例をいくつか示す：
 
 [source,clojure]
 ----
@@ -2738,7 +2738,7 @@ APIドキュメントから名前空間全体を除外する：
 
 残念ながら、2020年時点で `:style/indent` メタデータは広く受け入れてられておらず、多くのエディタやIDEは一般的なマクロのインデント規則を単にハードコーディングしている。
 
-NOTE: このインデントの考え方（セマンティック・インデント）は、メタデータの追加とツールのサポートが必要となるためClojureコミュニティで議論の的になっている。この考え方はLispコミュニティで長い伝統があるが、一部の人たちは関数とマクロの区別をやめて、すべてを統一した固定インデントにすべきだと主張している。 https://tonsky.me/blog/clojurefmt/[この記事]はそのような主張に関する代表的な資料の一つである。
+NOTE: このインデントの考え方（セマンティック・インデント）は、メタデータの追加とツールのサポートが必要となるためClojureコミュニティで議論の的になっている。この考え方はLispコミュニティで長い伝統があるが、一部の人たちは関数とマクロの区別をやめて、すべてを統一した固定インデントにすべきだと主張している。link:https://tonsky.me/blog/clojurefmt/[この記事]はそのような主張に関する代表的な資料の一つである。
 
 [[comments]]
 == コメント
@@ -2834,7 +2834,7 @@ NOTE: 古典的なLispの慣習では行コメントに `;;` を使うが、実�
 [[english-syntax]]
 === 英語の文法
 
-2単語以上のコメントは大文字で始め、句読点を用いる。各文は http://en.wikipedia.org/wiki/Sentence_spacing[1つのスペース] で分ける。
+2単語以上のコメントは大文字で始め、句読点を用いる。各文はlink:http://en.wikipedia.org/wiki/Sentence_spacing[1つのスペース] で分ける。
 
 [source,clojure]
 ----
@@ -3408,7 +3408,7 @@ it easier for tooling to display it correctly.")
 === 構造的なデータに対するアサーションには `match?`
 
 生成されたフィールドや動的に値が変化するフィールド（IDやタイムスタンプ）を含むマップを返す関数をテストする場合は、
-https://github.com/nubank/matcher-combinators[matcher-combinators]に含まれる `match?`の使用を検討する。
+link:https://github.com/nubank/matcher-combinators[matcher-combinators]に含まれる `match?`の使用を検討する。
 これにより、過度の指定なく構造や型に対してアサーションが可能になり、失敗時には明確な差分が提供される。
 
 [source,clojure]
@@ -3464,7 +3464,7 @@ https://github.com/nubank/matcher-combinators[matcher-combinators]に含まれ�
 [[lib-coordinates]]
 === ライブラリの識別子
 
-他の人が使えるようにライブラリを公開する場合、 http://central.sonatype.org/pages/choosing-your-coordinates.html[Central Repositoryのガイドライン] にしたがって `groupId` と `artifactId` を選ぶ。これにより名前の衝突が避けられ、幅広い利用が促進される。 https://github.com/stuartsierra/component[Component] が良い例で、識別子は `com.stuartsierra/component` だ。
+他の人が使えるようにライブラリを公開する場合、link:http://central.sonatype.org/pages/choosing-your-coordinates.html[Central Repositoryのガイドライン] にしたがって `groupId` と `artifactId` を選ぶ。これにより名前の衝突が避けられ、幅広い利用が促進される。link:https://github.com/stuartsierra/component[Component] が良い例で、識別子は `com.stuartsierra/component` だ。
 
 異なるアプローチとして、`groupId` にドメインではなくプロジェクト名（あるいは組織名）がよく用いられる。
 
@@ -3483,7 +3483,7 @@ https://github.com/nubank/matcher-combinators[matcher-combinators]に含まれ�
 [[lib-core-separate-from-tools]]
 === ツールの分離
 
-コアの機能とインテグレーション部分は別々のアーティファクトにする。そうすれば、ユーザはあなたのライブラリを無関係なツール依存に制限されることなく利用できる。たとえば、 https://github.com/stuartsierra/component[Component] はコア機能を提供し、 https://github.com/stuartsierra/reloaded[reloaded] はLeiningenとのインテグレーションを提供している。
+コアの機能とインテグレーション部分は別々のアーティファクトにする。そうすれば、ユーザはあなたのライブラリを無関係なツール依存に制限されることなく利用できる。たとえば、link:https://github.com/stuartsierra/component[Component] はコア機能を提供し、link:https://github.com/stuartsierra/reloaded[reloaded] はLeiningenとのインテグレーションを提供している。
 
 [[existential]]
 == 実際のコードでは
@@ -3515,7 +3515,7 @@ TIP: こうしたツールを継続的インテグレーション（CI）に組�
 
 慣用的なClojureコードを書くのを助けてくれるLintツールが、Clojureコミュニティによって作られている。
 
-* https://github.com/jonase/kibit[kibit] はClojure向けの静的コード解析ツールだ。より慣用的な関数やマクロの探索には https://github.com/clojure/core.logic[core.logic] を用いている。
+* https://github.com/jonase/kibit[kibit] はClojure向けの静的コード解析ツールだ。より慣用的な関数やマクロの探索にはlink:https://github.com/clojure/core.logic[core.logic] を用いている。
 * https://github.com/borkdude/clj-kondo[clj-kondo] は、このスタイルガイドに基づいて、多くの非推奨パターンを発見し、改善案を提案してくれるLintツールだ。
 
 [[code-formatters]]
@@ -3525,16 +3525,16 @@ TIP: こうしたツールを継続的インテグレーション（CI）に組�
 
 * https://github.com/weavejester/cljfmt[cljfmt]
 * https://github.com/greglook/cljstyle[cljstyle]
-* https://github.com/kkinnear/zprint[zprint] （コミュニティのフォーマットルールを使用するよう設定するためのドキュメントは https://github.com/kkinnear/zprint/blob/master/doc/options/community.md[ここ]にあります。）
+* https://github.com/kkinnear/zprint[zprint] （コミュニティのフォーマットルールを使用するよう設定するためのドキュメントはlink:https://github.com/kkinnear/zprint/blob/master/doc/options/community.md[ここ]にあります。）
 
 NOTE: エディタについて、Emacsの `clojure-mode` はデフォルトでスタイルガイドに記載されているとおりにコードをフォーマットする。他のエディタについては、同じ結果を得るために設定を調整する必要があるかもしれない。
 
 [[history]]
 == 歴史
 
-このスタイルガイドは https://github.com/bbatsov[Bozhidar Batsov] により、彼がRubyコミュニティで立ち上げた　https://rubystyle.guide/[類似プロジェクト] の成功を受けて2013年に開始されました。
+このスタイルガイドはlink:https://github.com/bbatsov[Bozhidar Batsov] により、彼がRubyコミュニティで立ち上げたlink:https://rubystyle.guide/[類似プロジェクト] の成功を受けて2013年に開始されました。
 
-BozhidarはClojureと優れたプログラミングスタイルに強い情熱を持っていて、https://clojure.org/community/contrib_howto#_coding_guidelines[Clojure library coding guidelines] の内容と、Java、Python、Rubyなどのプログラミング言語のスタイルガイドで通常扱われている内容とのギャップを埋めることを目指していました。現在も Bozhidar はこのガイドの主任編集者ですが、プロジェクトを支える編集チームが存在しています。
+BozhidarはClojureと優れたプログラミングスタイルに強い情熱を持っていて、link:https://clojure.org/community/contrib_howto#_coding_guidelines[Clojure library coding guidelines] の内容と、Java、Python、Rubyなどのプログラミング言語のスタイルガイドで通常扱われている内容とのギャップを埋めることを目指していました。現在も Bozhidar はこのガイドの主任編集者ですが、プロジェクトを支える編集チームが存在しています。
 
 ガイドを公開してから、世界中の優れたClojureコミュニティのメンバーから多くのフィードバックをいただいています。ご提案やご支援に感謝申し上げます！ みんなの力をあわせれば、世界中のすべてのClojure開発者にとって有益なリソースを作り上げることができるでしょう。
 
@@ -3589,16 +3589,16 @@ BozhidarはClojureと優れたプログラミングスタイルに強い情熱�
 
 簡単です、以下は貢献のためのガイドラインです：
 
-* リポジトリ https://github.com/bbatsov/clojure-style-guide[bbatsov/clojure-style-guide] を GitHub 上で https://help.github.com/articles/fork-a-repo[フォーク] します。
+* リポジトリlink:https://github.com/bbatsov/clojure-style-guide[bbatsov/clojure-style-guide] を GitHub 上でlink:https://help.github.com/articles/fork-a-repo[フォーク] します。
 * 内容の追加や誤りの修正は新しいブランチを切っておこなってください。
-* 変更内容について http://tbaggery.com/2008/04/19/a-note-about-git-commit-messages.html[詳しい説明をつけて] コミットします。
+* 変更内容についてlink:http://tbaggery.com/2008/04/19/a-note-about-git-commit-messages.html[詳しい説明をつけて] コミットします。
 * 変更したブランチをGitHubにプッシュします。
 * https://help.github.com/articles/using-pull-requests[Pull Requestを送って] ください。
 
 [[colophon]]
 == 奥付
 
-このガイドはhttps://asciidoc.org/[AsciiDoc]で記述されており、https://asciidoctor.org/[AsciiDoctor]でHTML形式で公開されています。HTML版はGitHub Pagesで提供されています。
+このガイドはlink:https://asciidoc.org/[AsciiDoc]で記述されており、link:https://asciidoctor.org/[AsciiDoctor]でHTML形式で公開されています。HTML版はGitHub Pagesで提供されています。
 
 当初、このガイドは Markdown で記述されていましたが、2019年にAsciiDocに変換されました。
 
