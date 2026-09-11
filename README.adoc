@@ -3127,6 +3127,151 @@ it easier for tooling to display it correctly.")
 (deftest something ...)
 ----
 
+=== コンテキストのために `testing` ブロック [[use-testing-blocks]]
+
+`testing` ブロックの下にアサーションをグループ化することで、失敗時の出力にテスト状況を示すコンテキスト（ドキュメント）が含まれる。
+これによりアサーションそのものを確認しなくても、どのテストシナリオで失敗したのかが明確になる。
+
+[source,clojure]
+----
+;; 良い
+(deftest user-validation-test
+  (testing "rejects blank names"
+    (is (not (valid? {:name ""}))))
+  (testing "accepts valid names"
+    (is (valid? {:name "Bruce"}))))
+
+;; 悪い - テスト失敗時にコンテキストが出力されない
+(deftest user-validation-test
+  (is (not (valid? {:name ""})))
+  (is (valid? {:name "Bruce"})))
+----
+
+=== 情報提供型のアサーションメッセージが好ましい [[informative-assertion-messages]]
+
+アサーションだけで失敗の理由を説明できない場合は、`is` にメッセージを追加する。
+
+[source,clojure]
+----
+;; 良い - 何が悪かったかを示すエラーメッセージ
+(is (= 200 (:status response)) "Expected HTTP 200 for valid input")
+
+;; 大丈夫 - 明確なアサーションにメッセージは不要
+(is (true? (even? 4)))
+----
+
+=== テーブル駆動テストには `are` [[use-are-for-tabular-tests]]
+
+一つの機能に対して多くの入力でテストする場合、`is` で反復させるより `are` を使う方が好ましい。
+
+[source,clojure]
+----
+;; 良い
+(deftest palindrome?-test
+  (are [s expected] (= expected (palindrome? s))
+    "racecar" true
+    "hello"   false
+    "madam"   true
+    ""        true))
+
+;; 悪い - 反復的だ
+(deftest palindrome?-test
+  (is (true? (palindrome? "racecar")))
+  (is (false? (palindrome? "hello")))
+  (is (true? (palindrome? "madam")))
+  (is (true? (palindrome? ""))))
+----
+
+=== `deftest` ごとに1つのコンセプトでテスト [[one-concept-per-deftest]]
+
+それぞれの `deftest` は1つの論理的な挙動をカバーするべきだ。
+各エッジケースについては `deftest` を分割するのではなく、`testing` を使ってサブケースとしてまとめる。
+
+=== `with-redefs` の使用は控えめに [[use-with-redefs-sparingly]]
+
+`with-redefs` は外部との境界（HTTP、データベース、時間など）に限って使用する。
+テスト対象関数の設計においては、依存関係を引数として受け取るのが好ましい。
+
+[source,clojure]
+----
+;; 良い - 依存性を引数で注入している
+(defn fetch-users [http-get]
+  (http-get "/api/users"))
+
+(deftest fetch-users-test
+  (is (= [{:name "Bruce"}]
+         (fetch-users (constantly [{:name "Bruce"}])))))
+
+;; 統合テストなら大丈夫
+(deftest fetch-users-integration-test
+  (with-redefs [http/get (constantly {:body [{:name "Bruce"}]})]
+    (is (= [{:name "Bruce"}] (fetch-users)))))
+----
+
+=== 例外のテスト [[test-expected-exceptions]]
+
+コードが期待通りの例外を発生させることを確認するには、`thrown?` や `thrown-with-msg?` を使う。
+
+[source,clojure]
+----
+;; 良い
+(deftest division-test
+  (is (thrown? ArithmeticException (/ 1 0)))
+  (is (thrown-with-msg? ExceptionInfo #"Invalid" (validate! nil))))
+----
+
+=== 構造的なデータに対するアサーションには `match?` [[prefer-match-for-structural-assertions]]
+
+生成されたフィールドや動的に値が変化するフィールド（IDやタイムスタンプ）を含むマップを返す関数をテストする場合は、
+https://github.com/nubank/matcher-combinators[matcher-combinators]に含まれる `match?`の使用を検討する。
+これにより、過度の指定なく構造や型に対してアサーションが可能になり、失敗時には明確な差分が提供される。
+
+[source,clojure]
+----
+(require '[matcher-combinators.test])
+(require '[matcher-combinators.matchers :as m])
+
+;; 良い - 構造と型をアサーションの対象とし、新しいフィールドが追加されても大丈夫
+(is (match? {:id uuid?
+             :name "Alice"
+             :status :active
+             :created-at inst?}
+            (create-user! {:name "Alice"})))
+
+;; 悪い - 新しいフィールドが追加されると動作せず、脆い
+(is (= {:id "abc-123"
+        :name "Alice"
+        :status :active
+        :created-at #inst "2024-01-01"}
+       (create-user! {:name "Alice"})))
+
+;; これも悪い - 構造に関するコンテキストが失われている
+(let [result (create-user! {:name "Alice"})]
+  (is (= "Alice" (:name result)))
+  (is (= :active (:status result)))
+  (is (uuid? (:id result))))
+----
+
+=== 例外データに対しては `thrown-match?` [[use-thrown-match-for-exception-data]]
+
+構造を持ったマップを持つ `ex-info` 例外のテストには、`try`/`cathch` の定型コードよりも matcher-combinators の `thrown-match?` の使用が好ましい。
+これは `match?` と同様に、例外データの構造に基づいてアサーションを行う。
+
+[source,clojure]
+----
+;; 良い
+(is (thrown-match? ExceptionInfo
+                   {:type :validation-error :field :email}
+                   (validate! {:email "bad"})))
+
+;; 悪い - 冗長で間違いやすい
+(is (thrown? ExceptionInfo
+       (try (validate! {:email "bad"})
+            (catch ExceptionInfo e
+              (is (= :validation-error (:type (ex-data e))))
+              (throw e)))))
+----
+
 == ライブラリの構成 [[library-organization]]
 
 === ライブラリの識別子 [[lib-coordinates]]
