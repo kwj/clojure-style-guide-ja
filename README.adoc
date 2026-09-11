@@ -17,7 +17,7 @@ image:http://i.creativecommons.org/l/by/3.0/88x31.png[Creative Commons License] 
 
 '''
 
-== はじめに
+== はじめに [[introduction]]
 
 [quote, アレックス・マーフィー巡査 / ロボコップ]
 ____
@@ -62,7 +62,7 @@ gem install rouge
 ====
 endif::[]
 
-=== 基本指針
+=== 基本指針 [[guiding-principles]]
 
 [quote, ハロルド・アベルソン / 計算機プログラムの構造と解釈]
 ____
@@ -78,7 +78,7 @@ ____
 
 Clojureはシンプルさと明快さに最適化されていることで知られている。このガイドが皆さんの最大限のシンプルさと明快さを達成するための助けになることを祈ります。
 
-=== 一貫性に関する注意事項
+=== 一貫性に関する注意事項 [[a-note-about-consistency]]
 
 [quote, ラルフ・ウォルドー・エマーソン]
 ____
@@ -98,7 +98,7 @@ ____
 * 当該のコードはガイドラインよりも以前から存在しており、それを変更すべき他の理由もないため。
 * スタイルガイドが推奨している機能をサポートしていない古いバージョンのClojureと互換性を保つ必要がある場合
 
-=== 翻訳版
+=== 翻訳版 [[translations]]
 
 このスタイルガイドは以下の言語に翻訳されている：
 
@@ -114,7 +114,7 @@ ____
 
 NOTE: これらの翻訳版は私たちの編集チームによって管理されておらず、品質や完成度にばらつきがあります。翻訳版は、翻訳元の英語版より遅れていることが多々あります。
 
-== ソースコードのレイアウトと構造
+== ソースコードのレイアウトと構造 [[source-code-layout-organization]]
 
 [quote, ジェリー・コフィン (インデントについて)]
 ____
@@ -542,7 +542,7 @@ ____
 (ns foo.bar) もしくは (in-ns foo.bar) を複数のファイル内で用いる
 ----
 
-== 名前空間の定義
+== 名前空間の定義 [[namespace-declaration]]
 
 === 単一セグメントの名前空間を使わない [[no-single-segment-namespaces]]
 
@@ -663,7 +663,7 @@ TIP: 1つの名前空間を持つライブラリでは、`domain.library-name` �
    [clojure.java.shell :as sh]))
 ----
 
-=== 慣用的な名前空間エイリアスを使う
+=== 慣用的な名前空間エイリアスを使う [[use-idiomatic-namespace-aliases]]
 
 Clojureの主要な名前空間の多くは、プロジェクト内で使用が推奨される慣用的なエイリアス（別名）がある。例えば、　`clojure.string` を読み込む最も一般的な方法は `[clojure.string :as str]` だ。
 
@@ -753,7 +753,7 @@ ClojureのコアおよびContrib名前空間のうち、以下の名前空間は
 | jdbc
 |===
 
-=== 良い名前空間エイリアスのためのレシピ
+=== 良い名前空間エイリアスのためのレシピ [[a-recipe-for-good-namespace-aliases]]
 
 上記で、よく使われる名前空間と慣用的なエイリアスをいくつか紹介した。しかし、それらは少し一貫性に欠けている。
 
@@ -794,11 +794,11 @@ TIP: はい、名前空間のエイリアスにはドットを含めることが
 [clj-time.format :as time.format]
 ----
 
-=== 一貫した名前空間エイリアスの使用
+=== 一貫した名前空間エイリアスの使用 [[use-consistent-namespace-aliases]]
 
 プロジェクト全体を通して、名前空間エイリアスを統一しておくことは良いことだ。例えば、ある名前空間で `clojure.string` を `str` として読み込む一方で、別の名前空間では `stirng` として読み込むようなことをしてはならない。前述の2つのガイドラインに従えば基本的には問題はないだろうが、名前空間のエイリアス名に独自方式を採用する場合はプロジェクト内で一貫して適用することが依然として重要だ。
 
-== 命名規約
+== 命名規約 [[naming]]
 
 [quote, フィル・カールトン]
 ____
@@ -996,7 +996,7 @@ NOTE: `\*clojure-version*` が慣例に反しているのはよく知られて�
 * メソッド（`defprotocol`, `deftype`, `defrecord`, `reify`　などで定義される）内では、
 　** `this` - 第1引数として、オブジェクトへの参照、あるいはそのオブジェクトを表す一貫性のある名前を指定
 
-== 関数
+== 関数 [[functions]]
 
 === 関数名の後に改行しても良い [[optional-new-line-after-fn-name]]
 
@@ -1042,7 +1042,7 @@ NOTE: `\*clojure-version*` が慣例に反しているのはよく知られて�
   (baz x))
 ----
 
-=== 1行の関数
+=== 1行の関数 [[one-line-functions]]
 
 関数本体が短い場合、引数ベクタと関数本体の間の改行は省略しても良い。
 
@@ -1163,7 +1163,7 @@ NOTE: `\*clojure-version*` が慣例に反しているのはよく知られて�
     (throw (IllegalArgumentException. "x must be a positive number!")))
 ----
 
-== 構文
+== 構文 [[idioms]]
 
 === 動的な名前空間の操作 [[ns-fns-only-in-repl]]
 
@@ -1290,7 +1290,7 @@ varの値を変更するには、 `def` の代わりに `alter-var-root` を使�
 (into [] some-seq)
 ----
 
-=== ブール値への変換
+=== ブール値への変換 [[converting-something-to-boolean]]
 
 何らかの値を実際のブール値（`true` または `false`）に変換する必要がある場合は `boolean` 関数を使う。
 
@@ -1437,7 +1437,7 @@ Clojureでは実際のブール値が必要になることはほとんどない�
 (println (format "Hello, %s!" name))
 ----
 
-=== 柔軟な比較関数
+=== 柔軟な比較関数 [[flexible-comparison-functions]]
 
 比較を行うときは、Clojure関数の `<` や `>` などは可変長引数を受け入れるという特徴を活用しよう。
 
@@ -1505,7 +1505,7 @@ Clojureでは実際のブール値が必要になることはほとんどない�
      (* % 2))
 ----
 
-=== 無名関数 vs `complement`、`comp`、`partial`
+=== 無名関数 vs `complement`, `comp`, `partial` [[anonymous-functions-vs-complement-comp-and-partial]]
 
 `complement`、`comp`、`partial` より無名関数を使うことを薦める。ほとんどの場合、そうすることでコードが単純になる。 footnote:[この件に関する詳細はhttps://ask.clojure.org/index.php/8373/when-should-prefer-comp-and-partial-to-anonymous-functions[こちら]をご覧ください。]
 
@@ -1582,7 +1582,7 @@ Clojureでは実際のブール値が必要になることはほとんどない�
      (filter even? (range 1 10)))
 ----
 
-=== スレッディングマクロと省略可能な括弧
+=== スレッディングマクロと省略可能な括弧 [[threading-macros-and-optional-parentheses]]
 
 引数が指定されていない関数に対してスレッディングマクロを使う場合、括弧は不要だ。必要な場合のみ括弧を使うこと。
 
@@ -1602,7 +1602,7 @@ Clojureでは実際のブール値が必要になることはほとんどない�
     (frob x y))
 ----
 
-=== スレッディングマクロの揃え方
+=== スレッディングマクロの揃え方 [[threading-macros-alignment]]
 
 スレッディングマクロ `+->+` (thread-first)と `+->>+` (thread-last) の引数は揃える。
 
@@ -1859,7 +1859,7 @@ Integer/MAX_VALUE
 (meta #'a) ;=> nil
 ----
 
-== データ構造
+== データ構造 [[data-structures]]
 
 [quote, アラン・パリス]
 ____
@@ -2009,7 +2009,7 @@ Javaの配列は可変でリテラル構文がなく、読みやすい形式で�
 (int-array [1 2 3])
 ----
 
-== タイプとレコード
+== タイプとレコード [[types-records]]
 
 === レコードのコンストラクタ [[record-constructors]]
 
@@ -2072,7 +2072,7 @@ Javaの配列は可変でリテラル構文がなく、読みやすい形式で�
   (Foo. num))
 ----
 
-== 状態
+== 状態 [[mutation]]
 
 === ref [[Refs]]
 
@@ -2192,7 +2192,7 @@ STMトランザクションの中でアトムを更新することを避ける�
 (reset! a 5)
 ----
 
-== 数学
+== 数学 [[math]]
 
 === Java呼び出しよりも `clojure.math` の関数 [[prefer-clojure-math-over-interop]]
 
@@ -2213,7 +2213,7 @@ Clojure は 1.11 より前はJavaとの相互運用性を使ってこれらを�
 新しい `clojure.math` 名前空間は　`java.lang.Math`　で利用可能なメソッドに対して、
 高速なプリミティブ呼び出しを備えた `long` および `double` 型のオーバーロード用ラッパー関数を提供する。
 
-== 文字列
+== 文字列 [[strings]]
 
 === Java呼び出しよりも `clojure.string` の関数 [[prefer-clojure-string-over-interop]]
 
@@ -2230,7 +2230,7 @@ Clojure は 1.11 より前はJavaとの相互運用性を使ってこれらを�
 
 NOTE: Clojure 1.8で `clojure.string` にいくつかの新しい関数（`index-of`, `last-index-of`, `starts-with?`, `ends-with?`, `includes?`）が追加された。古いバージョンのClojureへの対応が必要な場合は、これらの使用を避けるべきだ。
 
-== 例外
+== 例外 [[exceptions]]
 
 === 既存の例外型の再利用 [[reuse-existing-exception-types]]
 
@@ -2287,7 +2287,7 @@ NOTE: Clojure 1.8で `clojure.string` にいくつかの新しい関数（`index
   (catch Throwable t ...))
 ----
 
-== マクロ
+== マクロ [[macros]]
 
 === 関数でできるならマクロを書かない [[dont-write-macro-if-fn-will-do]]
 
@@ -2412,7 +2412,7 @@ NOTE: Clojure 1.8で `clojure.string` にいくつかの新しい関数（`index
         (cons 'do body)))
 ----
 
-== 一般的なメタデータ
+== 一般的なメタデータ [[common-metadata]]
 
 このセクションでは、Clojureの開発ツールが活用できる名前空間やvarに対する一般的なメタデータについて解説する。
 
@@ -2566,7 +2566,7 @@ APIドキュメントから名前空間全体を除外する：
   ...)
 ----
 
-=== インデント用メタデータ
+=== インデント用メタデータ [[indentation-metadata]]
 
 他のLisp方言とは異なり、Clojureはマクロのインデントを指定する標準的なメタデータは存在しない。2015年、CIDERはメタデータに基づいたツールに依存しない https://docs.cider.mx/cider/indent_spec.html[インデントの指定方法] を提案した。　footnote:[これはCIDER 1.0で初めて導入されました]簡単な例をいくつか示す：
 
@@ -2601,14 +2601,14 @@ APIドキュメントから名前空間全体を除外する：
 
 NOTE: このインデントの考え方（セマンティック・インデント）は、メタデータの追加とツールのサポートが必要となるためClojureコミュニティで議論の的になっている。この考え方はLispコミュニティで長い伝統があるが、一部の人たちは関数とマクロの区別をやめて、すべてを統一した固定インデントにすべきだと主張している。 https://tonsky.me/blog/clojurefmt/[この記事]はそのような主張に関する代表的な資料の一つである。
 
-== コメント
+== コメント [[comments]]
 
 [quote, スティーブ・マコネル]
 ____
 良いコードとは、それ自体が最良のドキュメントになっているものだ。コメントを付けようとしたとき、自分の胸に聞いてみるといい、「どうやってコードを改良して、このコメントを不要にできるだろうか？」ってね。より美しくするために、コードを改良してからドキュメント化するんだ。
 ____
 
-=== 自己説明的なコード
+=== 自己説明的なコード [[self-explanatory-code]]
 
 出来る限り、コードの役割や意図を一目でわかるように努める。これができない場合は、このセクションの残りのガイドラインに従うこと。
 
@@ -2736,7 +2736,7 @@ ____
 
 悪いコードを説明するためにコメントを書くことを避ける。コードをリファクタリングして、コメントが不要なようにするべきだ。（「やるか、やらぬかだ。やってみるなどない」 -- ヨーダ）
 
-=== コメントアノテーション
+=== コメントアノテーション [[comment-annotations]]
 
 ==== アノテーションは直前に [[annotate-above]]
 
@@ -2889,7 +2889,7 @@ ____
 
 そのほうが適切だと思えば、その他独自のアノテーションキーワードを用いる。ただし、プロジェクトの `README` などに忘れずにドキュメント化しておく。
 
-== ドキュメント
+== ドキュメント [[documentation]]
 
 ドキュメント文字列は、Clojureコードにドキュメントを付加するための最も基本的な方法だ。多くの定義フォーム（例： `def`, `defn`, `defmacro`, `ns` ）はドキュメント文字列をサポートしており、そのvarがパブリックであるかプライベートであるかに関わらず、基本的にはドキュメント文字列を活用するのが良い。
 
@@ -3103,7 +3103,7 @@ it easier for tooling to display it correctly.")
 ----
 ====
 
-== テスト
+== テスト [[testing]]
 
 === テストディレクトリの構造 [[test-directory-structure]]
 
@@ -3273,7 +3273,7 @@ https://github.com/nubank/matcher-combinators[matcher-combinators]に含まれ�
               (throw e)))))
 ----
 
-== ライブラリの構成
+== ライブラリの構成 [[library-organization]]
 
 === ライブラリの識別子 [[lib-coordinates]]
 
@@ -3296,7 +3296,7 @@ https://github.com/nubank/matcher-combinators[matcher-combinators]に含まれ�
 
 コアの機能とインテグレーション部分は別々のアーティファクトにする。そうすれば、ユーザはあなたのライブラリを無関係なツール依存に制限されることなく利用できる。たとえば、 https://github.com/stuartsierra/component[Component] はコア機能を提供し、 https://github.com/stuartsierra/reloaded[reloaded] はLeiningenとのインテグレーションを提供している。
 
-== 実際のコードでは
+== 実際のコードでは [[existential]]
 
 === 関数型的に [[be-functional]]
 
@@ -3310,20 +3310,20 @@ https://github.com/nubank/matcher-combinators[matcher-combinators]に含まれ�
 
 常識的に考える。
 
-== ツール
+== ツール [[tools]]
 
 スタイルガイドにまつわる課題の一つは、すべてのガイドラインを覚えて一貫して適用するのが難しいことだ。何しろ、私たちは人間だから。幸いなことに、その作業の大部分を代替してくれるツールが数多く存在する。
 
 TIP: こうしたツールを継続的インテグレーション（CI）に組み込むのは素晴らしいアイデアだ。これにより一つのプロジェクト内のすべてのコードが、目指すスタイルとの一貫性を保つことができる。
 
-=== Lintツール
+=== Lintツール [[lint-tools]]
 
 慣用的なClojureコードを書くのを助けてくれるLintツールが、Clojureコミュニティによって作られている。
 
 * https://github.com/jonase/kibit[kibit] はClojure向けの静的コード解析ツールだ。より慣用的な関数やマクロの探索には https://github.com/clojure/core.logic[core.logic] を用いている。
 * https://github.com/borkdude/clj-kondo[clj-kondo] は、このスタイルガイドに基づいて、多くの非推奨パターンを発見し、改善案を提案してくれるLintツールだ。
 
-=== コードフォーマッター
+=== コードフォーマッター [[code-formatters]]
 
 ほとんどのClojure用エディタやIDEはスタイルガイドで説明したレイアウトのガイドラインに従ってコードをフォーマットできるが、コマンドラインで動作するフォーマッターを用意しておくと便利である。このスタイルガイドで推奨されている通りにフォーマットをしてくれる非常に役立つClojure用ツールがいくつか存在する：
 
@@ -3333,7 +3333,7 @@ TIP: こうしたツールを継続的インテグレーション（CI）に組�
 
 NOTE: エディタについて、Emacsの `clojure-mode` はデフォルトでスタイルガイドに記載されているとおりにコードをフォーマットする。他のエディタについては、同じ結果を得るために設定を調整する必要があるかもしれない。
 
-== 歴史
+== 歴史 [[history]]
 
 このスタイルガイドは https://github.com/bbatsov[Bozhidar Batsov] により、彼がRubyコミュニティで立ち上げた　https://rubystyle.guide/[類似プロジェクト] の成功を受けて2013年に開始されました。
 
@@ -3341,7 +3341,7 @@ BozhidarはClojureと優れたプログラミングスタイルに強い情熱�
 
 ガイドを公開してから、世界中の優れたClojureコミュニティのメンバーから多くのフィードバックをいただいています。ご提案やご支援に感謝申し上げます！ みんなの力をあわせれば、世界中のすべてのClojure開発者にとって有益なリソースを作り上げることができるでしょう。
 
-== 着想の源
+== 着想の源 [[sources-of-inspiration]]
 
 多くの人々、書籍、プレゼンテーション、記事、他のスタイルガイドが、このスタイルガイドに影響を与えています。そのうちのいくつかを紹介します：
 
@@ -3358,7 +3358,7 @@ BozhidarはClojureと優れたプログラミングスタイルに強い情熱�
 * https://pragprog.com/titles/vmclojeco/clojure-applied/["Clojure Applied"]
 * https://stuartsierra.com/tag/dos-and-donts[Stuart Sierra's "Clojure Dos and Don't" blog series]
 
-== 編集チーム
+== 編集チーム [[editor-team]]
 
 経験豊富なClojure開発者からなる編集チームによってClojureスタイルガイドは管理されており、寄せられるあらゆる意見（フィードバックや提案など）を集約し、誰もが参考にできるより良いリファレンスとなることを目指しています。
 
@@ -3367,7 +3367,7 @@ BozhidarはClojureと優れたプログラミングスタイルに強い情熱�
 * https://danielcompton.net/about[Daniel Compton]
 * https://corfield.org/[Sean Corfield]
 
-== 貢献
+== 貢献 [[contributing]]
 
 このガイドはまだ作成途中です。ガイドラインの中には例が欠如していたり、例が十分にわかりやすくない物があります。こうしたガイドラインを改善することは、Clojureコミュニティに対する素晴らしい（そして簡単な）貢献です！
 
@@ -3384,7 +3384,7 @@ BozhidarはClojureと優れたプログラミングスタイルに強い情熱�
 * https://www.patreon.com/bbatsov[Patreon]
 * https://www.paypal.me/bbatsov[PayPal]
 
-== どのように貢献すればよいですか？
+== どのように貢献すればよいですか？ [[how-to-contribute]]
 
 簡単です、以下は貢献のためのガイドラインです：
 
@@ -3394,12 +3394,12 @@ BozhidarはClojureと優れたプログラミングスタイルに強い情熱�
 * 変更したブランチをGitHubにプッシュします。
 * https://help.github.com/articles/using-pull-requests[Pull Requestを送って] ください。
 
-== 奥付
+== 奥付 [[colophon]]
 
 このガイドはhttps://asciidoc.org/[AsciiDoc]で記述されており、https://asciidoctor.org/[AsciiDoctor]でHTML形式で公開されています。HTML版はGitHub Pagesで提供されています。
 
 当初、このガイドは Markdown で記述されていましたが、2019年にAsciiDocに変換されました。
 
-== 広めてください
+== 広めてください [[spread-the-word]]
 
 コミュニティドリブンのスタイルガイドは、その存在を知らないコミュニティではあまり役に立ちません。どうか、このガイドについてツイートをして、あなたの友達や同僚と共有してください。頂いたあらゆるコメントや提案、意見がほんの少しずつ、このガイドを形作っていくのです。みんなで最高のスタイルガイドを作りましょう。
