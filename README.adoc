@@ -11,7 +11,7 @@ endif::[]
 
 このスタイルガイドは、 https://twitter.com/bbatsov[Bozhidar Batsov] 氏による https://github.com/bbatsov/clojure-style-guide[bbatsov/clojure-style-guide] の日本語翻訳版です。
 
-image:http://i.creativecommons.org/l/by/3.0/88x31.png[Creative Commons License] 本翻訳版のライセンスは http://creativecommons.org/licenses/by/3.0/deed.ja_JP[クリエイティブ・コモンズ 表示 3.0 非移植 ライセンス] とします。原著作者はBozhidar Batsov氏です。原文のライセンスについてもご注意ください。
+image:http://i.creativecommons.org/l/by/3.0/88x31.png[Creative Commons License] 本翻訳版のライセンスは https://creativecommons.org/licenses/by/3.0/deed.ja[クリエイティブ・コモンズ 表示 3.0 非移植 ライセンス] とします。原著作者はBozhidar Batsov氏です。原文のライセンスについてもご注意ください。
 
 意訳していて、原文の意味を損なわない程度に言葉を加えたり省略している部分があります。また、訳が間違っている可能性があります。逐次修正は行いますが、原文を優先するようにしてください。用語の翻訳には、 http://ssl.ohmsha.co.jp/cgi-bin/menu.cgi?ISBN=978-4-274-06913-0[プログラミングClojure第2版] を参考にしています。翻訳に対する意見や修正は、IssueやPull Requestを作成していただけると助かります。なお、規約自体に対する意見は https://github.com/bbatsov/clojure-style-guide[原文リポジトリ] にお願いします。
 
