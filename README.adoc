@@ -17,7 +17,7 @@ image:http://i.creativecommons.org/l/by/3.0/88x31.png[Creative Commons License] 
 
 '''
 
-== はじめに [[introduction]]
+== はじめに
 
 [quote, アレックス・マーフィー巡査 / ロボコップ]
 ____
@@ -114,7 +114,7 @@ ____
 
 NOTE: これらの翻訳版は私たちの編集チームによって管理されておらず、品質や完成度にばらつきがあります。翻訳版は、翻訳元の英語版より遅れていることが多々あります。
 
-== ソースコードのレイアウトと構造 [[source-code-layout-organization]]
+== ソースコードのレイアウトと構造
 
 [quote, ジェリー・コフィン (インデントについて)]
 ____
@@ -542,7 +542,7 @@ ____
 (ns foo.bar) もしくは (in-ns foo.bar) を複数のファイル内で用いる
 ----
 
-== 名前空間の定義 [[namespace-declaration]]
+== 名前空間の定義
 
 === 単一セグメントの名前空間を使わない [[no-single-segment-namespaces]]
 
@@ -798,7 +798,7 @@ TIP: はい、名前空間のエイリアスにはドットを含めることが
 
 プロジェクト全体を通して、名前空間エイリアスを統一しておくことは良いことだ。例えば、ある名前空間で `clojure.string` を `str` として読み込む一方で、別の名前空間では `stirng` として読み込むようなことをしてはならない。前述の2つのガイドラインに従えば基本的には問題はないだろうが、名前空間のエイリアス名に独自方式を採用する場合はプロジェクト内で一貫して適用することが依然として重要だ。
 
-== 命名規約 [[naming]]
+== 命名規約
 
 [quote, フィル・カールトン]
 ____
@@ -898,7 +898,7 @@ STMトランザクションの中で安全でない関数・マクロの名前�
 (defn f-to-c ...)
 ----
 
-=== DynamicなVar [[[naming-dynamic-vars]]
+=== DynamicなVar [[naming-dynamic-vars]]
 
 再束縛を想定しているものには `*earmuffs*` を使う（つまりdynamicなものだ）。
 
@@ -928,7 +928,7 @@ STMトランザクションの中で安全でない関数・マクロの名前�
 
 NOTE: `\*clojure-version*` が慣例に反しているのはよく知られているが、これは歴史的な例外とみなすべきであり模範とするべきではない。
 
-=== 使用しない束縛 [[[naming-unused-bindings]]
+=== 使用しない束縛 [[naming-unused-bindings]]
 
 直後のコードで使用されない分配束縛や引数名には `+_+` を使う。
 
@@ -968,7 +968,7 @@ NOTE: `\*clojure-version*` が慣例に反しているのはよく知られて�
   (assoc context :user-id id))
 ----
 
-=== 慣用名
+=== 慣用名 [[idiomatic-names]]
 
 `pred` や `coll` のような慣用名には `clojure.core` の例が参考になる。
 
@@ -996,7 +996,7 @@ NOTE: `\*clojure-version*` が慣例に反しているのはよく知られて�
 * メソッド（`defprotocol`, `deftype`, `defrecord`, `reify`　などで定義される）内では、
 　** `this` - 第1引数として、オブジェクトへの参照、あるいはそのオブジェクトを表す一貫性のある名前を指定
 
-== 関数 [[functions]]
+== 関数
 
 === 関数名の後に改行しても良い [[optional-new-line-after-fn-name]]
 
@@ -1018,7 +1018,7 @@ NOTE: `\*clojure-version*` が慣例に反しているのはよく知られて�
   [x] (bar x))
 ----
 
-=== マルチメソッドのディスパッチの位置
+=== マルチメソッドのディスパッチの位置 [[multimethod-dispatch-val-placement]]
 
 マルチメソッドの `dispatch-val` は関数名と同じ行に置く。
 
@@ -1070,7 +1070,7 @@ NOTE: `\*clojure-version*` が慣例に反しているのはよく知られて�
         (baz x)))
 ----
 
-=== 複数アリティのインデント
+=== 複数アリティのインデント [[multiple-arity-indentation]]
 
 関数定義における各アリティのフォームのインデントは、そのパラメータと左揃えにする。
 
@@ -1163,7 +1163,7 @@ NOTE: `\*clojure-version*` が慣例に反しているのはよく知られて�
     (throw (IllegalArgumentException. "x must be a positive number!")))
 ----
 
-== 構文 [[idioms]]
+== 構文
 
 === 動的な名前空間の操作 [[ns-fns-only-in-repl]]
 
@@ -1520,7 +1520,7 @@ Clojureでは実際のブール値が必要になることはほとんどない�
 (filter (complement some-pred?) coll)
 ----
 
-=== `comp` [[comp]]
+==== `comp` [[comp]]
 
 [source,clojure]
 ----
@@ -1545,7 +1545,7 @@ Clojureでは実際のブール値が必要になることはほとんどない�
     (take 5)))
 ----
 
-=== `partial` [[partial]]
+==== `partial` [[partial]]
 
 [source,clojure]
 ----
@@ -1859,7 +1859,7 @@ Integer/MAX_VALUE
 (meta #'a) ;=> nil
 ----
 
-== データ構造 [[data-structures]]
+== データ構造
 
 [quote, アラン・パリス]
 ____
@@ -2009,7 +2009,7 @@ Javaの配列は可変でリテラル構文がなく、読みやすい形式で�
 (int-array [1 2 3])
 ----
 
-== タイプとレコード [[types-records]]
+== タイプとレコード
 
 === レコードのコンストラクタ [[record-constructors]]
 
@@ -2072,7 +2072,7 @@ Javaの配列は可変でリテラル構文がなく、読みやすい形式で�
   (Foo. num))
 ----
 
-== 状態 [[mutation]]
+== 状態
 
 === ref [[Refs]]
 
@@ -2213,7 +2213,7 @@ Clojure は 1.11 より前はJavaとの相互運用性を使ってこれらを�
 新しい `clojure.math` 名前空間は　`java.lang.Math`　で利用可能なメソッドに対して、
 高速なプリミティブ呼び出しを備えた `long` および `double` 型のオーバーロード用ラッパー関数を提供する。
 
-== 文字列 [[strings]]
+== 文字列
 
 === Java呼び出しよりも `clojure.string` の関数 [[prefer-clojure-string-over-interop]]
 
@@ -2230,7 +2230,7 @@ Clojure は 1.11 より前はJavaとの相互運用性を使ってこれらを�
 
 NOTE: Clojure 1.8で `clojure.string` にいくつかの新しい関数（`index-of`, `last-index-of`, `starts-with?`, `ends-with?`, `includes?`）が追加された。古いバージョンのClojureへの対応が必要な場合は、これらの使用を避けるべきだ。
 
-== 例外 [[exceptions]]
+== 例外
 
 === 既存の例外型の再利用 [[reuse-existing-exception-types]]
 
@@ -2287,7 +2287,7 @@ NOTE: Clojure 1.8で `clojure.string` にいくつかの新しい関数（`index
   (catch Throwable t ...))
 ----
 
-== マクロ [[macros]]
+== マクロ
 
 === 関数でできるならマクロを書かない [[dont-write-macro-if-fn-will-do]]
 
@@ -2601,7 +2601,7 @@ APIドキュメントから名前空間全体を除外する：
 
 NOTE: このインデントの考え方（セマンティック・インデント）は、メタデータの追加とツールのサポートが必要となるためClojureコミュニティで議論の的になっている。この考え方はLispコミュニティで長い伝統があるが、一部の人たちは関数とマクロの区別をやめて、すべてを統一した固定インデントにすべきだと主張している。 https://tonsky.me/blog/clojurefmt/[この記事]はそのような主張に関する代表的な資料の一つである。
 
-== コメント [[comments]]
+== コメント
 
 [quote, スティーブ・マコネル]
 ____
@@ -2736,7 +2736,7 @@ ____
 
 悪いコードを説明するためにコメントを書くことを避ける。コードをリファクタリングして、コメントが不要なようにするべきだ。（「やるか、やらぬかだ。やってみるなどない」 -- ヨーダ）
 
-=== コメントアノテーション [[comment-annotations]]
+=== コメントアノテーション
 
 ==== アノテーションは直前に [[annotate-above]]
 
@@ -2889,7 +2889,7 @@ ____
 
 そのほうが適切だと思えば、その他独自のアノテーションキーワードを用いる。ただし、プロジェクトの `README` などに忘れずにドキュメント化しておく。
 
-== ドキュメント [[documentation]]
+== ドキュメント
 
 ドキュメント文字列は、Clojureコードにドキュメントを付加するための最も基本的な方法だ。多くの定義フォーム（例： `def`, `defn`, `defmacro`, `ns` ）はドキュメント文字列をサポートしており、そのvarがパブリックであるかプライベートであるかに関わらず、基本的にはドキュメント文字列を活用するのが良い。
 
@@ -3103,7 +3103,7 @@ it easier for tooling to display it correctly.")
 ----
 ====
 
-== テスト [[testing]]
+== テスト
 
 === テストディレクトリの構造 [[test-directory-structure]]
 
@@ -3273,7 +3273,7 @@ https://github.com/nubank/matcher-combinators[matcher-combinators]に含まれ�
               (throw e)))))
 ----
 
-== ライブラリの構成 [[library-organization]]
+== ライブラリの構成
 
 === ライブラリの識別子 [[lib-coordinates]]
 
@@ -3296,7 +3296,7 @@ https://github.com/nubank/matcher-combinators[matcher-combinators]に含まれ�
 
 コアの機能とインテグレーション部分は別々のアーティファクトにする。そうすれば、ユーザはあなたのライブラリを無関係なツール依存に制限されることなく利用できる。たとえば、 https://github.com/stuartsierra/component[Component] はコア機能を提供し、 https://github.com/stuartsierra/reloaded[reloaded] はLeiningenとのインテグレーションを提供している。
 
-== 実際のコードでは [[existential]]
+== 実際のコードでは
 
 === 関数型的に [[be-functional]]
 
@@ -3367,7 +3367,7 @@ BozhidarはClojureと優れたプログラミングスタイルに強い情熱�
 * https://danielcompton.net/about[Daniel Compton]
 * https://corfield.org/[Sean Corfield]
 
-== 貢献 [[contributing]]
+== 貢献
 
 このガイドはまだ作成途中です。ガイドラインの中には例が欠如していたり、例が十分にわかりやすくない物があります。こうしたガイドラインを改善することは、Clojureコミュニティに対する素晴らしい（そして簡単な）貢献です！
 
@@ -3394,6 +3394,6 @@ BozhidarはClojureと優れたプログラミングスタイルに強い情熱�
 * 変更したブランチをGitHubにプッシュします。
 * https://help.github.com/articles/using-pull-requests[Pull Requestを送って] ください。
 
-== 広めてください [[spread-the-word]]
+== 広めてください
 
 コミュニティドリブンのスタイルガイドは、その存在を知らないコミュニティではあまり役に立ちません。どうか、このガイドについてツイートをして、あなたの友達や同僚と共有してください。頂いたあらゆるコメントや提案、意見がほんの少しずつ、このガイドを形作っていくのです。みんなで最高のスタイルガイドを作りましょう。
