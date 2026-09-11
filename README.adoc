@@ -3394,6 +3394,12 @@ BozhidarはClojureと優れたプログラミングスタイルに強い情熱�
 * 変更したブランチをGitHubにプッシュします。
 * https://help.github.com/articles/using-pull-requests[Pull Requestを送って] ください。
 
+== 奥付
+
+このガイドはhttps://asciidoc.org/[AsciiDoc]で記述されており、https://asciidoctor.org/[AsciiDoctor]でHTML形式で公開されています。HTML版はGitHub Pagesで提供されています。
+
+当初、このガイドは Markdown で記述されていましたが、2019年にAsciiDocに変換されました。
+
 == 広めてください
 
 コミュニティドリブンのスタイルガイドは、その存在を知らないコミュニティではあまり役に立ちません。どうか、このガイドについてツイートをして、あなたの友達や同僚と共有してください。頂いたあらゆるコメントや提案、意見がほんの少しずつ、このガイドを形作っていくのです。みんなで最高のスタイルガイドを作りましょう。
