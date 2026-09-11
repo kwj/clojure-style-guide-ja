@@ -841,6 +841,18 @@ NOTE: Lisp以外の多くのプログラミングコミュニティでは `lisp-
 
 NOTE: `CapitalCase` は `UpperCamelCase`, `CapitalWords`, `PascalCase` としても知られている。
 
+[source,clojure]
+----
+;; 良い
+(defprotocol Serializable ...)
+(defrecord HttpRequest ...)
+(deftype XMLParser ...)
+
+;; 悪い
+(defprotocol serializable ...)
+(defrecord http-request ...)
+(deftype xml_parser ...)
+----
 
 === 述語 [[naming-predicates]]
 
@@ -859,6 +871,18 @@ NOTE: `CapitalCase` は `UpperCamelCase`, `CapitalWords`, `PascalCase` として
 === 安全でない関数 [[naming-unsafe-functions]]
 
 STMトランザクションの中で安全でない関数・マクロの名前はエクスクラメーションマーク（!）で終わるべきだ。（例： `reset!` ）
+`!` は呼び出し側に対して、関数が副作用を持ち `dosync` ブロック内で呼ぶべきでないことを伝える。
+
+[source,clojure]
+----
+;; 良い
+(defn save-user! [user]
+  (db/insert! user))
+
+;; 悪い - 副作用を持つ関数の名前が ! で終わっていない
+(defn save-user [user]
+  (db/insert! user))
+----
 
 === 変換のための関数 [[naming-conversion-functions]]
 
@@ -2211,9 +2235,36 @@ NOTE: Clojure 1.8で `clojure.string` にいくつかの新しい関数（`index
 
 既存の例外型を再利用する。慣用的なClojureコードでは、例外を投げるとき、基本的な例外型を用いている（例： `java.lang.IllegalArgumentException`, `java.lang.UnsupportedOperationException`, `java.lang.IllegalStateException`, `java.io.IOException`）。
 
+[source,clojure]
+----
+;; 良い - データの保持に関する例外は ex-info を使う
+(throw (ex-info "Invalid input" {:value x :reason :negative}))
+
+;; 良い - Javaの標準例外型を使う
+(throw (IllegalArgumentException. "x must be positive"))
+
+;; 悪い - さしたる理由もなく独自の例外型を定義している
+(deftype MyCustomException [msg]
+  ...)
+----
+
 === `finally` よりも `with-open` が好ましい [[prefer-with-open-over-finally]]
 
-`finally` よりも `with-open` のほうが好ましい。
+`finally` よりも `with-open` のほうが好ましい。`with-open` は例外が投げられた場合でもリソースを確実に閉じるうえに、冗長な記述が少なく、クリーンアップ手順を忘れるリスクがない。
+
+[source,clojure]
+----
+;; 良い
+(with-open [rdr (clojure.java.io/reader "file.txt")]
+  (slurp rdr))
+
+;; 悪い - 冗長で、間違えやすい
+(let [rdr (clojure.java.io/reader "file.txt")]
+  (try
+    (slurp rdr)
+    (finally
+      (.close rdr))))
+----
 
 === Throwable のキャッチ [[catching-throwables]]
 
@@ -2779,21 +2830,59 @@ ____
 
 後日追加されるべき機能には `TODO` を使う。
 
+[source,clojure]
+----
+(defn process-order [order]
+  ;; TODO: Add support for discount codes.
+  (calculate-total order))
+----
+
 ==== `FIXME` [[fixme]]
 
 コードが壊れていて、修正の必要がある箇所には `FIXME` を使う。
+
+[source,clojure]
+----
+(defn calculate-total [order]
+  ;; FIXME: This doesn't account for tax in all regions.
+  (reduce + (map :price (:items order))))
+----
 
 ==== `OPTIMIZE` [[optimize]]
 
 パフォーマンス問題の原因となりうる、遅かったり非効率なコードには `OPTIMIZE` を使う。
 
+[source,clojure]
+----
+(defn find-duplicates [coll]
+  ;; OPTIMIZE: O(n^2) — consider using a set for large collections.
+  (for [x coll y coll :when (and (not (identical? x y)) (= x y))]
+    x))
+----
+
 ==== `HACK` [[hack]]
 
 疑わしいコーディングの仕方がされており、リファクタリングすべき「コード・スメル」には `HACK` を用いる。
 
+[source,clojure]
+----
+(defn user-name [request]
+  ;; HACK: Parsing the token manually until we add proper auth middleware.
+  (-> request :headers (get "authorization") (subs 7) decode-token :name))
+----
+
 ==== `REVIEW` [[review]]
 
 意図するように動くかどうか確認すべき箇所には `REVIEW` を使う。例： `REVIEW: Are we sure this is how the client does X currently?`
+
+[source,clojure]
+----
+(defn retry [f n]
+  ;; REVIEW: Should we add exponential backoff here?
+  (loop [i n]
+    (or (try (f) (catch Exception _ nil))
+        (when (pos? i) (recur (dec i))))))
+----
 
 ==== カスタムアノテーション [[document-annotations]]
 
