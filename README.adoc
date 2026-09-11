@@ -1102,11 +1102,23 @@ NOTE: `\*clojure-version*` が慣例に反しているのはよく知られて�
 
 === 関数の長さ [[function-length]]
 
-関数はLOC (lines of code)が10行を超えないようにする。理想的には、ほとんどの関数はLOCが5行より短いほうが良い。
+関数はLOC (lines of code)が10行を超えないようにする。理想的には、ほとんどの関数はLOCが5行より短いほうが良い。短い関数は理解やテストがしやすく、組み合わせやすい。
 
 === 関数のパラメータの制限 [[function-positional-parameter-limit]]
 
 3つか4つを超えるパラメータを持つパラメータリストの使用を避ける。
+パラメータリストが長いと覚えにくく、呼び出し側で間違えやすくなる。代わりにパラメータとしてマップを使う方が好ましい。
+
+[source,clojure]
+----
+;; 良い
+(defn create-user [{:keys [name email role admin?]}]
+  ...)
+
+;; 悪い - 呼び出し側は正確な順序を覚えていなければならない
+(defn create-user [name email role admin?]
+  ...)
+----
 
 === コンディションマップ [[pre-post-conditions]]
 
@@ -1132,17 +1144,53 @@ NOTE: `\*clojure-version*` が慣例に反しているのはよく知られて�
 
 `require` や `refer` のような名前空間を扱う関数の使用を避ける。これらはREPL環境以外では必要ないものだ。
 
+[source,clojure]
+----
+;; 良い - ns フォームを使う
+(ns my-app.core
+  (:require [clojure.string :as str]))
+
+;; 悪い - ソースファイル内で require を関数として呼んでいる
+(require '[clojure.string :as str])
+----
+
 === 前方参照 [[forward-references]]
 
-前方参照を避ける。前方参照は時として必要になるが、実際にはそのような機会はまれだ。
+前方参照を避ける。前方参照は時として必要になるが、実際にはそのような機会はまれだ。前方参照はコードをトップダウンで追いかけるのが難しくし、循環した依存関係を隠してしまう可能性がある。
 
 === declare [[declare]]
 
 前方参照が必要なとき、前方参照を可能にするには `declare` を使う。
 
+[source,clojure]
+----
+;; 良い - 本当に前方参照が必要なら declare を使う
+(declare process-children)
+
+(defn process-node [node]
+  (when (:children node)
+    (process-children node)))
+
+(defn process-children [node]
+  (mapv process-node (:children node)))
+----
+
 === 高階関数 [[higher-order-fns]]
 
 `loop/recur` よりも `map` のように、より高階な関数のほうが好ましい。
+高階関数はより宣言的で、処理の *方法* ではなく *何が* したいのかを表現し、シーケンスライブラリの他の関数と自然に組み合わせが可能だ。
+
+[source,clojure]
+----
+;; 良い
+(map inc [1 2 3 4 5])
+
+;; 悪い - 同じことを行うために手動でループを使っている
+(loop [xs [1 2 3 4 5] result []]
+  (if (empty? xs)
+    result
+    (recur (rest xs) (conj result (inc (first xs))))))
+----
 
 === 関数内のvar [[dont-def-vars-inside-fns]]
 
