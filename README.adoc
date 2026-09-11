@@ -17,7 +17,8 @@ image:http://i.creativecommons.org/l/by/3.0/88x31.png[Creative Commons License] 
 
 '''
 
-== はじめに [[introduction]]
+[[introduction]]
+== はじめに
 
 [quote, アレックス・マーフィー巡査 / ロボコップ]
 ____
@@ -62,7 +63,8 @@ gem install rouge
 ====
 endif::[]
 
-=== 基本指針 [[guiding-principles]]
+[[guiding-principles]]
+=== 基本指針
 
 [quote, ハロルド・アベルソン / 計算機プログラムの構造と解釈]
 ____
@@ -78,7 +80,8 @@ ____
 
 Clojureはシンプルさと明快さに最適化されていることで知られている。このガイドが皆さんの最大限のシンプルさと明快さを達成するための助けになることを祈ります。
 
-=== 一貫性に関する注意事項 [[a-note-about-consistency]]
+[[a-note-about-consistency]]
+=== 一貫性に関する注意事項
 
 [quote, ラルフ・ウォルドー・エマーソン]
 ____
@@ -98,7 +101,8 @@ ____
 * 当該のコードはガイドラインよりも以前から存在しており、それを変更すべき他の理由もないため。
 * スタイルガイドが推奨している機能をサポートしていない古いバージョンのClojureと互換性を保つ必要がある場合
 
-=== 翻訳版 [[translations]]
+[[translations]]
+=== 翻訳版
 
 このスタイルガイドは以下の言語に翻訳されている：
 
@@ -114,7 +118,8 @@ ____
 
 NOTE: これらの翻訳版は私たちの編集チームによって管理されておらず、品質や完成度にばらつきがあります。翻訳版は、翻訳元の英語版より遅れていることが多々あります。
 
-== ソースコードのレイアウトと構造 [[source-code-layout-organization]]
+[[source-code-layout-organization]]
+== ソースコードのレイアウトと構造
 
 [quote, ジェリー・コフィン (インデントについて)]
 ____
@@ -122,7 +127,7 @@ ____
 ____
 
 [#80-character-limits]
-=== 1行の最大長 [[line-length]]
+=== [[line-length]]1行の最大長
 
 可能なら、1行が80文字を超えないようにする。
 
@@ -139,11 +144,13 @@ ____
 長い行を強く好むチームもいる。1つのチームが主にメンテナンスするコードであれば、制限を100文字以内や120文字以内に増やしても良い。それでも、120文字を超える長さにすることは止めてほしい。
 ****
 
-=== タブ vs スペース [[spaces]]
+[[spaces]]
+=== タブ vs スペース
 
 インデントには *スペース* を使う。タブは使わない。
 
-=== ボディのインデント [[body-indentation]]
+[[body-indentation]]
+=== ボディのインデント
 
 ボディパラメータをもつフォームのボディには2つのスペースを使う。これには全ての `def` フォーム、ローカル束縛をもつスペシャルフォームおよびマクロ（例： `loop`, `let`, `when-let`）、そして `when`, `cond`, `+as->+`, `+cond->+`, `case`, `with-*` などの多くのマクロが含まれる。
 
@@ -167,7 +174,8 @@ ____
  (println "world!"))
 ----
 
-=== 関数の引数の揃え方 [[vertically-align-fn-args]]
+[[vertically-align-fn-args]]
+=== 関数の引数の揃え方
 
 複数行にわたる関数（マクロ）の引数は左揃えにする。
 
@@ -188,7 +196,8 @@ ____
 
 このガイドラインの根拠はごく単純である。引数が目立つようにくっついて存在すれば、人間の脳にとって処理しやすいからだ。
 
-=== 関数の引数のインデント [[one-space-indent]]
+[[one-space-indent]]
+=== 関数の引数のインデント
 
 NOTE: 原則として、利用可能な横幅に制限がある場合を除き、前述のガイドラインで示された書式に従うべきです。
 
@@ -309,7 +318,8 @@ Clojureコミュニティの一部の人たちは、セマンティック・イ�
 
 ****
 
-=== 束縛の揃え方 [[bindings-alignment]]
+[[bindings-alignment]]
+=== 束縛の揃え方
 
 `let` (および `let` 系) の束縛を左揃えにする。
 
@@ -326,7 +336,8 @@ Clojureコミュニティの一部の人たちは、セマンティック・イ�
   (foo thing1 thing2))
 ----
 
-=== マップのキーの揃え方 [[map-keys-alignment]]
+[[map-keys-alignment]]
+=== マップのキーの揃え方
 
 マップのキーを左揃えにする。
 
@@ -345,7 +356,8 @@ Clojureコミュニティの一部の人たちは、セマンティック・イ�
   :thing2 thing2}
 ----
 
-=== 改行コード [[crlf]]
+[[crlf]]
+=== 改行コード
 
 Unixスタイルの改行コードを使用する。 footnote:[*BSD/Solaris/Linux/macOSユーザはデフォルトで問題ないが、Windowsユーザは特に注意すること。]
 
@@ -359,13 +371,15 @@ $ git config --global core.autocrlf true
 ----
 ====
 
-=== ファイルの最終行は改行する [[terminate-files-with-a-newline]]
+[[terminate-files-with-a-newline]]
+=== ファイルの最終行は改行する
 
 各ファイルの最後は改行する。
 
 TIP: 手動で改行を入れるのではなく、エディタの設定で自動化すると良い。
 
-=== 括弧のスペース [[bracket-spacing]]
+[[bracket-spacing]]
+=== 括弧のスペース
 
 開き括弧（`(`, `{`, `[`）の前の文字と、閉じ括弧（`)`, `}`, `]`）の後の文字は、括弧との間にスペースを設ける。
 逆に、開き括弧とそれに続く文字、閉じ括弧と直前の文字の間にはスペースを入れない。
@@ -380,7 +394,8 @@ TIP: 手動で改行を入れるのではなく、エディタの設定で自動
 (foo ( bar baz ) quux)
 ----
 
-=== シーケンシャルコレクションのリテラルにコンマを使わない [[no-commas-for-seq-literals]]
+[[no-commas-for-seq-literals]]
+=== シーケンシャルコレクションのリテラルにコンマを使わない
 
 [quote, アラン・パリス]
 ____
@@ -400,7 +415,8 @@ ____
 (1, 2, 3)
 ----
 
-=== マップリテラルのコンマ [[opt-commas-in-map-literals]]
+[[opt-commas-in-map-literals]]
+=== マップリテラルのコンマ
 
 コンマや改行を使い、マップリテラルの可読性を向上させることを検討する。
 
@@ -417,7 +433,8 @@ ____
 {:name "Bruce Wayne", :alter-ego "Batman"}
 ----
 
-=== 後方の括弧の集約 [[gather-trailing-parens]]
+[[gather-trailing-parens]]
+=== 後方の括弧の集約
 
 後ろ側に連続する括弧は、別々の行にせず、同じ行に含める。
 
@@ -446,7 +463,8 @@ ____
   )
 ----
 
-=== トップレベルのフォーム間の空白行 [[empty-lines-between-top-level-forms]]
+[[empty-lines-between-top-level-forms]]
+=== トップレベルのフォーム間の空白行
 
 トップレベルのフォームの間には1行の空白行を挟む。
 
@@ -479,7 +497,8 @@ ____
 (def max-cols 30)
 ----
 
-=== 定義フォーム内に空白行を入れない [[no-blank-lines-within-def-forms]]
+[[no-blank-lines-within-def-forms]]
+=== 定義フォーム内に空白行を入れない
 
 関数やマクロ定義の中には空白行を入れない。ただし `let` や `cond` のようなペアで構成される構文が同じ行に収まらない場合など、ペアをグループ分けするために入れるのは良い。
 
@@ -517,11 +536,13 @@ ____
 
 長い関数の定義内に空白行を入れるのは良いアイデアのように見えるかもしれないが、そう思ったのならば、この関数に処理を詰め込みすぎていないか、あるいは関数を分割できるのではないかを検討すべきだ。
 
-=== 行末の空白を避ける [[no-trailing-whitespace]]
+[[no-trailing-whitespace]]
+=== 行末の空白を避ける
 
 行末の空白を避ける。
 
-=== 1名前空間に1ファイル [[one-file-per-namespace]]
+[[one-file-per-namespace]]
+=== 1名前空間に1ファイル
 
 1つの名前空間には1つのファイルを用い、1つのファイルには1つの名前空間を用いる。
 
@@ -542,9 +563,11 @@ ____
 (ns foo.bar) もしくは (in-ns foo.bar) を複数のファイル内で用いる
 ----
 
-== 名前空間の定義 [[namespace-declaration]]
+[[namespace-declaration]]
+== 名前空間の定義
 
-=== 単一セグメントの名前空間を使わない [[no-single-segment-namespaces]]
+[[no-single-segment-namespaces]]
+=== 単一セグメントの名前空間を使わない
 
 単一セグメントの名前空間を使わない。
 
@@ -565,11 +588,13 @@ TIP: 1つの名前空間を持つライブラリでは、`domain.library-name` �
 
 単一セグメントの名前空間を避けるべき https://github.com/bbatsov/clojure-style-guide/pull/100[理由は他にもあり]、それらを利用する前によくよく検討すべきだ。
 
-=== 名前空間セグメントの制限 [[namespace-segments-limit]]
+[[namespace-segments-limit]]
+=== 名前空間セグメントの制限
 
 無駄に長い名前空間を使わない（例えば、5セグメントを超えるような）。
 
-=== 完全な `ns` フォーム [[comprehensive-ns-declaration]]
+[[comprehensive-ns-declaration]]
+=== 完全な `ns` フォーム
 
 全ての名前空間は、複数の `refer`, `require`, `import` からなる `ns` フォームで始める。順序は慣習的に `refer`, `require`, `import` の順とする。
 
@@ -581,7 +606,8 @@ TIP: 1つの名前空間を持つライブラリでは、`domain.library-name` �
   (:import java.util.Date))
 ----
 
-=== `ns` 中の改行 [[line-break-ns-declaration]]
+[[line-break-ns-declaration]]
+=== `ns` 中の改行
 
 複数の依存を記述する場合、それぞれを別々の行に記述するとよい。そうすることでソートが容易になり、読みやすくなる。また、依存の変更によるdiffを減らすことができる。
 
@@ -615,7 +641,8 @@ TIP: 1つの名前空間を持つライブラリでは、`domain.library-name` �
   (:import java.util.Date java.text.SimpleDateFormat [java.util.concurrent Executors LinkedBlockingQueue]))
 ----
 
-=== `:use` よりも `:require` が好ましい [[prefer-require-over-use]]
+[[prefer-require-over-use]]
+=== `:use` よりも `:require` が好ましい
 
 `ns` フォームでは `:require :refer :all` よりも `:require :refer` 、それよりも `:require :as` が好ましい。また `:use` よりも `:require` が好ましい。今後新しいコードでは `:use` を非推奨とするか検討すべきだ。
 
@@ -638,7 +665,8 @@ TIP: 1つの名前空間を持つライブラリでは、`domain.library-name` �
   (:use clojure.zip))
 ----
 
-=== requireとimportのソート [[sort-requirements-and-imports]]
+[[sort-requirements-and-imports]]
+=== requireとimportのソート
 
 `ns` フォームではrequireとimportをソートする。特にrequire/importする名前空間が非常に多い場合には、ソートすることで可読性が向上し、重複を避けられるようになる。
 
@@ -663,7 +691,8 @@ TIP: 1つの名前空間を持つライブラリでは、`domain.library-name` �
    [clojure.java.shell :as sh]))
 ----
 
-=== 慣用的な名前空間エイリアスを使う [[use-idiomatic-namespace-aliases]]
+[[use-idiomatic-namespace-aliases]]
+=== 慣用的な名前空間エイリアスを使う
 
 Clojureの主要な名前空間の多くは、プロジェクト内で使用が推奨される慣用的なエイリアス（別名）がある。例えば、　`clojure.string` を読み込む最も一般的な方法は `[clojure.string :as str]` だ。
 
@@ -753,7 +782,8 @@ ClojureのコアおよびContrib名前空間のうち、以下の名前空間は
 | jdbc
 |===
 
-=== 良い名前空間エイリアスのためのレシピ [[a-recipe-for-good-namespace-aliases]]
+[[a-recipe-for-good-namespace-aliases]]
+=== 良い名前空間エイリアスのためのレシピ
 
 上記で、よく使われる名前空間と慣用的なエイリアスをいくつか紹介した。しかし、それらは少し一貫性に欠けている。
 
@@ -794,18 +824,21 @@ TIP: はい、名前空間のエイリアスにはドットを含めることが
 [clj-time.format :as time.format]
 ----
 
-=== 一貫した名前空間エイリアスの使用 [[use-consistent-namespace-aliases]]
+[[use-consistent-namespace-aliases]]
+=== 一貫した名前空間エイリアスの使用
 
 プロジェクト全体を通して、名前空間エイリアスを統一しておくことは良いことだ。例えば、ある名前空間で `clojure.string` を `str` として読み込む一方で、別の名前空間では `stirng` として読み込むようなことをしてはならない。前述の2つのガイドラインに従えば基本的には問題はないだろうが、名前空間のエイリアス名に独自方式を採用する場合はプロジェクト内で一貫して適用することが依然として重要だ。
 
-== 命名規約 [[naming]]
+[[naming]]
+== 命名規約
 
 [quote, フィル・カールトン]
 ____
 プログラミングで本当に難しいのは、キャッシュの無効化と命名の仕方だけだ。
 ____
 
-=== 名前空間の命名方法 [[naming-ns-naming-schemas]]
+[[naming-ns-naming-schemas]]
+=== 名前空間の命名方法
 
 名前空間は次の2つの名づけ方が好ましい。
 
@@ -814,13 +847,15 @@ ____
 
 `project.module` 方式の名前空間を使う場合、1つの名前空間（の実装）を持つプロジェクトならば一般的な名前は `project.core` である。その他のケースでは　`project.core` を名前に使うのは避けるべきで、より意味が伝わる名前をつける方が常に望ましい。
 
-=== 名前空間セグメントにおける複数単語 [[naming-namespace-composite-segments]]
+[[naming-namespace-composite-segments]]
+=== 名前空間セグメントにおける複数単語
 
 複数単語からなる名前空間セグメントには `lisp-case` を使う（例： `bruce.project-euler` ）
 
 NOTE: Lisp以外の多くのプログラミングコミュニティでは `lisp-case` を `kebab-case` と呼んでいるが、`kebab-case` の呼称が作り出されるよりずっと以前にLispが存在していたことは周知の事実だ。
 
-=== 関数、変数 [[naming-functions-and-variables]]
+[[naming-functions-and-variables]]
+=== 関数、変数
 
 関数名や変数名には `lisp-case` を使う。
 
@@ -836,7 +871,8 @@ NOTE: Lisp以外の多くのプログラミングコミュニティでは `lisp-
 (def some_fun ...)
 ----
 
-=== プロトコル、レコード、構造体、型 [[naming-protocols-records-structs-and-types]]
+[[naming-protocols-records-structs-and-types]]
+=== プロトコル、レコード、構造体、型
 
 プロトコル、レコード、構造体、型には `CapitalCase` を用いる。（HTTP, RFC, XMLのような頭字語は大文字を保持する。）
 
@@ -855,7 +891,8 @@ NOTE: `CapitalCase` は `UpperCamelCase`, `CapitalWords`, `PascalCase` として
 (deftype xml_parser ...)
 ----
 
-=== 述語 [[naming-predicates]]
+[[naming-predicates]]
+=== 述語
 
 述語（ブール値を返す関数）の名前はクエスチョンマーク（?）で終わるべきだ。（例： `even?` ）
 
@@ -869,7 +906,8 @@ NOTE: `CapitalCase` は `UpperCamelCase`, `CapitalWords`, `PascalCase` として
 (defn is-palindrome ...) ; Javaスタイル
 ----
 
-=== 安全でない関数 [[naming-unsafe-functions]]
+[[naming-unsafe-functions]]
+=== 安全でない関数
 
 STMトランザクションの中で安全でない関数・マクロの名前はエクスクラメーションマーク（!）で終わるべきだ。（例： `reset!` ）
 `!` は呼び出し側に対して、関数が副作用を持ち `dosync` ブロック内で呼ぶべきでないことを伝える。
@@ -885,7 +923,8 @@ STMトランザクションの中で安全でない関数・マクロの名前�
   (db/insert! user))
 ----
 
-=== 変換のための関数 [[naming-conversion-functions]]
+[[naming-conversion-functions]]
+=== 変換のための関数
 
 変換のための関数名には `to` ではなく `+->+` を用いる。
 
@@ -898,7 +937,8 @@ STMトランザクションの中で安全でない関数・マクロの名前�
 (defn f-to-c ...)
 ----
 
-=== DynamicなVar [[naming-dynamic-vars]]
+[[naming-dynamic-vars]]
+=== DynamicなVar
 
 再束縛を想定しているものには `*earmuffs*` を使う（つまりdynamicなものだ）。
 
@@ -911,7 +951,8 @@ STMトランザクションの中で安全でない関数・マクロの名前�
 (def ^:dynamic a 10)
 ----
 
-=== 定数 [[naming-constants]]
+[[naming-constants]]
+=== 定数
 
 定数のために特別な表記をしない。特定のものを除いて、全ては定数である。
 
@@ -928,7 +969,8 @@ STMトランザクションの中で安全でない関数・マクロの名前�
 
 NOTE: `\*clojure-version*` が慣例に反しているのはよく知られているが、これは歴史的な例外とみなすべきであり模範とするべきではない。
 
-=== 使用しない束縛 [[naming-unused-bindings]]
+[[naming-unused-bindings]]
+=== 使用しない束縛
 
 直後のコードで使用されない分配束縛や引数名には `+_+` を使う。
 
@@ -968,7 +1010,8 @@ NOTE: `\*clojure-version*` が慣例に反しているのはよく知られて�
   (assoc context :user-id id))
 ----
 
-=== 慣用名 [[idiomatic-names]]
+[[idiomatic-names]]
+=== 慣用名
 
 `pred` や `coll` のような慣用名には `clojure.core` の例が参考になる。
 
@@ -996,9 +1039,11 @@ NOTE: `\*clojure-version*` が慣例に反しているのはよく知られて�
 * メソッド（`defprotocol`, `deftype`, `defrecord`, `reify`　などで定義される）内では、
 　** `this` - 第1引数として、オブジェクトへの参照、あるいはそのオブジェクトを表す一貫性のある名前を指定
 
-== 関数 [[functions]]
+[[functions]]
+== 関数
 
-=== 関数名の後に改行しても良い [[optional-new-line-after-fn-name]]
+[[optional-new-line-after-fn-name]]
+=== 関数名の後に改行しても良い
 
 `defn` において、ドキュメント文字列を持たない場合は、関数名と引数ベクタの間の改行を省略しても良い。
 
@@ -1018,7 +1063,8 @@ NOTE: `\*clojure-version*` が慣例に反しているのはよく知られて�
   [x] (bar x))
 ----
 
-=== マルチメソッドのディスパッチの位置 [[multimethod-dispatch-val-placement]]
+[[multimethod-dispatch-val-placement]]
+=== マルチメソッドのディスパッチの位置
 
 マルチメソッドの `dispatch-val` は関数名と同じ行に置く。
 
@@ -1042,7 +1088,8 @@ NOTE: `\*clojure-version*` が慣例に反しているのはよく知られて�
   (baz x))
 ----
 
-=== 1行の関数 [[one-line-functions]]
+[[one-line-functions]]
+=== 1行の関数
 
 関数本体が短い場合、引数ベクタと関数本体の間の改行は省略しても良い。
 
@@ -1070,7 +1117,8 @@ NOTE: `\*clojure-version*` が慣例に反しているのはよく知られて�
         (baz x)))
 ----
 
-=== 複数アリティのインデント [[multiple-arity-indentation]]
+[[multiple-arity-indentation]]
+=== 複数アリティのインデント
 
 関数定義における各アリティのフォームのインデントは、そのパラメータと左揃えにする。
 
@@ -1093,7 +1141,8 @@ NOTE: `\*clojure-version*` が慣例に反しているのはよく知られて�
     (+ x y)))
 ----
 
-=== 複数アリティの順序 [[multiple-arity-order]]
+[[multiple-arity-order]]
+=== 複数アリティの順序
 
 関数のアリティは、引数が最も少ないものから多いものの順に並べる。マルチアリティ関数の通例として、K個の引数を持つものが関数の振る舞いを定義していて、N個（< K）の引数を持つアリティはK引数のアリティの部分適用、N個（> K）の引数を持つアリティは可変長引数であるK引数のアリティの畳み込み、という場合がある。
 
@@ -1125,11 +1174,13 @@ NOTE: `\*clojure-version*` が慣例に反しているのはよく知られて�
   ([w x y z & more] (reduce foo (foo w (foo x (foo y z))) more)))
 ----
 
-=== 関数の長さ [[function-length]]
+[[function-length]]
+=== 関数の長さ
 
 関数はLOC (lines of code)が10行を超えないようにする。理想的には、ほとんどの関数はLOCが5行より短いほうが良い。短い関数は理解やテストがしやすく、組み合わせやすい。
 
-=== 関数のパラメータの制限 [[function-positional-parameter-limit]]
+[[function-positional-parameter-limit]]
+=== 関数のパラメータの制限
 
 3つか4つを超えるパラメータを持つパラメータリストの使用を避ける。
 パラメータリストが長いと覚えにくく、呼び出し側で間違えやすくなる。代わりにパラメータとしてマップを使う方が好ましい。
@@ -1145,7 +1196,8 @@ NOTE: `\*clojure-version*` が慣例に反しているのはよく知られて�
   ...)
 ----
 
-=== コンディションマップ [[pre-post-conditions]]
+[[pre-post-conditions]]
+=== コンディションマップ
 
 関数本体内では、コンディションマップによる入力値、出力値のチェックがより良い。
 
@@ -1163,9 +1215,11 @@ NOTE: `\*clojure-version*` が慣例に反しているのはよく知られて�
     (throw (IllegalArgumentException. "x must be a positive number!")))
 ----
 
-== 構文 [[idioms]]
+[[idioms]]
+== 構文
 
-=== 動的な名前空間の操作 [[ns-fns-only-in-repl]]
+[[ns-fns-only-in-repl]]
+=== 動的な名前空間の操作
 
 `require` や `refer` のような名前空間を扱う関数の使用を避ける。これらはREPL環境以外では必要ないものだ。
 
@@ -1179,11 +1233,13 @@ NOTE: `\*clojure-version*` が慣例に反しているのはよく知られて�
 (require '[clojure.string :as str])
 ----
 
-=== 前方参照 [[forward-references]]
+[[forward-references]]
+=== 前方参照
 
 前方参照を避ける。前方参照は時として必要になるが、実際にはそのような機会はまれだ。前方参照はコードをトップダウンで追いかけるのが難しくし、循環した依存関係を隠してしまう可能性がある。
 
-=== declare [[declare]]
+[[declare]]
+=== declare
 
 前方参照が必要なとき、前方参照を可能にするには `declare` を使う。
 
@@ -1200,7 +1256,8 @@ NOTE: `\*clojure-version*` が慣例に反しているのはよく知られて�
   (mapv process-node (:children node)))
 ----
 
-=== 高階関数 [[higher-order-fns]]
+[[higher-order-fns]]
+=== 高階関数
 
 `loop/recur` よりも `map` のように、より高階な関数のほうが好ましい。
 高階関数はより宣言的で、処理の *方法* ではなく *何が* したいのかを表現し、シーケンスライブラリの他の関数と自然に組み合わせが可能だ。
@@ -1217,7 +1274,8 @@ NOTE: `\*clojure-version*` が慣例に反しているのはよく知られて�
     (recur (rest xs) (conj result (inc (first xs))))))
 ----
 
-=== 関数内のvar [[dont-def-vars-inside-fns]]
+[[dont-def-vars-inside-fns]]
+=== 関数内のvar
 
 関数内でvarを定義しない。
 
@@ -1229,7 +1287,8 @@ NOTE: `\*clojure-version*` が慣例に反しているのはよく知られて�
   ...)
 ----
 
-=== `clojure.core` の名前の隠蔽 [[dont-shadow-clojure-core]]
+[[dont-shadow-clojure-core]]
+=== `clojure.core` の名前の隠蔽
 
 ローカル束縛によって `clojure.core` の名前を隠さない。
 
@@ -1240,7 +1299,8 @@ NOTE: `\*clojure-version*` が慣例に反しているのはよく知られて�
   ...)
 ----
 
-=== varの変更 [[alter-var]]
+[[alter-var]]
+=== varの変更
 
 varの値を変更するには、 `def` の代わりに `alter-var-root` を使う。
 
@@ -1258,7 +1318,8 @@ varの値を変更するには、 `def` の代わりに `alter-var-root` を使�
 ; thingの値はnil
 ----
 
-=== nil punning [[nil-punning]]
+[[nil-punning]]
+=== nil punning
 
 シーケンスが空かどうかをチェックするには `seq` を使う（このテクニックはしばしば _nil punning_ と呼ばれる）。
 
@@ -1277,7 +1338,8 @@ varの値を変更するには、 `def` の代わりに `alter-var-root` を使�
     (recur (rest s))))
 ----
 
-=== シーケンスからベクタへの変換 [[to-vector]]
+[[to-vector]]
+=== シーケンスからベクタへの変換
 
 シーケンスをベクタに変換する必要があるときは、 `into` よりも `vec` を用いたほうが良い。
 
@@ -1290,7 +1352,8 @@ varの値を変更するには、 `def` の代わりに `alter-var-root` を使�
 (into [] some-seq)
 ----
 
-=== ブール値への変換 [[converting-something-to-boolean]]
+[[converting-something-to-boolean]]
+=== ブール値への変換
 
 何らかの値を実際のブール値（`true` または `false`）に変換する必要がある場合は `boolean` 関数を使う。
 
@@ -1307,7 +1370,8 @@ NOTE: Clojureにおける「偽」とみなされる値は `false` と `nil` だ
 
 Clojureでは実際のブール値が必要になることはほとんどないが、必要になったときに取得方法を知っていると便利だ。
 
-=== `when` vs `if` [[when-instead-of-single-branch-if]]
+[[when-instead-of-single-branch-if]]
+=== `when` vs `if`
 
 `(if condition (something...))` や `(if ... (do ...))` のように真の場合の処理しか行わない場合は、`if` ではなく `when` を使う。
 
@@ -1325,7 +1389,8 @@ Clojureでは実際のブール値が必要になることはほとんどない�
     (bar)))
 ----
 
-=== `if-let` [[if-let]]
+[[if-let]]
+=== `if-let`
 
 `let` + `if` の代わりに `if-let` を使う。
 
@@ -1343,7 +1408,8 @@ Clojureでは実際のブール値が必要になることはほとんどない�
     (something-else)))
 ----
 
-=== `when-let` [[when-let]]
+[[when-let]]
+=== `when-let`
 
 `let` + `when` の代わりに `when-let` を使う。
 
@@ -1361,7 +1427,8 @@ Clojureでは実際のブール値が必要になることはほとんどない�
     (do-something-more-with result)))
 ----
 
-=== `if-not` [[if-not]]
+[[if-not]]
+=== `if-not`
 
 `+(if (not ...) ...)+` の代わりに `if-not` を使う。
 
@@ -1376,7 +1443,8 @@ Clojureでは実際のブール値が必要になることはほとんどない�
   (foo))
 ----
 
-=== `when-not` [[when-not]]
+[[when-not]]
+=== `when-not`
 
 `+(when (not ...) ...)+` の代わりに `when-not` を使う。
 
@@ -1393,7 +1461,8 @@ Clojureでは実際のブール値が必要になることはほとんどない�
   (bar))
 ----
 
-=== `when-not` vs `if-not` [[when-not-instead-of-single-branch-if-not]]
+[[when-not-instead-of-single-branch-if-not]]
+=== `when-not` vs `if-not`
 
 `(if-not ... (do ...))` の代わりに `when-not` を使う。
 
@@ -1411,7 +1480,8 @@ Clojureでは実際のブール値が必要になることはほとんどない�
     (bar)))
 ----
 
-=== `not=` [[not-equal]]
+[[not-equal]]
+=== `not=`
 
 `(not (= ...))` の代わりに `not=` を使う。
 
@@ -1424,7 +1494,8 @@ Clojureでは実際のブール値が必要になることはほとんどない�
 (not (= foo bar))
 ----
 
-=== `printf` [[printf]]
+[[printf]]
+=== `printf`
 
 `(print (format ...))` よりも `printf` を使う。
 
@@ -1437,7 +1508,8 @@ Clojureでは実際のブール値が必要になることはほとんどない�
 (println (format "Hello, %s!" name))
 ----
 
-=== 柔軟な比較関数 [[flexible-comparison-functions]]
+[[flexible-comparison-functions]]
+=== 柔軟な比較関数
 
 比較を行うときは、Clojure関数の `<` や `>` などは可変長引数を受け入れるという特徴を活用しよう。
 
@@ -1450,7 +1522,8 @@ Clojureでは実際のブール値が必要になることはほとんどない�
 (and (> x 5) (< x 10))
 ----
 
-=== 単一パラメータの関数リテラル [[single-param-fn-literal]]
+[[single-param-fn-literal]]
+=== 単一パラメータの関数リテラル
 
 ただ1つのパラメータを持つ関数リテラルでは、 `%1` よりも `%` のほうが好ましい。
 
@@ -1463,7 +1536,8 @@ Clojureでは実際のブール値が必要になることはほとんどない�
 #(Math/round %1)
 ----
 
-=== 複数パラメータの関数リテラル [[multiple-params-fn-literal]]
+[[multiple-params-fn-literal]]
+=== 複数パラメータの関数リテラル
 
 複数のパラメータを持つ関数リテラルでは、 `%` よりも `%1` のほうが好ましい。
 
@@ -1476,7 +1550,8 @@ Clojureでは実際のブール値が必要になることはほとんどない�
 #(Math/pow % %2)
 ----
 
-=== 無意味な無名関数を使用しない [[no-useless-anonymous-fns]]
+[[no-useless-anonymous-fns]]
+=== 無意味な無名関数を使用しない
 
 必要ないなら無名関数でラップしない。
 
@@ -1489,7 +1564,8 @@ Clojureでは実際のブール値が必要になることはほとんどない�
 (filter #(even? %) (range 1 10))
 ----
 
-=== 複数フォームの関数リテラルを使用しない [[no-multiple-forms-fn-literals]]
+[[no-multiple-forms-fn-literals]]
+=== 複数フォームの関数リテラルを使用しない
 
 関数本体が2つ以上のフォームを含む場合は、関数リテラルを使用しない。
 
@@ -1505,11 +1581,13 @@ Clojureでは実際のブール値が必要になることはほとんどない�
      (* % 2))
 ----
 
-=== 無名関数 vs `complement`, `comp`, `partial` [[anonymous-functions-vs-complement-comp-and-partial]]
+[[anonymous-functions-vs-complement-comp-and-partial]]
+=== 無名関数 vs `complement`, `comp`, `partial`
 
 `complement`、`comp`、`partial` より無名関数を使うことを薦める。ほとんどの場合、そうすることでコードが単純になる。 footnote:[この件に関する詳細はhttps://ask.clojure.org/index.php/8373/when-should-prefer-comp-and-partial-to-anonymous-functions[こちら]をご覧ください。]
 
-==== `complement` [[complement]]
+[[complement]]
+==== `complement`
 
 [source,clojure]
 ----
@@ -1520,7 +1598,8 @@ Clojureでは実際のブール値が必要になることはほとんどない�
 (filter (complement some-pred?) coll)
 ----
 
-==== `comp` [[comp]]
+[[comp]]
+==== `comp`
 
 [source,clojure]
 ----
@@ -1545,7 +1624,8 @@ Clojureでは実際のブール値が必要になることはほとんどない�
     (take 5)))
 ----
 
-==== `partial` [[partial]]
+[[partial]]
+==== `partial`
 
 [source,clojure]
 ----
@@ -1556,7 +1636,8 @@ Clojureでは実際のブール値が必要になることはほとんどない�
 (map (partial + 5) (range 1 10))
 ----
 
-=== スレッディングマクロ [[threading-macros]]
+[[threading-macros]]
+=== スレッディングマクロ
 
 深いネストよりもスレッディングマクロ `+->+` (thread-first)と `+->>+` (thread-last)の使用が好ましい。
 
@@ -1582,7 +1663,8 @@ Clojureでは実際のブール値が必要になることはほとんどない�
      (filter even? (range 1 10)))
 ----
 
-=== スレッディングマクロと省略可能な括弧 [[threading-macros-and-optional-parentheses]]
+[[threading-macros-and-optional-parentheses]]
+=== スレッディングマクロと省略可能な括弧
 
 引数が指定されていない関数に対してスレッディングマクロを使う場合、括弧は不要だ。必要な場合のみ括弧を使うこと。
 
@@ -1602,7 +1684,8 @@ Clojureでは実際のブール値が必要になることはほとんどない�
     (frob x y))
 ----
 
-=== スレッディングマクロの揃え方 [[threading-macros-alignment]]
+[[threading-macros-alignment]]
+=== スレッディングマクロの揃え方
 
 スレッディングマクロ `+->+` (thread-first)と `+->>+` (thread-last) の引数は揃える。
 
@@ -1619,7 +1702,8 @@ Clojureでは実際のブール値が必要になることはほとんどない�
   (take 5))
 ----
 
-=== `cond` のデフォルト条件 [[else-keyword-in-cond]]
+[[else-keyword-in-cond]]
+=== `cond` のデフォルト条件
 
 `cond` で残り全ての条件をキャッチするときは `:else` を使う。
 
@@ -1638,7 +1722,8 @@ Clojureでは実際のブール値が必要になることはほとんどない�
   true "zero")
 ----
 
-=== `condp` vs `cond` [[condp]]
+[[condp]]
+=== `condp` vs `cond`
 
 述語と式が変わらない場合、 `cond` よりも `condp` のほうが良い。
 
@@ -1659,7 +1744,8 @@ Clojureでは実際のブール値が必要になることはほとんどない�
   :dunno)
 ----
 
-=== `case` vs `cond/condp` [[case]]
+[[case]]
+=== `case` vs `cond/condp`
 
 テスト式がコンパイル時に固定の場合、 `cond` や `condp` の代わりに `case` を使うのが良い。
 
@@ -1687,7 +1773,8 @@ Clojureでは実際のブール値が必要になることはほとんどない�
   :dunno)
 ----
 
-=== cond内は短いフォームで [[short-forms-in-cond]]
+[[short-forms-in-cond]]
+=== cond内は短いフォームで
 
 `cond` などの中では短いフォームを用いる。それが無理なら、コメントや空白行を使用して、ペアグループを見えやすくする。
 
@@ -1719,7 +1806,8 @@ Clojureでは実際のブール値が必要になることはほとんどない�
                       'lines)))
 ----
 
-=== 述語としてのセット [[set-as-predicate]]
+[[set-as-predicate]]
+=== 述語としてのセット
 
 `set` を述語として使うことができる。
 
@@ -1743,15 +1831,18 @@ Clojureでは実際のブール値が必要になることはほとんどない�
                "mary had a little lamb"))
 ----
 
-=== `inc` と `dec` [[inc-and-dec]]
+[[inc-and-dec]]
+=== `inc` と `dec`
 
 `(+ x 1)` や `(- x 1)` の代わりに `(inc x)` や `(dec x)` を使う。
 
-=== `pos?` と `neg?` [[pos-and-neg]]
+[[pos-and-neg]]
+=== `pos?` と `neg?`
 
 `(> x 0)`, `(< x 0)`, `(= x 0)` の代わりに `(pos? x)`, `(neg? x)`, `(zero? x)` を使う。
 
-=== `list*` vs `cons` [[list-star-instead-of-nested-cons]]
+[[list-star-instead-of-nested-cons]]
+=== `list*` vs `cons`
 
 ネストされた `cons` を呼び出す代わりに `list*` を使う。
 
@@ -1764,7 +1855,8 @@ Clojureでは実際のブール値が必要になることはほとんどない�
 (cons 1 (cons 2 (cons 3 [4 5])))
 ----
 
-=== 糖衣されたJava呼び出し [[sugared-java-interop]]
+[[sugared-java-interop]]
+=== 糖衣されたJava呼び出し
 
 糖衣されたJava呼び出しフォームを用いる。
 
@@ -1806,7 +1898,8 @@ Integer/MAX_VALUE
 (. some-object someField)
 ----
 
-=== trueフラグには簡易メタデータ表記 [[compact-metadata-notation-for-true-flags]]
+[[compact-metadata-notation-for-true-flags]]
+=== trueフラグには簡易メタデータ表記
 
 キーがキーワード、値がブール値 `true` のスロットしか持たないメタデータには、簡易メタデータ表記を使う。
 
@@ -1819,7 +1912,8 @@ Integer/MAX_VALUE
 (def ^{:private true} a 5)
 ----
 
-=== プライベート [[private]]
+[[private]]
+=== プライベート
 
 コード中のプライベート部分には印を付ける。
 
@@ -1838,11 +1932,13 @@ Integer/MAX_VALUE
 (def private-var ...) ; 全くプライベートでない
 ----
 
-=== プライベートなvarへのアクセス [[access-private-var]]
+[[access-private-var]]
+=== プライベートなvarへのアクセス
 
 （例えばテストのために）プライベートなvarにアクセスするには、 `@#'some.ns/var` フォームを使う。
 
-=== メタデータ付加は慎重に [[attach-metadata-carefully]]
+[[attach-metadata-carefully]]
+=== メタデータ付加は慎重に
 
 メタデータを何に付加するかについては、よく注意したほうが良い。
 
@@ -1859,14 +1955,16 @@ Integer/MAX_VALUE
 (meta #'a) ;=> nil
 ----
 
-== データ構造 [[data-structures]]
+[[data-structures]]
+== データ構造
 
 [quote, アラン・パリス]
 ____
 10種のデータ構造を処理できる機能を10個用意するより、1種のデータ構造を処理できる機能を100個用意した方が良い。
 ____
 
-=== リストを避ける [[avoid-lists]]
+[[avoid-lists]]
+=== リストを避ける
 
 汎用的なデータ置き場としてリストを使うことを避ける（リストが本当に必要な場合を除く）。
 ベクタは定数時間（O(1)）のインデックスによるアクセスと効率的な末尾での `conj` による要素追加を提供し、他の標準ライブラリともうまく連携して機能する。
@@ -1880,7 +1978,8 @@ ____
 +'(1 2 3)
 +----
 
-=== マップのキーにはキーワードを用いる [[keywords-for-hash-keys]]
+[[keywords-for-hash-keys]]
+=== マップのキーにはキーワードを用いる
 
 マップのキーにはキーワードを用いたほうが良い。
 キーワードはインターンされ（高速な等価性チェックを実現）、関数として使うことで自身をキーとしてマップを検索でき、値とは視覚的に区別される。
@@ -1894,7 +1993,8 @@ ____
 {"name" "Bruce" "age" 30}
 ----
 
-=== コレクションのリテラル構文 [[literal-col-syntax]]
+[[literal-col-syntax]]
+=== コレクションのリテラル構文
 
 可能なら、コレクションのリテラル構文を用いたほうが良い。ただしセットを定義するときは、コンパイル時に定数である値についてのみリテラル構文を使用する。
 
@@ -1911,7 +2011,8 @@ ____
 #{(func1) (func2)} ; もし (func1) = (func2) だったら実行時例外が投げられる
 ----
 
-=== コレクションにインデックスでアクセスすることを避ける [[avoid-index-based-coll-access]]
+[[avoid-index-based-coll-access]]
+=== コレクションにインデックスでアクセスすることを避ける
 
 可能なら、コレクションの要素にインデックスでアクセスすることを避ける。
 分配束縛やシーケンス関数は意図を明確に伝え、コレクションのオーダーが変わっても正常に動作する。
@@ -1926,7 +2027,8 @@ ____
 (process (nth point 0) (nth point 1))
 ----
 
-=== マップから値を取得する関数としてのキーワード [[keywords-as-fn-to-get-map-values]]
+[[keywords-as-fn-to-get-map-values]]
+=== マップから値を取得する関数としてのキーワード
 
 可能なら、マップから値を取得する関数としてキーワードを用いるのが良い。
 
@@ -1944,7 +2046,8 @@ ____
 (m :name)
 ----
 
-=== 関数としてのコレクション [[colls-as-fns]]
+[[colls-as-fns]]
+=== 関数としてのコレクション
 
 ほとんどのコレクションはその要素の関数であることを活用する。
 
@@ -1956,7 +2059,8 @@ ____
 ;; 悪い - 汚すぎて書けない
 ----
 
-=== 関数としてのキーワード [[keywords-as-fns]]
+[[keywords-as-fns]]
+=== 関数としてのキーワード
 
 キーワードはコレクションの関数として使えることを活用する。
 
@@ -1965,7 +2069,8 @@ ____
 ((juxt :a :b) {:a "ala" :b "bala"})
 ----
 
-=== 一時的コレクションを避ける [[avoid-transient-colls]]
+[[avoid-transient-colls]]
+=== 一時的コレクションを避ける
 
 パフォーマンス問題がクリティカルとなる部分を除いて、一時的（transient）コレクションの使用を避ける。
 一時的コレクションは複雑さを増す（スレッド間で共有できず、値の変更には別の関数が必要）。一方で永続的コレクションはほとんどの場合において、すでにかなり速い。
@@ -1979,7 +2084,8 @@ ____
 (persistent! (reduce conj! (transient []) (range 1000)))
 ----
 
-=== Javaのコレクションを避ける [[avoid-java-colls]]
+[[avoid-java-colls]]
+=== Javaのコレクションを避ける
 
 Javaのコレクションの使用を避ける。
 Javaのコレクションは可変でClojureのシーケンス抽象化を実装しておらず、標準ライブラリとの間に互換性がない。
@@ -1995,7 +2101,8 @@ Javaのコレクションは可変でClojureのシーケンス抽象化を実装
   (.put :age 30))
 ----
 
-=== Javaの配列を避ける [[avoid-java-arrays]]
+[[avoid-java-arrays]]
+=== Javaの配列を避ける
 
 Java呼び出しや、プリミティブ型を多用するパフォーマンスクリティカルなコードを除いて、Javaの配列の使用を避ける。
 Javaの配列は可変でリテラル構文がなく、読みやすい形式で表示されない。
@@ -2009,9 +2116,11 @@ Javaの配列は可変でリテラル構文がなく、読みやすい形式で�
 (int-array [1 2 3])
 ----
 
-== タイプとレコード [[types-records]]
+[[types-records]]
+== タイプとレコード
 
-=== レコードのコンストラクタ [[record-constructors]]
+[[record-constructors]]
+=== レコードのコンストラクタ
 
 タイプやレコードのインスタンスを作るのにJava呼び出しを用いない。 `deftype` や `defrecord` が自動的に生成したコンストラクタ関数を使用する。そうすることで、 `deftype` や `defrecord` を利用していることが明確になる。詳しくは https://stuartsierra.com/2015/05/17/clojure-record-constructors[この記事] を参照する。
 
@@ -2032,7 +2141,8 @@ Javaの配列は可変でリテラル構文がなく、読みやすい形式で�
 
 `deftype` は `+map->Type+` というコンストラクタを作らないことに注意する。レコードでのみ使用できる。
 
-=== カスタムレコードコンストラクタ [[custom-record-constructors]]
+[[custom-record-constructors]]
+=== カスタムレコードコンストラクタ
 
 必要なら独自のタイプ/レコードのコンストラクタを追加する（例：レコード生成時にプロパティのバリデーションを行うため）。詳しくは https://stuartsierra.com/2015/05/17/clojure-record-constructors[この記事] を参照する。
 
@@ -2051,7 +2161,8 @@ Javaの配列は可変でリテラル構文がなく、読みやすい形式で�
 
 このようなカスタムコンストラクタには、好きな命名規則や構造を用いて構わない。
 
-=== カスタムレコードコンストラクタの命名 [[custom-record-constructors-naming]]
+[[custom-record-constructors-naming]]
+=== カスタムレコードコンストラクタの命名
 
 自動生成されたタイプ/レコードのコンストラクタ関数を上書きしない。それらのコンストラクタ関数は特定の振る舞いをすると想定されているため、この挙動を変更することは驚き最小の原則に反する。詳しくは https://stuartsierra.com/2015/05/17/clojure-record-constructors[この記事] を参照する。
 
@@ -2072,11 +2183,14 @@ Javaの配列は可変でリテラル構文がなく、読みやすい形式で�
   (Foo. num))
 ----
 
-== 状態 [[mutation]]
+[[mutation]]
+== 状態
 
-=== ref [[Refs]]
+[[Refs]]
+=== ref
 
-==== `io!` マクロ [[refs-io-macro]]
+[[refs-io-macro]]
+==== `io!` マクロ
 
 トランザクションの中で思いがけずI/Oコールを呼んでしまったときの問題を回避するため、全てのI/Oコールを `io!` マクロでラップすることを考える。
 `io!` マクロはトランザクションの中で呼ばれた場合は例外を投げる。これにより意図しない副作用が黙って実行される（リトライによりおそらく複数回）ことなく、明確に失敗として検出できる。
@@ -2092,7 +2206,8 @@ Javaの配列は可変でリテラル構文がなく、読みやすい形式で�
   (spit path content))
 ----
 
-==== `ref-set` を避ける [[refs-avoid-ref-set]]
+[[refs-avoid-ref-set]]
+==== `ref-set` を避ける
 
 出来る限り `ref-set` は使用しない。
 
@@ -2107,7 +2222,8 @@ Javaの配列は可変でリテラル構文がなく、読みやすい形式で�
 (dosync (ref-set r 5))
 ----
 
-==== 小さいトランザクション [[refs-small-transactions]]
+[[refs-small-transactions]]
+==== 小さいトランザクション
 
 トランザクションのサイズ（包んでいる処理の量）を出来る限り小さく保つようにする。
 大きいトランザクションは他のトランザクションと競合する可能性が高くなり、その結果リトライが発生し性能が低下する。
@@ -2124,14 +2240,17 @@ Javaの配列は可変でリテラル構文がなく、読みやすい形式で�
     (alter results conj data)))
 ----
 
-==== 同一refに対する長短期トランザクションの混在を避ける [[refs-avoid-short-long-transactions-with-same-ref]]
+[[refs-avoid-short-long-transactions-with-same-ref]]
+==== 同一refに対する長短期トランザクションの混在を避ける
 
 同一のrefとやり取りを行う、短期のトランザクションと長期のトランザクションを両方持つことを避ける。
 短期のトランザクションが変更をコミットすると同じRefにアクセスしている長期のトランザクションは最初から処理のやり直しになってしまい、長期のトランザクションは事実上、機能不全に陥ってしまう。
 
-=== エージェント [[Agents]]
+[[Agents]]
+=== エージェント
 
-==== エージェントのsend [[agents-send]]
+[[agents-send]]
+==== エージェントのsend
 
 それがCPUバウンドで、かつI/Oや他スレッドをブロックしない処理のときだけ `send` を用いる。
 `send` は固定サイズのスレッドプールを使うため、ブロッキングする動作があると他のエージェントの処理が滞ることになる。
@@ -2142,7 +2261,8 @@ Javaの配列は可変でリテラル構文がなく、読みやすい形式で�
 (send agent-a + 42)
 ----
 
-==== エージェントのsend-off [[agents-send-off]]
+[[agents-send-off]]
+==== エージェントのsend-off
 
 それがスレッドをブロック、スリープさせたり、そうでなくても停滞させるかもしれない処理には `send-off` を用いる。
 `send-off` は可変サイズのスレッドプールを使うため、ブロッキングする動作があっても他のエージェントの処理が滞ることはない。
@@ -2156,9 +2276,11 @@ Javaの配列は可変でリテラル構文がなく、読みやすい形式で�
 (send agent-b (fn [state] (assoc state :data (slurp url))))
 ----
 
-=== アトム [[Atoms]]
+[[Atoms]]
+=== アトム
 
-==== トランザクション内で更新しない [[atoms-no-update-within-transactions]]
+[[atoms-no-update-within-transactions]]
+==== トランザクション内で更新しない
 
 STMトランザクションの中でアトムを更新することを避ける。
 アトムはSTMによる調整の対象ではないため `dosync` によるトランザクション内でのアトムの更新は、最終的に成功したコミットのときだけでなく、リトライのたびに実行される。
@@ -2177,7 +2299,8 @@ STMトランザクションの中でアトムを更新することを避ける�
         (swap! transfer-log conj {:from :a :to :b :amount 100}))
 ----
 
-==== `reset!` よりも `swap!` が好ましい [[atoms-prefer-swap-over-reset]]
+[[atoms-prefer-swap-over-reset]]
+==== `reset!` よりも `swap!` が好ましい
 
 可能なら、 `reset!` よりも `swap!` を使うようにする。
 
@@ -2192,9 +2315,11 @@ STMトランザクションの中でアトムを更新することを避ける�
 (reset! a 5)
 ----
 
-== 数学 [[math]]
+[[math]]
+== 数学
 
-=== Java呼び出しよりも `clojure.math` の関数 [[prefer-clojure-math-over-interop]]
+[[prefer-clojure-math-over-interop]]
+=== Java呼び出しよりも `clojure.math` の関数
 
 Java呼び出しや独自実装よりも、`clojure.math` の関数を使う方が好ましい。
 
@@ -2213,9 +2338,11 @@ Clojure は 1.11 より前はJavaとの相互運用性を使ってこれらを�
 新しい `clojure.math` 名前空間は　`java.lang.Math`　で利用可能なメソッドに対して、
 高速なプリミティブ呼び出しを備えた `long` および `double` 型のオーバーロード用ラッパー関数を提供する。
 
-== 文字列 [[strings]]
+[[strings]]
+== 文字列
 
-=== Java呼び出しよりも `clojure.string` の関数 [[prefer-clojure-string-over-interop]]
+[[prefer-clojure-string-over-interop]]
+=== Java呼び出しよりも `clojure.string` の関数
 
 文字列処理は、Java呼び出しや独自実装よりも、 `clojure.string` の関数を使うほうが好ましい。
 
@@ -2230,9 +2357,11 @@ Clojure は 1.11 より前はJavaとの相互運用性を使ってこれらを�
 
 NOTE: Clojure 1.8で `clojure.string` にいくつかの新しい関数（`index-of`, `last-index-of`, `starts-with?`, `ends-with?`, `includes?`）が追加された。古いバージョンのClojureへの対応が必要な場合は、これらの使用を避けるべきだ。
 
-== 例外 [[exceptions]]
+[[exceptions]]
+== 例外
 
-=== 既存の例外型の再利用 [[reuse-existing-exception-types]]
+[[reuse-existing-exception-types]]
+=== 既存の例外型の再利用
 
 既存の例外型を再利用する。慣用的なClojureコードでは、例外を投げるとき、基本的な例外型を用いている（例： `java.lang.IllegalArgumentException`, `java.lang.UnsupportedOperationException`, `java.lang.IllegalStateException`, `java.io.IOException`）。
 
@@ -2249,7 +2378,8 @@ NOTE: Clojure 1.8で `clojure.string` にいくつかの新しい関数（`index
   ...)
 ----
 
-=== `finally` よりも `with-open` が好ましい [[prefer-with-open-over-finally]]
+[[prefer-with-open-over-finally]]
+=== `finally` よりも `with-open` が好ましい
 
 `finally` よりも `with-open` のほうが好ましい。`with-open` は例外が投げられた場合でもリソースを確実に閉じるうえに、冗長な記述が少なく、クリーンアップ手順を忘れるリスクがない。
 
@@ -2267,7 +2397,8 @@ NOTE: Clojure 1.8で `clojure.string` にいくつかの新しい関数（`index
       (.close rdr))))
 ----
 
-=== Throwable のキャッチ [[catching-throwables]]
+[[catching-throwables]]
+=== Throwable のキャッチ
 
 `Throwable` クラスをキャッチしてはいけない。
 これはJavaにおけるすべてのエラーおよび例外のクラスのスーパークラスであり、_すべて_ のエラーを吸収します。
@@ -2287,9 +2418,11 @@ NOTE: Clojure 1.8で `clojure.string` にいくつかの新しい関数（`index
   (catch Throwable t ...))
 ----
 
-== マクロ [[macros]]
+[[macros]]
+== マクロ
 
-=== 関数でできるならマクロを書かない [[dont-write-macro-if-fn-will-do]]
+[[dont-write-macro-if-fn-will-do]]
+=== 関数でできるならマクロを書かない
 
 その処理が関数でできるならマクロを書かない。
 マクロは `map`、`filter`、`comp` といった高階関数に渡すことはできないうえに、コードの理解を難しくする。
@@ -2306,7 +2439,8 @@ NOTE: Clojure 1.8で `clojure.string` にいくつかの新しい関数（`index
   `(* ~x ~x))
 ----
 
-=== マクロ書く前に使い方を書く [[write-macro-usage-before-writing-the-macro]]
+[[write-macro-usage-before-writing-the-macro]]
+=== マクロ書く前に使い方を書く
 
 まずマクロの使用例を作成し、その後でマクロを作る。
 理想的な呼び出し側のコードを先に書くことはクリーンなAPIを設計するのに役立ち、マクロの過剰な作り込みを回避する。
@@ -2322,7 +2456,8 @@ NOTE: Clojure 1.8で `clojure.string` にいくつかの新しい関数（`index
   ...)
 ----
 
-=== 複雑なマクロの分割 [[break-complicated-macros]]
+[[break-complicated-macros]]
+=== 複雑なマクロの分割
 
 可能なら、複雑なマクロはより小さい機能に分割する。
 ヘルパー関数にすると独立してテスト可能で、他のコードから呼び出したりできるが、マクロの内部に実装してしまうとそのようなことは出来なくなる。
@@ -2354,7 +2489,8 @@ NOTE: Clojure 1.8で `clojure.string` にいくつかの新しい関数（`index
        (instance? ~name x#))))
 ----
 
-=== 構文糖衣としてのマクロ [[macros-as-syntactic-sugar]]
+[[macros-as-syntactic-sugar]]
+=== 構文糖衣としてのマクロ
 
 マクロは通常、構文糖衣を提供するものであるべきで、そのコアは単純な機能であるべきだ。そうすることでより構造化されるだろう。
 
@@ -2394,7 +2530,8 @@ NOTE: Clojure 1.8で `clojure.string` にいくつかの新しい関数（`index
          (.close conn#)))))
 ----
 
-=== 構文クオート [[syntax-quoted-forms]]
+[[syntax-quoted-forms]]
+=== 構文クオート
 
 自分でリストを組み立てるよりも、構文クオートを使用するほうが好ましい。
 構文クオート（バックティック/バッククオート）の使用は、シンボルを自動的に修飾し、意図しない変数のキャプチャを防ぎ、ネストした `list` や　`cons` の呼び出しよりもはるかに読みやすい。
@@ -2412,7 +2549,8 @@ NOTE: Clojure 1.8で `clojure.string` にいくつかの新しい関数（`index
         (cons 'do body)))
 ----
 
-== 一般的なメタデータ [[common-metadata]]
+[[common-metadata]]
+== 一般的なメタデータ
 
 このセクションでは、Clojureの開発ツールが活用できる名前空間やvarに対する一般的なメタデータについて解説する。
 
@@ -2566,7 +2704,8 @@ APIドキュメントから名前空間全体を除外する：
   ...)
 ----
 
-=== インデント用メタデータ [[indentation-metadata]]
+[[indentation-metadata]]
+=== インデント用メタデータ
 
 他のLisp方言とは異なり、Clojureはマクロのインデントを指定する標準的なメタデータは存在しない。2015年、CIDERはメタデータに基づいたツールに依存しない https://docs.cider.mx/cider/indent_spec.html[インデントの指定方法] を提案した。　footnote:[これはCIDER 1.0で初めて導入されました]簡単な例をいくつか示す：
 
@@ -2601,18 +2740,21 @@ APIドキュメントから名前空間全体を除外する：
 
 NOTE: このインデントの考え方（セマンティック・インデント）は、メタデータの追加とツールのサポートが必要となるためClojureコミュニティで議論の的になっている。この考え方はLispコミュニティで長い伝統があるが、一部の人たちは関数とマクロの区別をやめて、すべてを統一した固定インデントにすべきだと主張している。 https://tonsky.me/blog/clojurefmt/[この記事]はそのような主張に関する代表的な資料の一つである。
 
-== コメント [[comments]]
+[[comments]]
+== コメント
 
 [quote, スティーブ・マコネル]
 ____
 良いコードとは、それ自体が最良のドキュメントになっているものだ。コメントを付けようとしたとき、自分の胸に聞いてみるといい、「どうやってコードを改良して、このコメントを不要にできるだろうか？」ってね。より美しくするために、コードを改良してからドキュメント化するんだ。
 ____
 
-=== 自己説明的なコード [[self-explanatory-code]]
+[[self-explanatory-code]]
+=== 自己説明的なコード
 
 出来る限り、コードの役割や意図を一目でわかるように努める。これができない場合は、このセクションの残りのガイドラインに従うこと。
 
-=== 見出しコメント [[four-semicolons-for-heading-comments]]
+[[four-semicolons-for-heading-comments]]
+=== 見出しコメント
 
 見出しコメントには最低4つのセミコロンを用いる。これらは通常、コードの主要なセクションについて概要を示したり区切ったりするほか、重要な考えを記述するのに使われる。セクションコメントの後には、後述するトップレベルのコメントが続くことがよくある。
 
@@ -2625,7 +2767,8 @@ ____
 ;;; Baz...
 ----
 
-=== トップレベルのコメント [[three-semicolons-for-top-level-comments]]
+[[three-semicolons-for-top-level-comments]]
+=== トップレベルのコメント
 
 トップレベルのコメントには3つのセミコロンを用いる。
 
@@ -2639,7 +2782,8 @@ ____
 
 NOTE: 古典的なLispの慣習ではトップレベルのコメントに `;;;` を使うが、実際のClojureのコードでは `;;` や `;` を使っているケースが散見される。
 
-=== コード部分（行）コメント [[two-semicolons-for-code-fragment]]
+[[two-semicolons-for-code-fragment]]
+=== コード部分（行）コメント
 
 特定のコード部分の直前にコメントを書くときは、コード部分とインデントを揃え、2つのセミコロンを用いる。
 
@@ -2652,7 +2796,8 @@ NOTE: 古典的なLispの慣習ではトップレベルのコメントに `;;;` 
 
 NOTE: 古典的なLispの慣習では行コメントに `;;` を使うが、実際のClojureのコードでは `;` だけを使っているケースが散見される。
 
-=== 行末（インライン）コメント [[one-semicolon-for-margin-comments]]
+[[one-semicolon-for-margin-comments]]
+=== 行末（インライン）コメント
 
 行末コメントには1つのセミコロンを用いる。
 
@@ -2665,7 +2810,8 @@ NOTE: 古典的なLispの慣習では行コメントに `;;` を使うが、実�
 
 複数の閉じ括弧が独立した行にぶら下がってしまう場合は使用を避けること。
 
-=== セミコロンのスペース [[semicolon-space]]
+[[semicolon-space]]
+=== セミコロンのスペース
 
 セミコロンとそれに続くテキストの間には、常に少なくとも1つのスペースを入れる。
 
@@ -2685,7 +2831,8 @@ NOTE: 古典的なLispの慣習では行コメントに `;;` を使うが、実�
         frotz))
 ----
 
-=== 英語の文法 [[english-syntax]]
+[[english-syntax]]
+=== 英語の文法
 
 2単語以上のコメントは大文字で始め、句読点を用いる。各文は http://en.wikipedia.org/wiki/Sentence_spacing[1つのスペース] で分ける。
 
@@ -2698,7 +2845,8 @@ NOTE: 古典的なLispの慣習では行コメントに `;;` を使うが、実�
 
 もちろん句読点はコメントにおいて最も重要な要素ではないが、句読点をつけることでコメントを読む人に対して読みやすさを提供することができる。
 
-=== 無意味なコメント [[no-superfluous-comments]]
+[[no-superfluous-comments]]
+=== 無意味なコメント
 
 無意味なコメントを避ける。
 
@@ -2708,11 +2856,13 @@ NOTE: 古典的なLispの慣習では行コメントに `;;` を使うが、実�
 (inc counter) ; increments counter by one
 ----
 
-=== コメントの更新 [[comment-upkeep]]
+[[comment-upkeep]]
+=== コメントの更新
 
 コメントは常に更新していなければならない。古いコメントは、コメントがないことよりも害悪だ。
 
-=== `#_` リーダマクロ [[dash-underscore-reader-macro]]
+[[dash-underscore-reader-macro]]
+=== `#_` リーダマクロ
 
 特定のフォームをコメントアウトする必要があるときは、通常のコメントではなく `#_` リーダマクロを用いたほうが良い。
 
@@ -2727,7 +2877,8 @@ NOTE: 古典的なLispの慣習では行コメントに `;;` を使うが、実�
    delta)
 ----
 
-=== コメントよりリファクタリング [[refactor-dont-comment]]
+[[refactor-dont-comment]]
+=== コメントよりリファクタリング
 
 [quote, ラス・オルセン]
 ____
@@ -2736,9 +2887,11 @@ ____
 
 悪いコードを説明するためにコメントを書くことを避ける。コードをリファクタリングして、コメントが不要なようにするべきだ。（「やるか、やらぬかだ。やってみるなどない」 -- ヨーダ）
 
-=== コメントアノテーション [[comment-annotations]]
+[[comment-annotations]]
+=== コメントアノテーション
 
-==== アノテーションは直前に [[annotate-above]]
+[[annotate-above]]
+==== アノテーションは直前に
 
 アノテーションは通常、当該コードの直前に書かれるべきだ。
 
@@ -2757,7 +2910,8 @@ ____
   (baz))
 ----
 
-==== アノテーションキーワード [[annotate-keywords]]
+[[annotate-keywords]]
+==== アノテーションキーワード
 
 アノテーションキーワードの後にはコロンとスペースを入れ、その後で詳細を書く。
 
@@ -2782,7 +2936,8 @@ ____
   (baz))
 ----
 
-==== アノテーションのインデント [[indent-annotations]]
+[[indent-annotations]]
+==== アノテーションのインデント
 
 詳細が複数行にわたる場合、2行目以降は1行目に合わせてインデントするべきだ。
 
@@ -2803,7 +2958,8 @@ ____
   (baz))
 ----
 
-==== アノテーションにサインと日付を入れる [[sign-and-date-annotations]]
+[[sign-and-date-annotations]]
+==== アノテーションにサインと日付を入れる
 
 アノテーションには記述者のイニシャルと日付を入れる。そうすればその妥当性を容易に示せる。
 
@@ -2816,7 +2972,8 @@ ____
   (baz))
 ----
 
-==== 例外的な行末アノテーション [[rare-eol-annotations]]
+[[rare-eol-annotations]]
+==== 例外的な行末アノテーション
 
 ドキュメント化が不必要なほどに問題が明らかな箇所では、当該行の末尾に説明なしでアノテーションを付けても良い。この使用法は例外的であるべきで、規約ではない。
 
@@ -2827,7 +2984,8 @@ ____
   (sleep 100)) ; OPTIMIZE
 ----
 
-==== `TODO` [[todo]]
+[[todo]]
+==== `TODO`
 
 後日追加されるべき機能には `TODO` を使う。
 
@@ -2838,7 +2996,8 @@ ____
   (calculate-total order))
 ----
 
-==== `FIXME` [[fixme]]
+[[fixme]]
+==== `FIXME`
 
 コードが壊れていて、修正の必要がある箇所には `FIXME` を使う。
 
@@ -2849,7 +3008,8 @@ ____
   (reduce + (map :price (:items order))))
 ----
 
-==== `OPTIMIZE` [[optimize]]
+[[optimize]]
+==== `OPTIMIZE`
 
 パフォーマンス問題の原因となりうる、遅かったり非効率なコードには `OPTIMIZE` を使う。
 
@@ -2861,7 +3021,8 @@ ____
     x))
 ----
 
-==== `HACK` [[hack]]
+[[hack]]
+==== `HACK`
 
 疑わしいコーディングの仕方がされており、リファクタリングすべき「コード・スメル」には `HACK` を用いる。
 
@@ -2872,7 +3033,8 @@ ____
   (-> request :headers (get "authorization") (subs 7) decode-token :name))
 ----
 
-==== `REVIEW` [[review]]
+[[review]]
+==== `REVIEW`
 
 意図するように動くかどうか確認すべき箇所には `REVIEW` を使う。例： `REVIEW: Are we sure this is how the client does X currently?`
 
@@ -2885,11 +3047,13 @@ ____
         (when (pos? i) (recur (dec i))))))
 ----
 
-==== カスタムアノテーション [[document-annotations]]
+[[document-annotations]]
+==== カスタムアノテーション
 
 そのほうが適切だと思えば、その他独自のアノテーションキーワードを用いる。ただし、プロジェクトの `README` などに忘れずにドキュメント化しておく。
 
-== ドキュメント [[documentation]]
+[[documentation]]
+== ドキュメント
 
 ドキュメント文字列は、Clojureコードにドキュメントを付加するための最も基本的な方法だ。多くの定義フォーム（例： `def`, `defn`, `defmacro`, `ns` ）はドキュメント文字列をサポートしており、そのvarがパブリックであるかプライベートであるかに関わらず、基本的にはドキュメント文字列を活用するのが良い。
 
@@ -2897,7 +3061,8 @@ ____
 
 このセクションでは、Clojureコードのドキュメンテーションを行う上で、いくつかの慣用的方法とベストプラクティスを紹介する。
 
-=== ドキュメント文字列が好ましい [[prefer-docstrings]]
+[[prefer-docstrings]]
+=== ドキュメント文字列が好ましい
 
 フォームがドキュメント文字列を直接的にサポートしている場合、 `:doc` メタデータよりもそれを用いるほうが良い。
 
@@ -2922,7 +3087,8 @@ ____
   foo.bar.core)
 ----
 
-=== ドキュメント文字列の要約 [[docstring-summary]]
+[[docstring-summary]]
+=== ドキュメント文字列の要約
 
 ドキュメント文字列の最初の行は、大文字で始まる完結した文で、そのvarを簡潔に説明するものにする。これによって、ツール（ClojureエディタやIDE）が様々な場面でドキュメント文字列の要約を簡単に表示できるようになる。
 
@@ -2944,7 +3110,8 @@ ____
   ...)
 ----
 
-=== ドキュメント文字列でのMarkdownの利用 [[markdown-docstrings]]
+[[markdown-docstrings]]
+=== ドキュメント文字列でのMarkdownの利用
 
 https://github.com/cljdoc/cljdoc/blob/master/doc/userguide/for-library-authors.adoc#docstrings[cljdoc] などの有用なツールは、ドキュメント文字列内におけるMarkdownをサポートしているため、フォーマットをきれいに整えるのに利用すると良い。
 
@@ -2970,7 +3137,8 @@ https://github.com/cljdoc/cljdoc/blob/master/doc/userguide/for-library-authors.a
   ...)
 ----
 
-=== 引数のドキュメント化 [[document-pos-arguments]]
+[[document-pos-arguments]]
+=== 引数のドキュメント化
 
 全ての引数をドキュメント化し、それらをバッククォート（`）で囲む。そうすることで、エディタやIDEが引数を識別できるようになり、より高度な機能を提供できる可能性がある。
 
@@ -2991,7 +3159,8 @@ https://github.com/cljdoc/cljdoc/blob/master/doc/userguide/for-library-authors.a
   ...)
 ----
 
-=== ドキュメントの参照 [[document-references]]
+[[document-references]]
+=== ドキュメントの参照
 
 ドキュメント文字列でのvarの参照を ` で囲み、ツールが識別できるようにする。リンクを張りたい場合は `[[..]]` で囲う。
 
@@ -3014,7 +3183,8 @@ https://github.com/cljdoc/cljdoc/blob/master/doc/userguide/for-library-authors.a
   ...)
 ----
 
-=== ドキュメント文字列の文法 [[docstring-grammar]]
+[[docstring-grammar]]
+=== ドキュメント文字列の文法
 
 ドキュメント文字列は正しい英語の文で構成されるべきだ。全ての文は大文字で始まり、文法的に一貫していて、適切な句読点で終わる。また、各々の文の間には1つのスペースをはさむ。
 
@@ -3031,7 +3201,8 @@ https://github.com/cljdoc/cljdoc/blob/master/doc/userguide/for-library-authors.a
   The sentence should be followed by a space, unless it concludes the docstring.")
 ----
 
-=== ドキュメント文字列のインデント [[docstring-indentation]]
+[[docstring-indentation]]
+=== ドキュメント文字列のインデント
 
 複数行にわたるドキュメント文字列は、2つのスペースでインデントする。
 
@@ -3052,7 +3223,8 @@ the overall conventions used. Note how _not_ indenting the docstring makes
 it easier for tooling to display it correctly.")
 ----
 
-=== ドキュメント文字列の先頭・末尾の空白 [[docstring-leading-trailing-whitespace]]
+[[docstring-leading-trailing-whitespace]]
+=== ドキュメント文字列の先頭・末尾の空白
 
 ドキュメント文字列の最初と最後には余計な空白を入れない。
 
@@ -3070,7 +3242,8 @@ it easier for tooling to display it correctly.")
   42)
 ----
 
-=== ドキュメント文字列は関数名の後ろ [[docstring-after-fn-name]]
+[[docstring-after-fn-name]]
+=== ドキュメント文字列は関数名の後ろ
 
 ドキュメント文字列を付加するときは、上記フォームを用いる関数は特に、ドキュメント文字列は引数ベクタの後ろではなく、関数名の後ろに置くことに注意する。前者は文法的には間違っておらずエラーにもならないが、そのvarにドキュメントは付加されず、関数本体に1つのフォームとしてその文字列が含まれることになる。
 
@@ -3103,17 +3276,21 @@ it easier for tooling to display it correctly.")
 ----
 ====
 
-== テスト [[testing]]
+[[testing]]
+== テスト
 
-=== テストディレクトリの構造 [[test-directory-structure]]
+[[test-directory-structure]]
+=== テストディレクトリの構造
 
 テストコードは `test/yourproject/` などの（ `src/yourproject/` とは）別ディレクトリに配置する。ビルドツールは必要に応じてこれらのディレクトリを用意してくれる。ほとんどのテンプレートは自動的にこれらのディレクトリを生成する。
 
-=== テストの名前空間 [[test-ns-naming]]
+[[test-ns-naming]]
+=== テストの名前空間
 
 名前空間は `yourproject.something-test` のように命名し、ファイルは `test/yourproject/something_test.clj` （あるいは `.cljc`, `cljs` ）に普通は作成する。
 
-=== テストの命名規約 [[test-naming]]
+[[test-naming]]
+=== テストの命名規約
 
 `clojure.test` を用いるときは、 `deftest` でテストを定義し、 `something-test` と名付ける。
 
@@ -3128,7 +3305,8 @@ it easier for tooling to display it correctly.")
 (deftest something ...)
 ----
 
-=== コンテキストのために `testing` ブロック [[use-testing-blocks]]
+[[use-testing-blocks]]
+=== コンテキストのために `testing` ブロック
 
 `testing` ブロックの下にアサーションをグループ化することで、失敗時の出力にテスト状況を示すコンテキスト（ドキュメント）が含まれる。
 これによりアサーションそのものを確認しなくても、どのテストシナリオで失敗したのかが明確になる。
@@ -3148,7 +3326,8 @@ it easier for tooling to display it correctly.")
   (is (valid? {:name "Bruce"})))
 ----
 
-=== 情報提供型のアサーションメッセージが好ましい [[informative-assertion-messages]]
+[[informative-assertion-messages]]
+=== 情報提供型のアサーションメッセージが好ましい
 
 アサーションだけで失敗の理由を説明できない場合は、`is` にメッセージを追加する。
 
@@ -3161,7 +3340,8 @@ it easier for tooling to display it correctly.")
 (is (true? (even? 4)))
 ----
 
-=== テーブル駆動テストには `are` [[use-are-for-tabular-tests]]
+[[use-are-for-tabular-tests]]
+=== テーブル駆動テストには `are`
 
 一つの機能に対して多くの入力でテストする場合、`is` で反復させるより `are` を使う方が好ましい。
 
@@ -3183,12 +3363,14 @@ it easier for tooling to display it correctly.")
   (is (true? (palindrome? ""))))
 ----
 
-=== `deftest` ごとに1つのコンセプトでテスト [[one-concept-per-deftest]]
+[[one-concept-per-deftest]]
+=== `deftest` ごとに1つのコンセプトでテスト
 
 それぞれの `deftest` は1つの論理的な挙動をカバーするべきだ。
 各エッジケースについては `deftest` を分割するのではなく、`testing` を使ってサブケースとしてまとめる。
 
-=== `with-redefs` の使用は控えめに [[use-with-redefs-sparingly]]
+[[use-with-redefs-sparingly]]
+=== `with-redefs` の使用は控えめに
 
 `with-redefs` は外部との境界（HTTP、データベース、時間など）に限って使用する。
 テスト対象関数の設計においては、依存関係を引数として受け取るのが好ましい。
@@ -3209,7 +3391,8 @@ it easier for tooling to display it correctly.")
     (is (= [{:name "Bruce"}] (fetch-users)))))
 ----
 
-=== 例外のテスト [[test-expected-exceptions]]
+[[test-expected-exceptions]]
+=== 例外のテスト
 
 コードが期待通りの例外を発生させることを確認するには、`thrown?` や `thrown-with-msg?` を使う。
 
@@ -3221,7 +3404,8 @@ it easier for tooling to display it correctly.")
   (is (thrown-with-msg? ExceptionInfo #"Invalid" (validate! nil))))
 ----
 
-=== 構造的なデータに対するアサーションには `match?` [[prefer-match-for-structural-assertions]]
+[[prefer-match-for-structural-assertions]]
+=== 構造的なデータに対するアサーションには `match?`
 
 生成されたフィールドや動的に値が変化するフィールド（IDやタイムスタンプ）を含むマップを返す関数をテストする場合は、
 https://github.com/nubank/matcher-combinators[matcher-combinators]に含まれる `match?`の使用を検討する。
@@ -3253,7 +3437,8 @@ https://github.com/nubank/matcher-combinators[matcher-combinators]に含まれ�
   (is (uuid? (:id result))))
 ----
 
-=== 例外データに対しては `thrown-match?` [[use-thrown-match-for-exception-data]]
+[[use-thrown-match-for-exception-data]]
+=== 例外データに対しては `thrown-match?`
 
 構造を持ったマップを持つ `ex-info` 例外のテストには、`try`/`cathch` の定型コードよりも matcher-combinators の `thrown-match?` の使用が好ましい。
 これは `match?` と同様に、例外データの構造に基づいてアサーションを行う。
@@ -3273,9 +3458,11 @@ https://github.com/nubank/matcher-combinators[matcher-combinators]に含まれ�
               (throw e)))))
 ----
 
-== ライブラリの構成 [[library-organization]]
+[[library-organization]]
+== ライブラリの構成
 
-=== ライブラリの識別子 [[lib-coordinates]]
+[[lib-coordinates]]
+=== ライブラリの識別子
 
 他の人が使えるようにライブラリを公開する場合、 http://central.sonatype.org/pages/choosing-your-coordinates.html[Central Repositoryのガイドライン] にしたがって `groupId` と `artifactId` を選ぶ。これにより名前の衝突が避けられ、幅広い利用が促進される。 https://github.com/stuartsierra/component[Component] が良い例で、識別子は `com.stuartsierra/component` だ。
 
@@ -3288,42 +3475,51 @@ https://github.com/nubank/matcher-combinators[matcher-combinators]に含まれ�
 * `nrepl/drawbridge`
 * `clj-commons/fs`
 
-=== 依存の最小化 [[lib-min-dependencies]]
+[[lib-min-dependencies]]
+=== 依存の最小化
 
 不必要な依存を避ける。たとえば、何百もの使う予定のないvarを含んだライブラリに依存するよりも、3行のユーティリティ関数をプロジェクトにコピーしてしまうほうが良い。
 
-=== ツールの分離 [[lib-core-separate-from-tools]]
+[[lib-core-separate-from-tools]]
+=== ツールの分離
 
 コアの機能とインテグレーション部分は別々のアーティファクトにする。そうすれば、ユーザはあなたのライブラリを無関係なツール依存に制限されることなく利用できる。たとえば、 https://github.com/stuartsierra/component[Component] はコア機能を提供し、 https://github.com/stuartsierra/reloaded[reloaded] はLeiningenとのインテグレーションを提供している。
 
-== 実際のコードでは [[existential]]
+[[existential]]
+== 実際のコードでは
 
-=== 関数型的に [[be-functional]]
+[[be-functional]]
+=== 関数型的に
 
 関数型的にコードを書き、そのほうが適切なときのみミュータブルにする。
 
-=== 一貫させる [[be-consistent]]
+[[be-consistent]]
+=== 一貫させる
 
 一貫させる。理想的には、このガイドの通りにする。
 
-=== 常識的に [[common-sense]]
+[[common-sense]]
+=== 常識的に
 
 常識的に考える。
 
-== ツール [[tools]]
+[[tools]]
+== ツール
 
 スタイルガイドにまつわる課題の一つは、すべてのガイドラインを覚えて一貫して適用するのが難しいことだ。何しろ、私たちは人間だから。幸いなことに、その作業の大部分を代替してくれるツールが数多く存在する。
 
 TIP: こうしたツールを継続的インテグレーション（CI）に組み込むのは素晴らしいアイデアだ。これにより一つのプロジェクト内のすべてのコードが、目指すスタイルとの一貫性を保つことができる。
 
-=== Lintツール [[lint-tools]]
+[[lint-tools]]
+=== Lintツール
 
 慣用的なClojureコードを書くのを助けてくれるLintツールが、Clojureコミュニティによって作られている。
 
 * https://github.com/jonase/kibit[kibit] はClojure向けの静的コード解析ツールだ。より慣用的な関数やマクロの探索には https://github.com/clojure/core.logic[core.logic] を用いている。
 * https://github.com/borkdude/clj-kondo[clj-kondo] は、このスタイルガイドに基づいて、多くの非推奨パターンを発見し、改善案を提案してくれるLintツールだ。
 
-=== コードフォーマッター [[code-formatters]]
+[[code-formatters]]
+=== コードフォーマッター
 
 ほとんどのClojure用エディタやIDEはスタイルガイドで説明したレイアウトのガイドラインに従ってコードをフォーマットできるが、コマンドラインで動作するフォーマッターを用意しておくと便利である。このスタイルガイドで推奨されている通りにフォーマットをしてくれる非常に役立つClojure用ツールがいくつか存在する：
 
@@ -3333,7 +3529,8 @@ TIP: こうしたツールを継続的インテグレーション（CI）に組�
 
 NOTE: エディタについて、Emacsの `clojure-mode` はデフォルトでスタイルガイドに記載されているとおりにコードをフォーマットする。他のエディタについては、同じ結果を得るために設定を調整する必要があるかもしれない。
 
-== 歴史 [[history]]
+[[history]]
+== 歴史
 
 このスタイルガイドは https://github.com/bbatsov[Bozhidar Batsov] により、彼がRubyコミュニティで立ち上げた　https://rubystyle.guide/[類似プロジェクト] の成功を受けて2013年に開始されました。
 
@@ -3341,7 +3538,8 @@ BozhidarはClojureと優れたプログラミングスタイルに強い情熱�
 
 ガイドを公開してから、世界中の優れたClojureコミュニティのメンバーから多くのフィードバックをいただいています。ご提案やご支援に感謝申し上げます！ みんなの力をあわせれば、世界中のすべてのClojure開発者にとって有益なリソースを作り上げることができるでしょう。
 
-== 着想の源 [[sources-of-inspiration]]
+[[sources-of-inspiration]]
+== 着想の源
 
 多くの人々、書籍、プレゼンテーション、記事、他のスタイルガイドが、このスタイルガイドに影響を与えています。そのうちのいくつかを紹介します：
 
@@ -3358,7 +3556,8 @@ BozhidarはClojureと優れたプログラミングスタイルに強い情熱�
 * https://pragprog.com/titles/vmclojeco/clojure-applied/["Clojure Applied"]
 * https://stuartsierra.com/tag/dos-and-donts[Stuart Sierra's "Clojure Dos and Don't" blog series]
 
-== 編集チーム [[editor-team]]
+[[editor-team]]
+== 編集チーム
 
 経験豊富なClojure開発者からなる編集チームによってClojureスタイルガイドは管理されており、寄せられるあらゆる意見（フィードバックや提案など）を集約し、誰もが参考にできるより良いリファレンスとなることを目指しています。
 
@@ -3367,7 +3566,8 @@ BozhidarはClojureと優れたプログラミングスタイルに強い情熱�
 * https://danielcompton.net/about[Daniel Compton]
 * https://corfield.org/[Sean Corfield]
 
-== 貢献 [[contributing]]
+[[contributing]]
+== 貢献
 
 このガイドはまだ作成途中です。ガイドラインの中には例が欠如していたり、例が十分にわかりやすくない物があります。こうしたガイドラインを改善することは、Clojureコミュニティに対する素晴らしい（そして簡単な）貢献です！
 
@@ -3384,7 +3584,8 @@ BozhidarはClojureと優れたプログラミングスタイルに強い情熱�
 * https://www.patreon.com/bbatsov[Patreon]
 * https://www.paypal.me/bbatsov[PayPal]
 
-== どのように貢献すればよいですか？ [[how-to-contribute]]
+[[how-to-contribute]]
+== どのように貢献すればよいですか？
 
 簡単です、以下は貢献のためのガイドラインです：
 
@@ -3394,17 +3595,20 @@ BozhidarはClojureと優れたプログラミングスタイルに強い情熱�
 * 変更したブランチをGitHubにプッシュします。
 * https://help.github.com/articles/using-pull-requests[Pull Requestを送って] ください。
 
-== 奥付 [[colophon]]
+[[colophon]]
+== 奥付
 
 このガイドはhttps://asciidoc.org/[AsciiDoc]で記述されており、https://asciidoctor.org/[AsciiDoctor]でHTML形式で公開されています。HTML版はGitHub Pagesで提供されています。
 
 当初、このガイドは Markdown で記述されていましたが、2019年にAsciiDocに変換されました。
 
-== ライセンス [[license]]
+[[license]]
+== ライセンス
 
 image:https://i.creativecommons.org/l/by/3.0/88x31.png[Creative Commons License]
 この作品は、link:https://creativecommons.org/licenses/by/3.0/deed.en_US[Creative Commons Attribution 3.0 Unported License]の下でライセンスされています。
 
-== 広めてください [[spread-the-word]]
+[[spread-the-word]]
+== 広めてください
 
 コミュニティドリブンのスタイルガイドは、その存在を知らないコミュニティではあまり役に立ちません。どうか、このガイドについてツイートをして、あなたの友達や同僚と共有してください。頂いたあらゆるコメントや提案、意見がほんの少しずつ、このガイドを形作っていくのです。みんなで最高のスタイルガイドを作りましょう。
