@@ -716,70 +716,51 @@ NOTE: ``clojure.core.str``を隠蔽しているように見えますが、実際
 
 ClojureのコアおよびContrib名前空間のうち、以下の名前空間は慣用的なエイリアスが存在する：
 
+[%autowidth, cols="2*m", options="header"]
 |===
 | 名前空間 | 慣用的なエイリアス
-| clojure.datafy
-| datafy
-| clojure.edn
-| edn
-| clojure.java.io
-| io
-| clojure.math
-| math
-| clojure.set
-| set
-| clojure.walk
-| walk
-| clojure.zip
-| zip
-| clojure.core.async
-| async
-| clojure.data.csv
-| csv
-| clojure.data.xml
-| xml
-| clojure.tools.cli
-| cli
+
+| clojure.datafy | datafy
+| clojure.edn | edn
+| clojure.java.io | io
+| clojure.math | math
+| clojure.set | set
+| clojure.walk | walk
+| clojure.zip | zip
+| clojure.core.async | async
+| clojure.data.csv | csv
+| clojure.data.xml | xml
+| clojure.tools.cli | cli
 |===
 
 それから、いくつかのコアおよびContirb名前空間は短いエイリアスを使っている：
 
+[%autowidth, cols="2*m", options="header"]
 |===
 | 名前空間 | 慣用的なエイリアス
-| clojure.java.shell
-| sh
-| clojure.pprint
-| pp
-| clojure.spec.alpha
-| s
-| clojure.string
-| str
-| clojure.core.matrix
-| mat
-| clojure.tools.logging
-| log
-| clojure.core.protocols
-| p
-| clojure.core.reducers
-| r
+
+| clojure.java.shell | sh
+| clojure.pprint | pp
+| clojure.spec.alpha | s
+| clojure.string | str
+| clojure.core.matrix | mat
+| clojure.tools.logging | log
+| clojure.core.protocols | p
+| clojure.core.reducers | r
 |===
 
 一般的に使われているコミュニティライブラリの中には、いくつかの名前空間で広く使われている慣用的なエイリアスが持つものも多くある：
 
+[%autowidth, cols="2*m", options="header"]
 |===
 | 名前空間 | 慣用的なエイリアス
-| cheshire.core
-| json
-| clj-yaml.core
-| yaml
-| clj-http.client
-| http
-| hugsql.core
-| sql
-| java-time
-| time
-| next.jdbc
-| jdbc
+
+| cheshire.core | json
+| clj-yaml.core | yaml
+| clj-http.client | http
+| hugsql.core | sql
+| java-time | time
+| next.jdbc | jdbc
 |===
 
 [[a-recipe-for-good-namespace-aliases]]
