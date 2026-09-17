@@ -2736,7 +2736,7 @@ APIドキュメントから名前空間全体を除外する：
 [[indentation-metadata]]
 === インデント用メタデータ
 
-他のLisp方言とは異なり、Clojureはマクロのインデントを指定する標準的なメタデータは存在しない。2015年、CIDERはメタデータに基づいたツールに依存しないlink:https://docs.cider.mx/cider/indent_spec.html[インデントの指定方法] を提案したfootnote:[これはCIDER 1.0で初めて導入されました。]。簡単な例をいくつか示す：
+他のLisp方言とは異なり、Clojureはマクロのインデントを指定する標準的なメタデータは存在しない。2015年、CIDERはメタデータに基づいたツールに依存しないlink:https://docs.cider.mx/cider/indent_spec.html[インデントの指定方法]を提案したfootnote:[これはCIDER 1.0で初めて導入されました。]。簡単な例をいくつか示す：
 
 [source,clojure]
 ----
