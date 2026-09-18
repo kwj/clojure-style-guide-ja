@@ -33,7 +33,7 @@ image:http://i.creativecommons.org/l/by/3.0/88x31.png[Creative Commons License]
 
 意訳していて、原文の意味を損なわない程度に言葉を加えたり省略している部分があります。また、訳が間違っている可能性があります。ご注意ください。なお、ガイドライン自体に対する意見はオリジナルの英語版の内容を確認の上、link:https://github.com/bbatsov/clojure-style-guide[原文リポジトリ]にお願いします。
 
-内容につきましては、link:https://github.com/bbatsov/clojure-style-guide[原文リポジトリ]のコミット``5f391d4`` (Apr 15, 2026)まで反映しています。
+内容につきましては、link:https://github.com/bbatsov/clojure-style-guide[原文リポジトリ]のコミット``2bc3d2c`` (Sep 17, 2026)まで反映しています。
 
 '''
 
@@ -3411,11 +3411,11 @@ it easier for tooling to display it correctly.")
 [[use-with-redefs-sparingly]]
 === ``with-redefs``の使用は控えめに
 
-``with-redefs``は外部との境界（HTTP、データベース、時計など）に限って使用する。テスト対象となる関数は、依存性を引数で受け取るよう設計すると良い。
+``with-redefs``は外部との境界（HTTP、データベース、時計など）に限って使用する。それよりも、依存対象を引数で受け取るよう関数を設計する方が好ましい。
 
 [source,clojure]
 ----
-;; 良い - 依存性を引数で注入している
+;; 良い - 依存対象を引数で渡している
 (defn fetch-users [http-get]
   (http-get "/api/users"))
 
@@ -3423,7 +3423,10 @@ it easier for tooling to display it correctly.")
   (is (= [{:name "Bruce"}]
          (fetch-users (constantly [{:name "Bruce"}])))))
 
-;; 統合テストなら大丈夫
+;; 統合テスト用なら大丈夫
+(defn fetch-users []
+  (http/get "/api/users"))
+
 (deftest fetch-users-integration-test
   (with-redefs [http/get (constantly {:body [{:name "Bruce"}]})]
     (is (= [{:name "Bruce"}] (fetch-users)))))
