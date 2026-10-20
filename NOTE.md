@@ -32,7 +32,7 @@ Clojure に詳しい方／情熱を持っている方に引き取っていただ
 ### CI/CD環境
 
 - .github/workflows/deploy.yml （GitHub Pages 公開用ワークフロー）
-- Gemfile (上記ワークフローにて環境構築用に使用)
+- Gemfile (上記ワークフローにて環境構築に使用)
 
 ただし名前とは裏腹に、ワークフローは手動実行にしてあります。continuous (継続的)ではありません。
 
@@ -43,7 +43,7 @@ GitHub 上でフォークせず手元にクローンして変更しました。
 
 ## 翻訳内容
 
-今回の翻訳者は[プログラミングClojure 第2版][3]はおろか、日本語・英語を問わず Clojure 関連の書籍を一切所有していません。
+今回の翻訳者は[プログラミングClojure 第2版][3]はおろか、日本語・英語を問わず Clojure 関連の書籍を一切所有していません。Clojure についても初心者と同然です。
 更新元とした[日本語翻訳][2]の内容を引き継いだ箇所はともかく、あらたに記述した範囲についての翻訳品質はかなり怪しいと考えてください。
 そのため元の翻訳版の前置きで記載されていた翻訳版の扱いなどについては大幅に変更しています。
 
@@ -106,7 +106,7 @@ AsciiDoc で footnote の種類分けが難しそうなので、こちらに記�
 セマンティック・インデントに関する話題が追加されている。適切な訳語が浮かばないので、そのままカタカナに。
 
 セマンティック・インデントについては、Lisp、それもマクロに馴染みがないと何を主張しているのか理解が難しいかもしれません。
-Common Lisp における `defmacro` の　`&rest` と `&body` の両キーワードについて、`&body` の使用目的と言えばわかりやすいでしょうか。
+Common Lisp における `defmacro` の `&rest` と `&body` の両キーワードについて、`&body` の使用目的と言えばわかりやすいでしょうか。
 要するに、マクロ定義の引数に `& body` などを使うことでマクロがボディフォームを持っていると推測できたり、
 それ用に追加されたメタデータがあれば、通常の関数とは別のルールでインデントするというだけの話です。
 原著者の[記事][4]ではもう少し詳しく書かれています。
@@ -115,10 +115,9 @@ Common Lisp における `defmacro` の　`&rest` と `&body` の両キーワー
 
 declaration なので、「定義」から「宣言」に変更しました。
 
-「包括的な ns フォーム」については ns マクロのドキュメント文字列を参照する方がわかりやすいと思われる。
+「包括的な ns フォーム」の説明については、ns マクロのドキュメント文字列を参照する方がわかりやすいと思われる。
 
 名前空間エイリアスについての記述が追加されている。
-
 「慣用的な名前空間エイリアスを使う」の TIP に「`clojure.core.str`を隠蔽しているように」とあるが、正しくは「`clojure.core/str`」ではないだろうか。
 また、コミュニティライブラリのエイリアスについては、やむなく訳注を入れました。判断は読む人にお任せします。
 
@@ -126,16 +125,17 @@ declaration なので、「定義」から「宣言」に変更しました。
 
 例の追加がほとんどで、大きな変更はなし。
 
-「Dynamic な Var」で var の定義に :dynamic メタデータを付けて再束縛可能にしているが、システムがあらかじめ用意した再束縛可能な var には :dynamic メタデータが付いていないものがある。つまり :dynamic メタデータの有無で再束縛可能か否かは判断できない。そのような var でも名前には earmuffs が付いているので、binding で再束縛する分には特に問題はない。
+「Dynamic な Var」で var の定義に :dynamic メタデータを付けて再束縛可能にしているが、システムがあらかじめ用意した再束縛可能な var には :dynamic メタデータが付いていないものがある。つまり :dynamic メタデータの有無で再束縛可能か否かは判断できない。そのような var でも名前は earmuffs 付きなので、使う分には特に問題はない。
 
 #### 関数 (Functions)
 
 ほとんど変更はなし。
 
+「1行の関数」を複数アリティの説明の後に持ってきた方が、説明の流れが良い気がする。
+
 #### 慣用的な構文 (Idioms)
 
-翻訳版では "Idioms" の訳語が「構文」になっていましたが、翻訳版が基準とした[日本語書籍][3]がこう訳しているのだろうか？
-構文だけでは意味がわからないので「慣用的な構文」に変更しましたが、カタカナで「イディオム」の方が良かったかもしれません。
+翻訳版では "Idioms" の訳語が「構文」になっていましたが、構文だけでは意味がわからないので「慣用的な構文」に変更しました。カタカナで「イディオム」の方が良かったかもしれません。
 
 一箇所を除いて少しの追加程度で大きな変更はなし。
 
@@ -149,15 +149,69 @@ declaration なので、「定義」から「宣言」に変更しました。
 
 例や記述の追加がほとんどで、大きな変更はなし。
 
+「マップから値を取得する関数としてのキーワード」はマップのキーがキーワードの場合の話をしている。
+キーが非キーワードの場合、`("key" m)` のような書き方はできないので実行時例外を避けて安全側に倒すとしたら `(get m "key")` の一択か。
+
+```clojure
+user=> (def directions-keyword {:north 0, :east 1, :south 2, :west 3})
+#'user/directions-keyword
+user=>
+user=> (directions-keyword :north)
+0
+user=> (:north directions-keyword)
+0
+user=> (directions-keyword :foo)
+nil
+```
+
+```clojure
+user=> (def directions-str {"north" 0, "east" 1, "south" 2, "west" 3})
+#'user/directions-str
+user=>
+user=> (directions-str "north")
+0
+user=> ("north" directions-str)
+Execution error (ClassCastException) at user/eval13 (REPL:1).
+class java.lang.String cannot be cast to class clojure.lang.IFn (java.lang.String is in module java.base of loader 'bootstrap'; clojure.lang.IFn is in unnamed module of loader 'app')
+user=> (directions-str "foo")
+nil
+```
+
+```clojure
+user=> (def bad-lookup-map nil)
+#'user/bad-lookup-map
+user=>
+user=> (bad-lookup-map :key)
+Execution error (NullPointerException) at user/eval15 (REPL:1).
+Cannot invoke "clojure.lang.IFn.invoke(Object)" because the return value of "clojure.lang.Var.getRawRoot()" is null
+user=> (:key bad-lookup-map)
+nil
+user=>
+user=> (bad-lookup-map "key")
+Execution error (NullPointerException) at user/eval19 (REPL:1).
+Cannot invoke "clojure.lang.IFn.invoke(Object)" because the return value of "clojure.lang.Var.getRawRoot()" is null
+user=> ("key" bad-lookup-map)
+Execution error (ClassCastException) at user/eval21 (REPL:1).
+class java.lang.String cannot be cast to class clojure.lang.IFn (java.lang.String is in module java.base of loader 'bootstrap'; clojure.lang.IFn is in unnamed module of loader 'app')
+user=>
+user=> (get bad-lookup-map :key)
+nil
+user=> (get bad-lookup-map "key")
+nil
+```
+
 #### タイプとレコード (Types & Records)
 
-ここは変化がなかったと思う。
+ほとんど変化がなかったと思う。
 
 #### 状態の変更 (Mutation)
 
 "Mutation" の訳語が「状態」になっていましたが、状態だけでは意味がわからないので「状態の変更」としました。
 
 記述と例の追加がいくつか。大きな変更はなし。
+
+「トランザクショナル参照(Ref)」は原文では「Refs」だが io! マクロの話も扱っており、
+表題は「トランザクション」もしくは「トランザクションと参照」の方がセクションの内容に沿っている気がする。
 
 「同一Refに対する長短期トランザクションの混在を避ける」の話題は、おそらく Clojure が
 Multiversion Concurrency Control (MVCC) なトランザクション処理をしているからだと思われる（裏はとっていません）。
@@ -166,7 +220,7 @@ Multiversion Concurrency Control (MVCC) なトランザクション処理をし�
 
 新規追加。`clojure.math` を使え、以上。
 
-説明で触れていない点として、これらの関数は可能ならインライン展開されるが、高階関数として使われるなどインライン展開できない場合は var に保存されている通常の関数定義が使われる。
+説明で触れていない点として、これらのラッパー関数は可能ならインライン展開されるが、高階関数へのパラメーターとして使われるなどインライン展開できない場合は通常の関数定義が使われる。
 
 #### 文字列 (Strings)
 
@@ -184,6 +238,8 @@ Multiversion Concurrency Control (MVCC) なトランザクション処理をし�
 
 まるごと新規追加。つまり翻訳品質が一番疑わしい箇所なので、眉に唾をつけて読んでください。
 
+「:superseded-by」の例は、あまり良くない気がする。Clojure は Lisp-1 なので変数名と関数名は同じ名前空間で管理されるが、ここでの例は `def` と `defn` の両方で同じ `foo` が使われている。単に例が並んでいるだけと読み取れれば良いが、他の名前を参照するメタデータの例だけに、異なる名前にしておいた方が余計な誤解を招かずにすむと思う。
+
 #### コメント (Comments)
 
 例の追加がほとんど。大きな変更はなし。
@@ -198,7 +254,6 @@ Multiversion Concurrency Control (MVCC) なトランザクション処理をし�
 
 間違ってはいないが、混乱しそうなのがマップ型データに対するテストとして挙げられている `match?`。
 ここで示されている例は [malli][6] による型バリデーションを組み合わせているようで、[matcher-combinators][7] だけ見ても理解が難しいと思われる。
-というか、両方ともまったく知らなかった私が混乱した。
 
 #### ライブラリの構成 (Library Organization)
 
@@ -227,7 +282,7 @@ AsciiDoctor による HTML 変換時、各セクションには ID が振られ�
 この ID は特に指定しない限りはセクションのタイトルから自動生成されます。
 
 [原文][1]では明示的な指定があったりなかったりしていますが、これをこのまま翻訳版に持ってくると ID に英語と日本語が入り混じります。
-HTML5 の仕様として日本語でも全く問題はないのですが、混在は URL の見た目が少々悪いので[原文][1]の HTML 版から ID を拾ってきて明示的に指定しています。
+HTML5 の仕様として日本語でも全く問題はないのですが、混在は URL の見た目が少々悪いので原文の HTML 版から ID を拾ってきて明示的に指定しています。
 手作業が入っているので、ID の文言がタイトルの内容と一致していない箇所が混入している可能性があります。
 
 ### 見た目の改善
@@ -260,14 +315,7 @@ AsciiDoctor はデフォルトの CSS を用意していて、生成した HTML 
 
 ### 外来語の末尾における長音表記
 
-気に食わなかったら各自で置き換えてください。
-
-さすがにエラーの長音なしは今どき使われないと思う。
-ラッパー/カバーは長音を削ると喇叭/河馬になってしまう。
-
 #### 長音をつけた単語
-
-JIS Z 8301 も 2019 年の改訂で、主として内閣告示に準拠するよう変わっていたのですね。
 
 - エディター
 - オーダー
@@ -280,8 +328,6 @@ JIS Z 8301 も 2019 年の改訂で、主として内閣告示に準拠するよ
 - メンバー
 - ユーザー
 - リーダー (reader macro の訳語で使用)
-
-リーダマクロではなくリードマクロと訳されていたら、変更はしなかったのですが。
 
 #### 長音をつけなかった単語
 
@@ -298,7 +344,7 @@ JIS Z 8301 も 2019 年の改訂で、主として内閣告示に準拠するよ
 #### HTML
 
 前述したように CSS の設定を追加するため、docinfo で `<style>` タグを差し込んでいます。
-README.adoc　と README-docinfo.html を用意して、AsciiDoctor で HTML ファイルを生成。
+README.adoc と README-docinfo.html を用意して、AsciiDoctor で HTML ファイルを生成。
 GitHub Pages で公開している HTML 版は、左側に目次を付けるよう以下のコマンドで生成されています。
 
 ```
@@ -360,6 +406,11 @@ AsciiDoctor PDF で PDF ファイルを生成。
 asciidoctor-pdf -a allow-uri-read -a scripts=cjk -a pdf-theme=my-theme.yml README.adoc
 ```
 
+### 文書の難易度
+
+スタイルガイドなので仕方がないとは思いますが、まったくの Clojure 初心者には少しハードルが高い気がします。
+Lisp を触ったことがあるか、[Webサイト][14]のドキュメントを流し読みしておかないと厳しいのではないかと思います。
+
 
 [1]: https://github.com/bbatsov/clojure-style-guide
 [2]: https://github.com/totakke/clojure-style-guide
@@ -374,3 +425,4 @@ asciidoctor-pdf -a allow-uri-read -a scripts=cjk -a pdf-theme=my-theme.yml READM
 [11]: https://hub.docker.com/r/asciidoctor/docker-asciidoctor/
 [12]: https://fonts.google.com/specimen/IBM+Plex+Sans+JP
 [13]: https://github.com/asciidoctor/asciidoctor-pdf/blob/main/data/themes/default-with-font-fallbacks-theme.yml
+[14]: https://clojure.org/
