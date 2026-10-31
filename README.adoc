@@ -561,7 +561,7 @@ ____
      :else (recur nxt (+' curr nxt) (dec n)))))
 ----
 
-長い関数の定義内に空行をところどころに入れるのは良い考えのように思うことがあるかもしれないい。そのような状況になったら、その関数に処理を詰め込みすぎていないか、関数を分割できるのではないかも検討すべきだ。
+長い関数の定義内に空行をところどころに入れるのは良い考えのように思うことがあるかもしれない。そのような状況になったら、その関数に処理を詰め込みすぎていないか、関数を分割できるのではないかも検討すべきだ。
 
 [[no-trailing-whitespace]]
 === 行末の空白を避ける
@@ -2702,7 +2702,7 @@ NOTE: 多くのClojure用プログラミングツールはドキュメント文�
 
 === `:no-doc`
 
-https://github.com/weavejester/codox#metadata-options[Codox]やlink:++https://github.com/cljdoc/cljdoc/blob/master/doc/userguide/for-library-athors.adoc#hiding-namespaces-vars-in-documentation++[cljdoc]などのドキュメンテーションツールは``:no-doc``メタデータを認識する。varや名前空間が``:no-doc``メタデータを持つ場合、ツールに対して生成されるAPIドキュメントからは当該要素を除外すべきであることを示している。
+https://github.com/weavejester/codox#metadata-options[Codox]やlink:++https://github.com/cljdoc/cljdoc/blob/master/doc/userguide/for-library-authors.adoc#hiding-namespaces-vars-in-documentation++[cljdoc]などのドキュメンテーションツールは``:no-doc``メタデータを認識する。varや名前空間が``:no-doc``メタデータを持つ場合、ツールに対して生成されるAPIドキュメントからは当該要素を除外すべきであることを示している。
 
 APIドキュメントから名前空間全体を除外する：
 [source,clojure]
