@@ -74,7 +74,7 @@ NOTE: 下記の手順はオリジナルの英語版用です。この日本語�
 asciidoctor-pdf -a allow-uri-read README.adoc
 
 # README.htmlの生成
-asciidoctor
+asciidoctor README.adoc
 ----
 
 [TIP]
