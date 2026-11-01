@@ -100,7 +100,7 @@ ____
 
 Clojureコミュニティ内では、特定のスタイルに関して意見が分かれている分野がいくつか存在している（例えば、セマンティック・インデントvs固定インデント、セマンティック・コメントvs統一的コメント、など）。そのような状況では一般的なスタイルはすべて受け入れられており、どれか一つを選んで一貫して適用するのはあなた次第だ。
 
-幸いなことにClojureはLispの一つであり、Lispは根本的にシンプルである。このガイドはClojureが登場してから数年後に作成されたが（初版の公開は2013年の初頭）、実際に使われていたClojureコードのほとんどはかなり均一だった。この理由としては、先に述べたようにLispが持つシンプルさに加え、Clojureのコミュニティが最初からCommon LispやSchemeといった既存のLisp方言のスタイル慣習の多くを取り入れてきたという事実を挙げておく。そのおかげで、本ガイドの作成は、特にlink:https://rubystyle.guide[Community Ruby Style Guide]のような大変な苦痛を伴った作業に比べるとかなり簡単でスムーズに行えたfootnote:[Clojureのスタイルガイドは、その主な参考元となったRubyのスタイルガイドの構成とかなり似ていることに気付くでしょう。また、Rubyのスタイルガイドのほうがはるかに分量が多いことにも気付くでしょう。その主な理由はプログラミング言語Rubyの複雑さにあります。]。
+幸いなことにClojureはLispの一つであり、Lispは根本的にシンプルである。このガイドはClojureが登場してから数年後に作成されたが（初版の公開は2013年の初頭）、実際に使われていたClojureコードのほとんどはかなり均一だった。この理由としては、先に述べたようにLispが持つシンプルさに加え、Clojureのコミュニティが最初からCommon LispやSchemeといった既存のLisp方言のスタイル慣習の多くを取り入れてきたという事実を挙げておく。そのおかげで、本ガイドの作成は、特にlink:https://rubystyle.guide[Ruby Style Guide]のような大変な苦痛を伴った作業に比べるとかなり簡単でスムーズに行えたfootnote:[Clojureのスタイルガイドは、その主な参考元となったRubyのスタイルガイドの構成とかなり似ていることに気付くでしょう。また、Rubyのスタイルガイドのほうがはるかに分量が多いことにも気付くでしょう。その主な理由はプログラミング言語Rubyの複雑さにあります。]。
 
 Clojureはシンプルさと明快さでよく知られている。このガイドが、最大限のシンプルさと明快さを実現する手助けになれば幸いだ。
 
@@ -2702,7 +2702,7 @@ NOTE: 多くのClojure用プログラミングツールはドキュメント文�
 
 === `:no-doc`
 
-https://github.com/weavejester/codox#metadata-options[Codox]やlink:++https://github.com/cljdoc/cljdoc/blob/master/doc/userguide/for-library-authors.adoc#hiding-namespaces-vars-in-documentation++[cljdoc]などのドキュメンテーションツールは``:no-doc``メタデータを認識する。varや名前空間が``:no-doc``メタデータを持つ場合、ツールに対して生成されるAPIドキュメントからは当該要素を除外すべきであることを示している。
+https://github.com/weavejester/codox#metadata-options[Codox]やlink:++https://github.com/cljdoc/cljdoc/blob/master/doc/userguide/for-library-authors.adoc#declaring-your-public-api++[cljdoc]などのドキュメンテーションツールは``:no-doc``メタデータを認識する。varや名前空間が``:no-doc``メタデータを持つ場合、ツールに対して生成されるAPIドキュメントからは当該要素を除外すべきであることを示している。
 
 APIドキュメントから名前空間全体を除外する：
 [source,clojure]
@@ -3506,7 +3506,7 @@ it easier for tooling to display it correctly.")
 [[lib-coordinates]]
 === ライブラリの識別子
 
-他の人が使えるようにライブラリを公開する場合、link:http://central.sonatype.org/pages/choosing-your-coordinates.html[Central Repositoryのガイドライン]にしたがって``groupId``と``artifactId``を決定する。これにより名前の衝突が避けられ、幅広い利用が促進される。link:https://github.com/stuartsierra/component[Component]が良い例で、識別子は``com.stuartsierra/component``だ。
+他の人が使えるようにライブラリを公開する場合、link:https://central.sonatype.org/publish/requirements/coordinates/[Maven Central Repositoryのガイドライン]にしたがって``groupId``と``artifactId``を決定する。これにより名前の衝突が避けられ、幅広い利用が促進される。link:https://github.com/stuartsierra/component[Component]が良い例で、識別子は``com.stuartsierra/component``だ。
 
 異なるアプローチとして、``groupId``にドメインではなくプロジェクト名（あるいは組織名）がよく用いられる。以下に例を示す。
 
@@ -3564,7 +3564,7 @@ TIP: こうしたツールを継続的インテグレーション（CI）に組�
 慣用的なClojureコードを書くのを助けてくれるLintツールが、Clojureコミュニティによって作られている：
 
 * https://github.com/jonase/kibit[kibit]はClojure向けの静的コード解析ツールだ。link:https://github.com/clojure/core.logic[core.logic]を利用して、より慣用的な関数やマクロに置き換えられる可能性のあるコードパターンを検索する。
-* https://github.com/borkdude/clj-kondo[clj-kondo]は、このスタイルガイドに基づいて多くの非推奨パターンを発見し、改善案を提案してくれるLintツールだ。
+* https://github.com/clj-kondo/clj-kondo[clj-kondo]は、このスタイルガイドに基づいて多くの非推奨パターンを発見し、改善案を提案してくれるLintツールだ。
 
 [[code-formatters]]
 === コードフォーマッター
@@ -3586,7 +3586,7 @@ NOTE: エディターに関していえば、Emacsの``clojure-mode``はスタ�
 
 このスタイルガイドはlink:https://github.com/bbatsov[Bozhidar Batsov]により、彼がRubyコミュニティで立ち上げたlink:https://rubystyle.guide/[類似プロジェクト]の成功を受けて2013年に開始されました。
 
-BozhidarはClojureと優れたプログラミングスタイルに強い情熱を持っていて、link:https://clojure.org/community/contrib_howto#_coding_guidelines[Clojure library coding guidelines]の内容と、Java、Python、Rubyなどのプログラミング言語のスタイルガイドで一般的に扱われている内容とのギャップを埋めることを目指していました。現在もBozhidarはこのガイドの主任編集者ですが、プロジェクトを支える編集チームが存在しています。
+BozhidarはClojureと優れたプログラミングスタイルに強い情熱を持っていて、link:https://clojure.org/community/contrib_howto#_coding_guidelines[Clojure Library Coding Guidelines]の内容と、Java、Python、Rubyなどのプログラミング言語のスタイルガイドで一般的に扱われている内容とのギャップを埋めることを目指していました。現在もBozhidarはこのガイドの主任編集者ですが、プロジェクトを支える編集チームが存在しています。
 
 ガイドを公開してから、世界中の優れたClojureコミュニティのメンバーから多くのフィードバックをいただいています。ご提案やご支援に感謝申し上げます！ みんなの力をあわせれば、世界中のすべてのClojure開発者にとって有益なリソースを作り上げることができるでしょう。
 
@@ -3601,16 +3601,16 @@ BozhidarはClojureと優れたプログラミングスタイルに強い情熱�
 
 * https://en.wikipedia.org/wiki/The_Elements_of_Style["The Elements of Style"]
 * https://en.wikipedia.org/wiki/The_Elements_of_Programming_Style["The Elements of Programming Style"]
-* https://www.python.org/dev/peps/pep-0008/[Python Style Guide (PEP-8)]
-* https://rubystyle.guide/[Community Ruby Style Guide]
-* https://google.github.io/styleguide/lispguide.xml[Google's Common Lisp Style Guide]
+* https://peps.python.org/pep-0008/[PEP 8 – Style Guide for Python Code]
+* https://rubystyle.guide/[Ruby Style Guide]
+* https://google.github.io/styleguide/lispguide.html[Google Common Lisp Style Guide]
 * http://community.schemewiki.org/?scheme-style[scheme-style]
 * https://clojure.org/community/contrib_howto#_coding_guidelines[Clojure Library Coding Guidelines]
 * http://www.clojurebook.com/["Clojure Programming"]
 * https://www.manning.com/books/the-joy-of-clojure-second-edition["The Joy of Clojure"]
 * https://elementsofclojure.com/["Elements of Clojure"]
 * https://pragprog.com/titles/vmclojeco/clojure-applied/["Clojure Applied"]
-* https://stuartsierra.com/tag/dos-and-donts[Stuart Sierra's "Clojure Dos and Don't" blog series]
+* https://stuartsierra.com/tag/dos-and-donts[Stuart Sierra's "Clojure Do's and Don'ts" blog series]
 
 
 // --------
