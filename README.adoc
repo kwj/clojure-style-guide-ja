@@ -13,7 +13,7 @@ endif::[]
 このスタイルガイドは、Bozhidar Batsov氏によるThe Clojure Style Guideの日本語翻訳版です。Toshiki Takeuchi氏による日本語翻訳版を下敷きにして作成しました。
 
 [[license-jp]]
-image:http://i.creativecommons.org/l/by/3.0/88x31.png[Creative Commons License]
+image:https://i.creativecommons.org/l/by/3.0/88x31.png[Creative Commons License]
 本翻訳版のライセンスはlink:https://creativecommons.org/licenses/by/3.0/deed.en[Creative Commons Attribution 3.0 Unported License]とします。
 
 本翻訳版は以下の作品を改変しました。
