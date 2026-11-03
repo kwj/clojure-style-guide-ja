@@ -57,7 +57,7 @@ endif::[]
 
 本ガイドは関連するルールごとにいくつかのセクションに分かれて構成されている。各ルールにはその根拠を併記するように努めた（ただし根拠が自明だと判断した場合は省略している）。
 
-これらのルールは、出し抜けに考えだされたものではない。その多くはスタイルガイドの編集者たちの経験、多くのClojureコミュニティメンバーからのフィードバックや提案、そしてlink:http://www.clojurebook.com/["Clojure Programming"]やlink:https://www.manning.com/books/the-joy-of-clojure-second-edition["The Joy of Clojure"]のような高い評価を受けている様々な資料に基づいている。
+これらのルールは、出し抜けに考えだされたものではない。その多くはスタイルガイドの編集者たちの経験、多くのClojureコミュニティメンバーからのフィードバックや提案、そしてlink:http://www.clojurebook.com/[『Clojure Programming』]やlink:https://www.manning.com/books/the-joy-of-clojure-second-edition[『The Joy of Clojure』]のような高い評価を受けている様々な資料に基づいている。
 
 このスタイルガイドの内容は、まだ確定したものではない。新たな慣習が確認されたり、Clojure自体の変更によって従来の慣習が時代遅れになったりするにつれて、このスタイルガイドは時間とともに進化する。
 
@@ -3599,17 +3599,17 @@ BozhidarはClojureと優れたプログラミングスタイルに強い情熱�
 
 多くの人々、書籍、プレゼンテーション、記事、他のスタイルガイドが、このスタイルガイドに影響を与えています。そのうちのいくつかを紹介します：
 
-* https://en.wikipedia.org/wiki/The_Elements_of_Style["The Elements of Style"]
-* https://en.wikipedia.org/wiki/The_Elements_of_Programming_Style["The Elements of Programming Style"]
+* https://en.wikipedia.org/wiki/The_Elements_of_Style[『The Elements of Style』]
+* https://en.wikipedia.org/wiki/The_Elements_of_Programming_Style[『The Elements of Programming Style』]
 * https://peps.python.org/pep-0008/[PEP 8 – Style Guide for Python Code]
 * https://rubystyle.guide/[Ruby Style Guide]
 * https://google.github.io/styleguide/lispguide.html[Google Common Lisp Style Guide]
 * http://community.schemewiki.org/?scheme-style[scheme-style]
 * https://clojure.org/community/contrib_howto#_coding_guidelines[Clojure Library Coding Guidelines]
-* http://www.clojurebook.com/["Clojure Programming"]
-* https://www.manning.com/books/the-joy-of-clojure-second-edition["The Joy of Clojure"]
-* https://elementsofclojure.com/["Elements of Clojure"]
-* https://pragprog.com/titles/vmclojeco/clojure-applied/["Clojure Applied"]
+* http://www.clojurebook.com/[『Clojure Programming』]
+* https://www.manning.com/books/the-joy-of-clojure-second-edition[『The Joy of Clojure』]
+* https://elementsofclojure.com/[『Elements of Clojure』]
+* https://pragprog.com/titles/vmclojeco/clojure-applied/[『Clojure Applied』]
 * https://stuartsierra.com/tag/dos-and-donts[Stuart Sierra's "Clojure Do's and Don'ts" blog series]
 
 
