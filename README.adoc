@@ -33,7 +33,7 @@ image:https://i.creativecommons.org/l/by/3.0/88x31.png[Creative Commons License]
 
 意訳していて、原文の意味を損なわない程度に言葉を加えたり省略している部分があります。また、訳が間違っている可能性があります。ご注意ください。なお、ガイドライン自体に対する意見はオリジナルの英語版の内容を確認の上、link:https://github.com/bbatsov/clojure-style-guide[原文リポジトリ]にお願いします。
 
-内容につきましては、原文リポジトリのコミット``88f30d5`` (Nov 7, 2026)まで反映しています。
+内容につきましては、原文リポジトリのコミット``75cb954`` (Nov 7, 2026)まで反映しています。
 
 '''
 
@@ -2449,12 +2449,14 @@ NOTE: Clojure 1.8で``clojure.string``にいくつかの新しい関数（``inde
 [source,clojure]
 ----
 ;; 良い
-(try (foo)
+(try
+  (foo)
   (catch ExceptionInfo ex ...)
   (catch AssertionError t ...))
 
 ;; 悪い
-(try (foo)
+(try
+  (foo)
   (catch Throwable t ...))
 ----
 
@@ -3534,10 +3536,11 @@ it easier for tooling to display it correctly.")
 
 ;; 悪い - 冗長で間違いやすい
 (is (thrown? ExceptionInfo
-       (try (validate! {:email "bad"})
-            (catch ExceptionInfo e
-              (is (= :validation-error (:type (ex-data e))))
-              (throw e)))))
+       (try
+         (validate! {:email "bad"})
+         (catch ExceptionInfo e
+           (is (= :validation-error (:type (ex-data e))))
+           (throw e)))))
 ----
 
 
