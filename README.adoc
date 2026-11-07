@@ -33,7 +33,7 @@ image:https://i.creativecommons.org/l/by/3.0/88x31.png[Creative Commons License]
 
 意訳していて、原文の意味を損なわない程度に言葉を加えたり省略している部分があります。また、訳が間違っている可能性があります。ご注意ください。なお、ガイドライン自体に対する意見はオリジナルの英語版の内容を確認の上、link:https://github.com/bbatsov/clojure-style-guide[原文リポジトリ]にお願いします。
 
-内容につきましては、原文リポジトリのコミット``75cb954`` (Nov 7, 2026)まで反映しています。
+内容につきましては、原文リポジトリのコミット``863efa4`` (Nov 7, 2026)まで反映しています。
 
 '''
 
@@ -741,12 +741,12 @@ NOTE: ``clojure.core.str``を隠蔽しているように見えますが、実際
 [source,clojure]
 ----
 ;; 良い
-(ns ... (:require [clojure.string :as str] ...)
+(ns ... (:require [clojure.string :as str] ...))
 
 (str/join ...)
 
 ;; あまり良くない - 慣用的に `str/` を使うべきだ
-(ns ... (:require [clojure.string :as string] ...)
+(ns ... (:require [clojure.string :as string] ...))
 
 (string/join ...)
 ----
@@ -920,7 +920,7 @@ NOTE: ``CapitalCase``は``UpperCamelCase``, ``CapitalWords``, ``PascalCase``と�
 [[naming-predicates]]
 === 述語
 
-述語（ブール値を返す関数）の名前はクエスチョンマーク``?``で終わるべきだ（例：``even?``）。
+述語関数（ブール値を返す関数）の名前は、クエスチョンマーク``?``で終わるべきだ（例：``even?``）。また、関数名が``?``で終わる場合は、その関数はブール値（具体的には``true``または``false``）のみを返すようにしなければならない。
 
 [source,clojure]
 ----
@@ -1137,15 +1137,15 @@ NOTE: ``\*clojure-version*`` がこの慣例に反しているのはよく知ら
 (defn foo
   ([x] (bar x))
   ([x y]
-   (if (predicate? x)
+   (if (predicate? y)
      (bar x)
      (baz x))))
 
 ;; 悪い
 (defn foo
-  [x] (if (predicate? x)
-        (bar x)
-        (baz x)))
+  [x y] (if (predicate? y)
+          (bar x)
+          (baz x)))
 ----
 
 [[multiple-arity-indentation]]
