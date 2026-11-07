@@ -33,7 +33,7 @@ image:https://i.creativecommons.org/l/by/3.0/88x31.png[Creative Commons License]
 
 意訳していて、原文の意味を損なわない程度に言葉を加えたり省略している部分があります。また、訳が間違っている可能性があります。ご注意ください。なお、ガイドライン自体に対する意見はオリジナルの英語版の内容を確認の上、link:https://github.com/bbatsov/clojure-style-guide[原文リポジトリ]にお願いします。
 
-内容につきましては、原文リポジトリのコミット``2bc3d2c`` (Sep 17, 2026)まで反映しています。
+内容につきましては、原文リポジトリのコミット``94f35f5`` (Nov 6, 2026)まで反映しています。
 
 '''
 
@@ -891,7 +891,7 @@ NOTE: Lisp以外の多くのプログラミングコミュニティでは``lisp-
 [[naming-protocols-records-structs-and-types]]
 === プロトコル、レコード、構造体、型
 
-プロトコル、レコード、構造体、型には``CapitalCase``を用いる。（HTTP, RFC, XMLのような頭字語は大文字を保持する。）
+プロトコル、レコード、構造体、型には``CapitalCase``を用いる。HTTP、RFC、XMLなど、広く使われている頭字語は大文字のまま表記する。ただし、頭字語が連続するなど複合語として理解しにくくなるような場合はこの限りではない。
 
 NOTE: ``CapitalCase``は``UpperCamelCase``, ``CapitalWords``, ``PascalCase``としても知られています。
 
@@ -899,12 +899,12 @@ NOTE: ``CapitalCase``は``UpperCamelCase``, ``CapitalWords``, ``PascalCase``と�
 ----
 ;; 良い
 (defprotocol Serializable ...)
-(defrecord HttpRequest ...)
+(defrecord LdapURIConnection ...) ; 連続する頭字語
 (deftype XMLParser ...)
 
 ;; 悪い
 (defprotocol serializable ...)
-(defrecord http-request ...)
+(defrecord ldap-uri-connection ...)
 (deftype xml_parser ...)
 ----
 
