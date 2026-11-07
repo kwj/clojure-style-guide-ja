@@ -33,7 +33,7 @@ image:https://i.creativecommons.org/l/by/3.0/88x31.png[Creative Commons License]
 
 意訳していて、原文の意味を損なわない程度に言葉を加えたり省略している部分があります。また、訳が間違っている可能性があります。ご注意ください。なお、ガイドライン自体に対する意見はオリジナルの英語版の内容を確認の上、link:https://github.com/bbatsov/clojure-style-guide[原文リポジトリ]にお願いします。
 
-内容につきましては、原文リポジトリのコミット``b50293f`` (Nov 6, 2026)まで反映しています。
+内容につきましては、原文リポジトリのコミット``93c580a`` (Nov 6, 2026)まで反映しています。
 
 '''
 
@@ -3153,7 +3153,7 @@ Clojureコードをドキュメント化するための主な手段は、ドキ�
   []
   ...)
 
-(ns ^{:doc "That's an awesome library.")
+(ns ^{:doc "That's an awesome library."})
   foo.bar.core)
 ----
 
@@ -3291,7 +3291,16 @@ https://github.com/cljdoc/cljdoc/blob/master/doc/userguide/for-library-authors.a
 It's a nice place to describe the purpose of the namespace and maybe even
 the overall conventions used. Note how _not_ indenting the docstring makes
 it easier for tooling to display it correctly.")
+
+;; これも悪い
+(ns my.ns
+  "It is actually possible to document a ns.
+   It's a nice place to describe the purpose of the namespace and maybe even
+   the overall conventions used. Note how _not_ indenting the docstring makes
+   it easier for tooling to display it correctly.")
 ----
+
+なぜこのようなインデントなのか？ それは``clojure.repl/doc``がドキュメント文字列は厳密に2つのスペースでインデントされていることを期待しており、REPL環境においてドキュメント文字列を表示する際はその前提に基づいているからだ！
 
 [[docstring-leading-trailing-whitespace]]
 === ドキュメント文字列の先頭・末尾の空白
