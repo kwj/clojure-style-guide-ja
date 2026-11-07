@@ -33,7 +33,7 @@ image:https://i.creativecommons.org/l/by/3.0/88x31.png[Creative Commons License]
 
 意訳していて、原文の意味を損なわない程度に言葉を加えたり省略している部分があります。また、訳が間違っている可能性があります。ご注意ください。なお、ガイドライン自体に対する意見はオリジナルの英語版の内容を確認の上、link:https://github.com/bbatsov/clojure-style-guide[原文リポジトリ]にお願いします。
 
-内容につきましては、原文リポジトリのコミット``042f657`` (Nov 6, 2026)まで反映しています。
+内容につきましては、原文リポジトリのコミット``8f83a71`` (Nov 6, 2026)まで反映しています。
 
 '''
 
@@ -354,14 +354,19 @@ Clojureコミュニティの一部の人たちは、セマンティック・イ�
 [source,clojure]
 ----
 ;; 良い
-(let [thing1 "some stuff"
-      thing2 "other stuff"]
-  (foo thing1 thing2))
+(let [thing "some stuff"
+      another-thing "other stuff"]
+  (foo thing another-thing))
+
+;; 読みやすさが向上すると思うならば許容範囲
+(let [thing         "some stuff"
+      another-thing "other stuff"]
+  (foo thing another-thing))
 
 ;; 悪い
-(let [thing1 "some stuff"
-  thing2 "other stuff"]
-  (foo thing1 thing2))
+(let [thing "some stuff"
+  another-thing "other stuff"]
+  (foo thing another-thing))
 ----
 
 [[map-keys-alignment]]
@@ -372,16 +377,20 @@ Clojureコミュニティの一部の人たちは、セマンティック・イ�
 [source,clojure]
 ----
 ;; 良い
-{:thing1 thing1
- :thing2 thing2}
+{:thing thing1
+ :another-thing thing2}
+
+;; 読みやすさが向上すると思うならば許容範囲
+{:thing         thing1
+ :another-thing thing2}
 
 ;; 悪い
-{:thing1 thing1
-:thing2 thing2}
+{:thing thing1
+:another-thing thing2}
 
 ;; 悪い
-{:thing1 thing1
-  :thing2 thing2}
+{:thing thing1
+  :another-thing thing2}
 ----
 
 [[crlf]]
