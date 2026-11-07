@@ -18,7 +18,7 @@ image:https://i.creativecommons.org/l/by/3.0/88x31.png[Creative Commons License]
 
 本翻訳版は以下の作品を改変しました。
 
-[%autowidth, cols="3*", options="header"]
+[%autowidth, cols="3*", frame=ends, grid=cols]
 |===
 | 著者 | タイトル | ライセンス表記
 
@@ -755,7 +755,7 @@ NOTE: ``clojure.core.str``を隠蔽しているように見えますが、実際
 
 ClojureのコアおよびContrib名前空間のうち、以下の名前空間は慣用的なエイリアスが存在する：
 
-[width="60%", cols="4m,3m", options="header"]
+[width="60%", cols="4m,3m", frame=ends, grid=cols]
 |===
 | 名前空間 | 慣用的なエイリアス
 
@@ -774,7 +774,7 @@ ClojureのコアおよびContrib名前空間のうち、以下の名前空間は
 
 それから、いくつかのコアおよびContirb名前空間では、より短いエイリアスが使われている：
 
-[width="60%", cols="4m,3m", options="header"]
+[width="60%", cols="4m,3m", frame=ends, grid=cols]
 |===
 | 名前空間 | 慣用的なエイリアス
 
@@ -790,7 +790,7 @@ ClojureのコアおよびContrib名前空間のうち、以下の名前空間は
 
 一般的に使われているコミュニティライブラリの中にも、広く使われている慣用的なエイリアスを持つ名前空間が数多くある：
 
-[width="60%", cols="4m,3m", options="header"]
+[width="60%", cols="4m,3m", frame=ends, grid=cols]
 |===
 | 名前空間 | 慣用的なエイリアス
 
