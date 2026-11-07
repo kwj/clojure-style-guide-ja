@@ -74,12 +74,12 @@ GitHub 上でフォークせず手元にクローンして変更しました。
 - best: 最も良い
 - much better: ずっと良い
 - better: より良い
-- good: 良い
+- good: 良い、適切な
 - ok: 大丈夫
 - okay: まあ大丈夫
 - okish, ok-ish: まあまあ
 - not as good: あまり良くない
-- bad: 悪い
+- bad: 悪い、不適切な
 - very bad: 非常に悪い
 
 ### コメンタリー
