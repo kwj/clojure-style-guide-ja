@@ -128,6 +128,23 @@ declaration なので、「定義」から「宣言」に変更しました。
 
 「動的な Var」で var の定義に :dynamic メタデータを付けて再束縛可能にしているが、システムがあらかじめ用意した再束縛可能な var には :dynamic メタデータが付いていないものがある。つまり :dynamic メタデータの有無で再束縛可能か否かは判断できない。そのような var でも名前は earmuffs 付きなので、使う分には特に問題はない。
 
+「慣用名」で `xs` はシーケンスと記述しているが、可変長引数や分配束縛で要素が 1 つも無い場合は空シーケンスではなく `nil` が返る。
+
+```clojure
+user=> (defn foo [x & xs]
+  (println x " " (type x))
+  (println xs " " (type xs)))
+#'user/foo
+user=> (foo 1 2 3)
+1   java.lang.Long
+(2 3)   clojure.lang.ArraySeq
+nil
+user=> (foo 1)
+1   java.lang.Long
+nil   nil
+nil
+```
+
 #### 関数 (Functions)
 
 ほとんど変更はなし。
