@@ -755,9 +755,9 @@ NOTE: ``clojure.core.str``を隠蔽しているように見えますが、実際
 
 ClojureのコアおよびContrib名前空間のうち、以下の名前空間は慣用的なエイリアスが存在する：
 
-[%autowidth, cols="m,m", frame=ends, grid=cols]
+[%autowidth, cols="m,m", frame=ends, grid=cols, role=center]
 |===
-| 名前空間 | 慣用的なエイリアス
+^| 名前空間 | 慣用的なエイリアス
 
 | clojure.datafy | datafy
 | clojure.edn | edn
@@ -774,9 +774,9 @@ ClojureのコアおよびContrib名前空間のうち、以下の名前空間は
 
 それから、いくつかのコアおよびContirb名前空間では、より短いエイリアスが使われている：
 
-[%autowidth, cols="m,m", frame=ends, grid=cols]
+[%autowidth, cols="m,m", frame=ends, grid=cols, role=center]
 |===
-| 名前空間 | 慣用的なエイリアス
+^| 名前空間 | 慣用的なエイリアス
 
 | clojure.java.shell | sh
 | clojure.pprint | pp
@@ -790,9 +790,9 @@ ClojureのコアおよびContrib名前空間のうち、以下の名前空間は
 
 一般的に使われているコミュニティライブラリの中にも、広く使われている慣用的なエイリアスを持つ名前空間が数多くある：
 
-[%autowidth, cols="m,m",frame=ends, grid=cols]
+[%autowidth, cols="m,m",frame=ends, grid=cols, role=center]
 |===
-| 名前空間 | 慣用的なエイリアス
+^| 名前空間 | 慣用的なエイリアス
 
 | cheshire.core | json
 | clj-yaml.core | yaml
