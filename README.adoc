@@ -33,7 +33,7 @@ image:https://i.creativecommons.org/l/by/3.0/88x31.png[Creative Commons License]
 
 意訳していて、原文の意味を損なわない程度に言葉を加えたり省略している部分があります。また、訳が間違っている可能性があります。ご注意ください。なお、ガイドライン自体に対する意見はオリジナルの英語版の内容を確認の上、link:https://github.com/bbatsov/clojure-style-guide[原文リポジトリ]にお願いします。
 
-内容につきましては、原文リポジトリのコミット``5cd358c`` (Nov 11, 2026)まで反映しています。
+内容につきましては、原文リポジトリのコミット``455a12e`` (Nov 12, 2026)まで反映しています。
 
 '''
 
@@ -736,7 +736,7 @@ TIP: 名前空間を1つ持つライブラリでは、``domain.library-name``や
 
 Clojureの主要な名前空間の多くは、プロジェクト内で使用が推奨される慣用的なエイリアス（別名）がある。例えば、``clojure.string``を読み込む最も一般的な方法は``[clojure.string :as str]``だ。
 
-NOTE: ``clojure.core.str``を隠蔽しているように見えますが、実際はそうではありません。同じ名前空間内で``clojure.core/str``と``clojure.string/*``は、``str``と``str/whatever``として衝突することなく使えます。
+NOTE: ``clojure.core/str``を隠蔽しているように見えますが、実際はそうではありません。同じ名前空間内で``clojure.core/str``と``clojure.string/*``は、``str``と``str/whatever``として衝突することなく使えます。
 
 [source,clojure]
 ----
