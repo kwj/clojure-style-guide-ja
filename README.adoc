@@ -33,7 +33,7 @@ image:https://i.creativecommons.org/l/by/3.0/88x31.png[Creative Commons License]
 
 意訳していて、原文の意味を損なわない程度に言葉を加えたり省略している部分があります。また、訳が間違っている可能性があります。ご注意ください。なお、ガイドライン自体に対する意見はオリジナルの英語版の内容を確認の上、link:https://github.com/bbatsov/clojure-style-guide[原文リポジトリ]にお願いします。
 
-内容につきましては、原文リポジトリのコミット``1838899`` (Nov 8, 2026)まで反映しています。
+内容につきましては、原文リポジトリのコミット``5cd358c`` (Nov 11, 2026)まで反映しています。
 
 '''
 
@@ -642,7 +642,7 @@ TIP: 名前空間を1つ持つライブラリでは、``domain.library-name``や
 ----
 (ns examples.ns
   (:refer-clojure :exclude [next replace remove])
-  (:require [clojure.string :as s :refer [blank?]])
+  (:require [clojure.string :as str :refer [blank?]])
   (:import java.util.Date))
 ----
 
@@ -656,7 +656,7 @@ TIP: 名前空間を1つ持つライブラリでは、``domain.library-name``や
 ;; より良い
 (ns examples.ns
   (:require
-   [clojure.string :as s :refer [blank?]]
+   [clojure.string :as str :refer [blank?]]
    [clojure.set :as set]
    [clojure.java.shell :as sh])
   (:import
@@ -667,7 +667,7 @@ TIP: 名前空間を1つ持つライブラリでは、``domain.library-name``や
 
 ;; 良い
 (ns examples.ns
-  (:require [clojure.string :as s :refer [blank?]]
+  (:require [clojure.string :as str :refer [blank?]]
             [clojure.set :as set]
             [clojure.java.shell :as sh])
   (:import java.util.Date
@@ -677,7 +677,7 @@ TIP: 名前空間を1つ持つライブラリでは、``domain.library-name``や
 
 ;; 悪い
 (ns examples.ns
-  (:require [clojure.string :as s :refer [blank?]] [clojure.set :as set] [clojure.java.shell :as sh])
+  (:require [clojure.string :as str :refer [blank?]] [clojure.set :as set] [clojure.java.shell :as sh])
   (:import java.util.Date java.text.SimpleDateFormat [java.util.concurrent Executors LinkedBlockingQueue]))
 ----
 
@@ -718,13 +718,13 @@ TIP: 名前空間を1つ持つライブラリでは、``domain.library-name``や
    [baz.core :as baz]
    [clojure.java.shell :as sh]
    [clojure.set :as set]
-   [clojure.string :as s :refer [blank?]]
+   [clojure.string :as str :refer [blank?]]
    [foo.bar :as foo]))
 
 ;; 悪い
 (ns examples.ns
   (:require
-   [clojure.string :as s :refer [blank?]]
+   [clojure.string :as str :refer [blank?]]
    [clojure.set :as set]
    [baz.core :as baz]
    [foo.bar :as foo]
@@ -2358,9 +2358,9 @@ STMトランザクションの中でアトムを更新することを避ける�
 == 数学
 
 [[prefer-clojure-math-over-interop]]
-=== Java呼び出しよりも``clojure.math``の関数
+=== 相互運用よりも``clojure.math``の関数
 
-Java呼び出しや自前の実装よりも、``clojure.math``が提供する数学関数を使うほうが好ましい。
+相互運用によるJava呼び出しや自前の実装よりも、``clojure.math``が提供する数学関数を使うほうが好ましい。JDKのパッケージ``java.lang.Math``は多くの便利な数学関数へのアクセスを提供している。Clojure 1.11より前は、これらの利用にはJavaとの相互運用に頼っていたが、それには関数の見つけやすさ、プリミティブ型のパフォーマンス、高階適用、移植性といった面で課題があった。新しい``clojure.math``名前空間は``java.lang.Math``で利用可能なメソッドに対してラッパー関数を提供し、``long``および``double``型のオーバーロードに対応したプリミティブ型での高速な呼び出しを実現する。
 
 [source,clojure]
 ----
@@ -2371,8 +2371,6 @@ Java呼び出しや自前の実装よりも、``clojure.math``が提供する数
 (Math/pow 2 5)
 ----
 
-JDKのパッケージ``java.lang.Math``は多くの便利な数学関数へのアクセスを提供している。Clojure 1.11より前は、これらの利用にはJavaとの相互運用に頼っていたが、それには関数の見つけやすさ、プリミティブ型のパフォーマンス、高階適用、移植性といった面で課題があった。新しい``clojure.math``名前空間は``java.lang.Math``で利用可能なメソッドに対してラッパー関数を提供し、``long``および``double``型のオーバーロードに対応したプリミティブ型での高速な呼び出しを実現する。
-
 
 // --------
 // Strings
@@ -2381,20 +2379,52 @@ JDKのパッケージ``java.lang.Math``は多くの便利な数学関数への�
 == 文字列
 
 [[prefer-clojure-string-over-interop]]
-=== Java呼び出しよりも``clojure.string``の関数
+=== 相互運用よりも``clojure.string``の関数
 
-Java呼び出しや自前の実装よりも、``clojure.string``が提供する文字列操作関数を使うほうが好ましい。
+相互運用によるJava呼び出しや自前の実装よりも、``clojure.string``が提供する文字列操作関数を使うほうが好ましい。``clojure.string``は移植性と可読性をもたらし、リフレクションに起因する潜在的なパフォーマンス上の問題を回避する。
 
 [source,clojure]
 ----
+;; `(:require [clojure.string :as str])` を前提に...
+
 ;; 良い
-(clojure.string/upper-case "bruce")
+(str/join ", " ["apple" "banana" "orange"])
 
 ;; 悪い
-(.toUpperCase "bruce")
+(String/join ", " ["apple" "banana" "orange"])
 ----
 
-NOTE: Clojure 1.8で``clojure.string``にいくつかの新しい関数（``index-of``, ``last-index-of``, ``starts-with?``, ``ends-with?``, ``includes?``）が追加されました。古いバージョンのClojureへの対応が必要な場合は、これらの使用を避けるべきです。
+``clojure.string``は、さまざまなClojure方言の間で共通して利用できる。例えばClojureScriptでは、``clojure.string/join``の呼び出し方は同じだが、相互運用による呼び出し方はClojureとは異なっている：
+
+[source,clojure]
+----
+;; 悪い
+(.join (into-array ["apple" "banana" "orange"]) ", ")
+(.join (clj->js ["apple" "banana" "orange"]) ", ")
+----
+
+``clojure.string``を使うことで、型ヒントを必要とせずにリフレクションの警告を回避できる：
+
+[source,clojure]
+----
+(set! *warn-on-reflection* true)
+
+;; 良い
+(defn my-fn [s]
+  (let [S (str/upper-case s)]
+    ...))
+
+;; 悪い
+(defn my-fn [s]
+  (let [S (.toUpperCase s)]
+    ...))
+Reflection warning ... - reference to field toUpperCase can't be resolved.
+
+;; これも悪い
+(defn my-fn [s]
+  (let [S (.toUpperCase ^String s)] ; 警告は発生しないが、型ヒントが必要
+    ...))
+----
 
 
 // --------
