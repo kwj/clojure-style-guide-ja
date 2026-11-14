@@ -1639,7 +1639,7 @@ Clojureでは実際のブール値が必要になることはほとんどない�
 
 [source,clojure]
 ----
-;; `(:require [clojure.string :as str])` を前提に...
+;; ns フォームで `(:require [clojure.string :as str])` を前提に...
 
 ;; 良い
 (map #(str/capitalize (str/trim %)) ["top " " test "])
@@ -2385,7 +2385,7 @@ STMトランザクションの中でアトムを更新することを避ける�
 
 [source,clojure]
 ----
-;; `(:require [clojure.string :as str])` を前提に...
+;; ns フォームで `(:require [clojure.string :as str])` を前提に...
 
 ;; 良い
 (str/join ", " ["apple" "banana" "orange"])
