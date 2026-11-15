@@ -3512,7 +3512,7 @@ it easier for tooling to display it correctly.")
 [[test-expected-exceptions]]
 === 例外発生のテスト
 
-コードが期待した例外を投げることを確認するには、``thrown?``や``thrown-with-msg?``を使う。
+コードが期待した例外を投げることを確認するには、例外用アサーションの``thrown?``や``thrown-with-msg?``を使う。
 
 [source,clojure]
 ----
