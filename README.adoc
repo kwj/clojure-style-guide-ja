@@ -1639,7 +1639,7 @@ Clojureでは実際のブール値が必要になることはほとんどない�
 
 [source,clojure]
 ----
-;; ns フォームで `(:require [clojure.string :as str])` が指定されていることを仮定して...
+;; ns フォームで `(:require [clojure.string :as str])` が指定されていると仮定して...
 
 ;; 良い
 (map #(str/capitalize (str/trim %)) ["top " " test "])
@@ -2385,7 +2385,7 @@ STMトランザクションの中でアトムを更新することを避ける�
 
 [source,clojure]
 ----
-;; ns フォームで `(:require [clojure.string :as str])` が指定されていることを仮定して...
+;; ns フォームで `(:require [clojure.string :as str])` が指定されていると仮定して...
 
 ;; 良い
 (str/join ", " ["apple" "banana" "orange"])
@@ -2479,7 +2479,7 @@ Reflection warning ... - reference to field toUpperCase can't be resolved.
 
 [source,clojure]
 ----
-;; Clojure 1.13 より前のバージョンでは、ns フォームで `(:import clojure.lang.ExceptionInfo)` が指定されているものと仮定する
+;; Clojure 1.13 より前のバージョンでは、ns フォームで `(:import clojure.lang.ExceptionInfo)` が指定されているものとする
 
 ;; 良い
 (try
@@ -3518,7 +3518,7 @@ it easier for tooling to display it correctly.")
 
 [source,clojure]
 ----
-;; Clojure 1.13 より前のバージョンでは、ns フォームで `(:import clojure.lang.ExceptionInfo)` が指定されているものと仮定する
+;; Clojure 1.13 より前のバージョンでは、ns フォームで `(:import clojure.lang.ExceptionInfo)` が指定されているものとする
 
 ;; 良い
 (deftest division-test
@@ -3564,7 +3564,7 @@ it easier for tooling to display it correctly.")
 
 [source,clojure]
 ----
-;; Clojure 1.13 より前のバージョンでは、ns フォームで `(:import clojure.lang.ExceptionInfo)` が指定されているものと仮定する
+;; Clojure 1.13 より前のバージョンでは、ns フォームで `(:import clojure.lang.ExceptionInfo)` が指定されているものとする
 
 ;; 良い
 (is (thrown-match? ExceptionInfo
