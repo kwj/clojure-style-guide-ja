@@ -3425,6 +3425,8 @@ it easier for tooling to display it correctly.")
 (deftest something ...)
 ----
 
+NOTE: これより先は``clojure.test``の使用を前提とし、テストの記述に必要な``deftest``や``is``などの関数／マクロは必要に応じて``clojure.test``から読み込んでいるものとします。（訳者）
+
 [[use-testing-blocks]]
 === コンテキストのために``testing``ブロック
 
