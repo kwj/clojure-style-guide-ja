@@ -548,7 +548,7 @@ ____
      (zero? n) curr
      :else (recur nxt (+' curr nxt) (dec n)))))
 
-;; まあ大丈夫 - 空行は cond のペアを分けている
+;; 大丈夫 - 空行は cond のペアを分けている
 (defn fibo-iter
   ([n] (fibo-iter 0 1 n))
   ([curr nxt n]
@@ -1188,7 +1188,7 @@ NOTE: ``\*clojure-version*`` がこの慣例に反しているのはよく知ら
   ([x y]
    (+ x y)))
 
-;; まあ大丈夫 - 他のアリティは2引数のアリティの応用
+;; 大丈夫 - 他のアリティは2引数のアリティの応用
 (defn foo
   "I have two arities."
   ([x y]

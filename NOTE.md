@@ -75,8 +75,7 @@ GitHub 上でフォークせず手元にクローンして変更しました。
 - much better: ずっと良い
 - better: より良い
 - good: 良い、適切な
-- ok: 大丈夫
-- okay: まあ大丈夫
+- ok, okay: 大丈夫
 - okish, ok-ish: まあまあ
 - not as good: あまり良くない
 - bad: 悪い、不適切な
