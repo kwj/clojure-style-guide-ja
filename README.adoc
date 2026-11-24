@@ -33,7 +33,7 @@ image:https://i.creativecommons.org/l/by/3.0/88x31.png[Creative Commons License]
 
 意訳していて、原文の意味を損なわない程度に言葉を加えたり省略している部分があります。また、訳が間違っている可能性があります。ご注意ください。なお、ガイドライン自体に対する意見はオリジナルの英語版の内容を確認の上、link:https://github.com/bbatsov/clojure-style-guide[原文リポジトリ]にお願いします。
 
-内容につきましては、原文リポジトリのコミット``37e55f6`` (Nov 15, 2026)まで反映しています。
+内容につきましては、原文リポジトリのコミット``2a09c49`` (Nov 23, 2026)まで反映しています。
 
 '''
 
@@ -755,9 +755,9 @@ NOTE: ``clojure.core/str``を隠蔽しているように見えますが、実際
 
 ClojureのコアおよびContrib名前空間のうち、以下の名前空間は慣用的なエイリアスが存在する：
 
-[%autowidth, cols="m,m", frame=ends, grid=cols, role=center]
+[options="autowidth", role=center, cols="m,m", frame=ends, grid=rows]
 |===
-^| 名前空間 | 慣用的なエイリアス
+| 名前空間 | 慣用的なエイリアス
 
 | clojure.datafy | datafy
 | clojure.edn | edn
@@ -774,9 +774,9 @@ ClojureのコアおよびContrib名前空間のうち、以下の名前空間は
 
 それから、いくつかのコアおよびContirb名前空間では、より短いエイリアスが使われている：
 
-[%autowidth, cols="m,m", frame=ends, grid=cols, role=center]
+[options="autowidth", role=center, cols="m,m", frame=ends, grid=rows]
 |===
-^| 名前空間 | 慣用的なエイリアス
+| 名前空間 | 慣用的なエイリアス
 
 | clojure.java.shell | sh
 | clojure.pprint | pp
@@ -790,9 +790,9 @@ ClojureのコアおよびContrib名前空間のうち、以下の名前空間は
 
 一般的に使われているコミュニティライブラリの中にも、広く使われている慣用的なエイリアスを持つ名前空間が数多くある：
 
-[%autowidth, cols="m,m",frame=ends, grid=cols, role=center]
+[options="autowidth", role=center, cols="m,m", frame=ends, grid=rows]
 |===
-^| 名前空間 | 慣用的なエイリアス
+| 名前空間 | 慣用的なエイリアス
 
 | cheshire.core | json
 | clj-yaml.core | yaml
