@@ -18,7 +18,7 @@ image:https://i.creativecommons.org/l/by/3.0/88x31.png[Creative Commons License]
 
 本翻訳版は以下の作品を改変しました。
 
-[%autowidth, frame=ends, grid=cols]
+[options="autowidth", frame=ends, grid=rows]
 |===
 | 著者 | タイトル | ライセンス表記
 
