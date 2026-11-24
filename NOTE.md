@@ -106,7 +106,7 @@ HTML5 の仕様として日本語でも全く問題はないのですが、混�
 #### 表意文字と非表意文字の間のスペース
 
 AsciiDoctor はデフォルトの CSS を用意していて、生成した HTML はそれなりの見た目で表示できます。
-最近、CSS のプロパティ `text-autospace` に設定可能な値として `normal` が[主要なブラウザでサポート][8]され、
+最近、CSS のプロパティ `text-autospace` に設定可能な値として `normal` が[主要なブラウザでサポート][4]され、
 和欧混植のテキスト文書の表示において従来より見た目を良くできます。
 
 そこで AsciiDoc 文書からフォーマット用マークの検出のために入っていた半角スペースを削除しました。
@@ -119,7 +119,7 @@ AsciiDoctor はデフォルトの CSS を用意していて、生成した HTML 
 別名、合印。
 文末に付ける際に英語の場合はピリオドの後ろと決まっているのですが、日本語だと句点の前に付ける流派と後ろに付ける流派があります。
 元の[翻訳版][2]もそうでしたが、英語から日本語に翻訳した文書だと英語方式で句点の後ろになっていたりします。
-本翻訳では W3C の[日本語組版処理の要件][9]やモリサワの[Note記事][10]にあるように、
+本翻訳では W3C の[日本語組版処理の要件][5]やモリサワの[Note記事][6]にあるように、
 日本語の組版では一般的と思われる句点の前に付けるようにしました。
 
 ### 外来語の末尾における長音表記
@@ -148,7 +148,7 @@ AsciiDoctor はデフォルトの CSS を用意していて、生成した HTML 
 ### AsciiDoctor による変換作業
 
 英語版に記載されている手順とは少し異なるので補足します。
-なお、必要となるソフトウェアは既に導入されているものとします。私は全部入りの[Docker イメージ][11]を使いました。
+なお、必要となるソフトウェアは既に導入されているものとします。私は全部入りの[Docker イメージ][7]を使いました。
 
 #### HTML
 
@@ -174,7 +174,7 @@ AsciiDoctor PDF の他に、日本語フォントが必要になります。
 
 HTML 版を眺めるのが一番良いと思いますが、念の為に作ったときの作業手順を残しておきます。
 
-日本語用のフォントを用意します。今回は [IBM Plex Sans JP][12] から `.ttf` ファイルを抜粋して `./fonts/` フォルダに展開。
+日本語用のフォントを用意します。今回は [IBM Plex Sans JP][8] から `.ttf` ファイルを抜粋して `./fonts/` フォルダに展開。
 
 ```
 $ ls ./fonts
@@ -184,7 +184,7 @@ IBMPlexSansJP-Regular.ttf
 IBMPlexSansJP-SemiBold.ttf
 ```
 
-つづいて標準テーマ修正のため、[元ネタ][13]を改変して下記のテーマファイルを作成。
+つづいて標準テーマ修正のため、[元ネタ][9]を改変して下記のテーマファイルを作成。
 適当なファイル名を付けて、README.adoc と同じフォルダに置きます。
 日本語フォントは特別に用意しない限りイタリック体が無いので、ウェイト違いで誤魔化しています。
 
@@ -218,20 +218,16 @@ asciidoctor-pdf -a allow-uri-read -a scripts=cjk -a pdf-theme=my-theme.yml READM
 ### 文書の難易度
 
 スタイルガイドなので仕方がないとは思いますが、まったくの Clojure 初心者には少しハードルが高い気がします。
-Lisp を触ったことがあるか、[Webサイト][14]のドキュメントを流し読みしておかないと厳しいのではないかと思います。
+Lisp を触ったことがあるか、[Webサイト][10]のドキュメントを流し読みしておかないと厳しいのではないかと思います。
 
 
 [1]: https://github.com/bbatsov/clojure-style-guide
 [2]: https://github.com/totakke/clojure-style-guide
 [3]: https://www.ohmsha.co.jp/book/9784274069130.html
-[4]: https://metaredux.com/posts/2020/12/06/semantic-clojure-formatting.html "Semantic Clojure Formatting"
-[5]: https://github.com/bbatsov/clojure-style-guide/commit/463c776813063417749e0a522161ef999d0678c5
-[6]: https://github.com/metosin/malli
-[7]: https://github.com/nubank/matcher-combinators
-[8]: https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/text-autospace#browser_compatibility
-[9]: https://www.w3.org/TR/jlreq/ "Requirements for Japanese Text Layout 日本語組版処理の要件（日本語版）"
-[10]: https://note.morisawa.co.jp/n/n6a1ca4c1a85d "縁の下の力持ち「注」の使いどころ"
-[11]: https://hub.docker.com/r/asciidoctor/docker-asciidoctor/
-[12]: https://fonts.google.com/specimen/IBM+Plex+Sans+JP
-[13]: https://github.com/asciidoctor/asciidoctor-pdf/blob/main/data/themes/default-with-font-fallbacks-theme.yml
-[14]: https://clojure.org/
+[4]: https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/text-autospace#browser_compatibility
+[5]: https://www.w3.org/TR/jlreq/ "Requirements for Japanese Text Layout 日本語組版処理の要件（日本語版）"
+[6]: https://note.morisawa.co.jp/n/n6a1ca4c1a85d "縁の下の力持ち「注」の使いどころ"
+[7]: https://hub.docker.com/r/asciidoctor/docker-asciidoctor/
+[8]: https://fonts.google.com/specimen/IBM+Plex+Sans+JP
+[9]: https://github.com/asciidoctor/asciidoctor-pdf/blob/main/data/themes/default-with-font-fallbacks-theme.yml
+[10]: https://clojure.org/
