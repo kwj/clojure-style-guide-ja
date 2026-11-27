@@ -35,8 +35,6 @@ image:https://i.creativecommons.org/l/by/3.0/88x31.png[Creative Commons License]
 
 内容につきましては、原文リポジトリのコミット``c4da412`` (Nov 26, 2026)まで反映しています。
 
-'''
-
 
 // --------
 // Introduction
