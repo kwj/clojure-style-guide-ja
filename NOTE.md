@@ -27,12 +27,10 @@ Clojure に詳しい方／情熱を持っている方に引き取っていただ
 ### スタイルガイド
 
 - README.adoc （日本語翻訳版、AsciiDoc 形式）
-- README-docinfo.html（AsciiDoctor による HTML 変換時の CSS 追加設定）
 
 ### CI/CD環境
 
 - .github/workflows/deploy.yml （GitHub Pages 公開用ワークフロー）
-- Gemfile (上記ワークフローにて環境構築に使用)
 
 ただし名前とは裏腹に、ワークフローは手動実行にしてあります。continuous (継続的)ではありません。
 

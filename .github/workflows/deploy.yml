@@ -1,14 +1,27 @@
-name: Deploy to GitHub Pages
+name: Build & Deploy to GitHub Pages
 
-on:
-  workflow_dispatch:
+on: workflow_dispatch
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
   cancel-in-progress: false
 
 jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v7
+      - name: Build site
+        uses: kwj/style-guide-theme@v1/ja
+        with:
+          accent: '#5881d8'
+      - uses: actions/upload-pages-artifact@v5
+        with:
+          path: _build/html
+
   deploy:
+    needs: build
     runs-on: ubuntu-latest
     permissions:
       pages: write
@@ -17,33 +30,7 @@ jobs:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
     steps:
-      - name: Check branch
-        if: github.ref != 'refs/heads/main'
-        run: |
-          echo "Error: This workflow can only be run on the main branch."
-          exit 1
-
-      - name: Checkout repository
-        uses: actions/checkout@v7
-
       - name: Setup Pages
         uses: actions/configure-pages@v6
-
-      - name: Setup Ruby and AsciiDoctor w/ rouge
-        uses: ruby/setup-ruby@v1
-        with:
-          ruby-version: '3.4'
-          bundler-cache: true
-
-      - name: Build
-        run: |
-          mkdir -p _build/html
-          bundle exec asciidoctor -a toc="left" -a toclevels=2 -a docinfo=private-head README.adoc -o _build/html/index.html
-
-      - name: Upload
-        uses: actions/upload-pages-artifact@v5
-        with:
-          path: _build/html
-
-      - name: Deploy the content to GitHub Pages
+      - name: Deployment
         uses: actions/deploy-pages@v5
