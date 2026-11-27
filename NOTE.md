@@ -150,15 +150,16 @@ AsciiDoctor はデフォルトの CSS を用意していて、生成した HTML 
 
 #### HTML
 
-前述したように CSS の設定を追加するため、docinfo で `<style>` タグを差し込んでいます。
-README.adoc と README-docinfo.html を用意して、AsciiDoctor で HTML ファイルを生成。
-GitHub Pages で公開している HTML 版は、左側に目次を付けるよう以下のコマンドで生成されています。
+2026年11月下旬、オリジナルの英語版リポジトリで GitHub Pages へのデプロイ用ワークフローが変更され、
+AsciiDoctor による変換は別リポジトリのアクションで実行されるようになりました。
+日本語翻訳版用に CSS の設定を追加するには当該のリポジトリをそのまま使うことができなかったため、
+リポジトリをフォークして対応しました。docinfo 用のファイルを追加しただけです。
+
+スタイル設定を無視して HTML ファイルを生成するのは、以下のコマンドで可能です。
 
 ```
-asciidoctor -a toc="left" -a toclevels=2 -a docinfo=private-head README.adoc
+asciidoctor -a toc="left" -a toclevels=2 README.adoc
 ```
-
-docinfo を使わなくても HTML ファイルの生成は可能です。少々、見栄えが悪くなるだけです。
 
 #### PDF
 
