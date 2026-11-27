@@ -33,7 +33,7 @@ image:https://i.creativecommons.org/l/by/3.0/88x31.png[Creative Commons License]
 
 意訳していて、原文の意味を損なわない程度に言葉を加えたり省略している部分があります。また、訳が間違っている可能性があります。ご注意ください。なお、ガイドライン自体に対する意見はオリジナルの英語版の内容を確認の上、link:https://github.com/bbatsov/clojure-style-guide[原文リポジトリ]にお願いします。
 
-内容につきましては、原文リポジトリのコミット``c4da412`` (Nov 26, 2026)まで反映しています。
+内容につきましては、原文リポジトリのコミット``4e097fe`` (Nov 27, 2026)まで反映しています。
 
 
 // --------
@@ -1945,31 +1945,6 @@ Integer/MAX_VALUE
 ;; 悪い
 (def ^{:private true} a 5)
 ----
-
-[[private]]
-=== プライベート
-
-コードのプライベート部分は明示する。
-
-[source,clojure]
-----
-;; 良い
-(defn- private-fun [] ...)
-
-(def ^:private private-var ...)
-
-;; 悪い
-(defn private-fun [] ...) ; 全くプライベートでない
-
-(defn ^:private private-fun [] ...) ; 冗長な記述だ
-
-(def private-var ...) ; 全くプライベートでない
-----
-
-[[access-private-var]]
-=== プライベートなvarへのアクセス
-
-例えばテストのためなど、プライベートなvarにアクセスするには``@#'some.ns/var``フォームを使う。
 
 [[attach-metadata-carefully]]
 === メタデータ付加は慎重に
